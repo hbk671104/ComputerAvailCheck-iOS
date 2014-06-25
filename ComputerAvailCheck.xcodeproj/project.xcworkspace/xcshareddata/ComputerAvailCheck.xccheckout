@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>0D772E97-A94F-4961-B47B-078A1C0769E5</string>
+	<key>IDESourceControlProjectName</key>
+	<string>ComputerAvailCheck</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>3CFCC196-30D7-4AF0-8215-C40C731E8374</key>
+		<string>https://github.com/hbk671104/PennStateComputerAvailCheck-iOS.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>ComputerAvailCheck.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>3CFCC196-30D7-4AF0-8215-C40C731E8374</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/hbk671104/PennStateComputerAvailCheck-iOS.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>3CFCC196-30D7-4AF0-8215-C40C731E8374</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>3CFCC196-30D7-4AF0-8215-C40C731E8374</string>
+			<key>IDESourceControlWCCName</key>
+			<string>ComputerAvailCheck</string>
+		</dict>
+	</array>
+</dict>
+</plist>

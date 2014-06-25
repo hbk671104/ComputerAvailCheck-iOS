@@ -3,7 +3,7 @@
 //  ComputerAvailCheck
 //
 //  Created by BK on 3/17/14.
-//  Copyright (c) 2014 Penn State. All rights reserved.
+//  Copyright (c) 2014 Bokang Huang. All rights reserved.
 //
 
 #import "BKAppDelegate.h"
