@@ -7,9 +7,22 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ECSlidingViewController.h"
+#import "BKMapViewController.h"
+#import "BKBuildingMenuViewController.h"
 
-@interface BKAppDelegate : UIResponder <UIApplicationDelegate>
+@interface BKAppDelegate : UIResponder <UIApplicationDelegate> {
+	
+	bool sliding_view_is_open;
+	
+}
 
 @property (strong, nonatomic) UIWindow *window;
+@property (strong, nonatomic) ECSlidingViewController *slidingViewController;
+@property (strong, nonatomic) BKMapViewController *map_view_controller;
+@property (strong, nonatomic) BKBuildingMenuViewController *menu_view_controller;
+@property (strong, nonatomic) UINavigationController *navi_controller;
+
+- (void)anchorNavigationController;
 
 @end

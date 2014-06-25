@@ -7,6 +7,32 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		40039DFD18E7960C0070975C /* SOAPEngine64.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 40039DFC18E7960C0070975C /* SOAPEngine64.framework */; };
+		4013325918E764F700B36321 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4013325818E764F700B36321 /* Security.framework */; };
+		4013325B18E7651700B36321 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 4013325A18E7651700B36321 /* libxml2.dylib */; };
+		4037DAF918F9C66E00528D28 /* BKBuildingMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4037DAF718F9C66E00528D28 /* BKBuildingMenuViewController.m */; };
+		4037DAFA18F9C66E00528D28 /* BKBuildingMenuViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4037DAF818F9C66E00528D28 /* BKBuildingMenuViewController.xib */; };
+		407D45AB194668BF002E7278 /* GoogleMaps.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 407D45AA194668BF002E7278 /* GoogleMaps.framework */; };
+		407D45AD1946696C002E7278 /* GoogleMaps.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 407D45AC1946696C002E7278 /* GoogleMaps.bundle */; };
+		408D0ABD18F8AC6D0049C799 /* ECPercentDrivenInteractiveTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 408D0AB118F8AC6D0049C799 /* ECPercentDrivenInteractiveTransition.m */; };
+		408D0ABE18F8AC6D0049C799 /* ECSlidingAnimationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 408D0AB318F8AC6D0049C799 /* ECSlidingAnimationController.m */; };
+		408D0ABF18F8AC6D0049C799 /* ECSlidingInteractiveTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 408D0AB618F8AC6D0049C799 /* ECSlidingInteractiveTransition.m */; };
+		408D0AC018F8AC6D0049C799 /* ECSlidingSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = 408D0AB818F8AC6D0049C799 /* ECSlidingSegue.m */; };
+		408D0AC118F8AC6D0049C799 /* ECSlidingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 408D0ABA18F8AC6D0049C799 /* ECSlidingViewController.m */; };
+		408D0AC218F8AC6D0049C799 /* UIViewController+ECSlidingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 408D0ABC18F8AC6D0049C799 /* UIViewController+ECSlidingViewController.m */; };
+		40CE692C194B5000003FCEF0 /* MRBlurView.m in Sources */ = {isa = PBXBuildFile; fileRef = 40CE6914194B5000003FCEF0 /* MRBlurView.m */; };
+		40CE692D194B5000003FCEF0 /* UIImage+MRImageEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = 40CE6916194B5000003FCEF0 /* UIImage+MRImageEffects.m */; };
+		40CE692E194B5000003FCEF0 /* MRActivityIndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 40CE6919194B5000003FCEF0 /* MRActivityIndicatorView.m */; };
+		40CE692F194B5000003FCEF0 /* MRCircularProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 40CE691B194B5000003FCEF0 /* MRCircularProgressView.m */; };
+		40CE6930194B5000003FCEF0 /* MRIconView.m in Sources */ = {isa = PBXBuildFile; fileRef = 40CE691D194B5000003FCEF0 /* MRIconView.m */; };
+		40CE6931194B5000003FCEF0 /* MRNavigationBarProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 40CE691F194B5000003FCEF0 /* MRNavigationBarProgressView.m */; };
+		40CE6932194B5000003FCEF0 /* MRProgressOverlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = 40CE6921194B5000003FCEF0 /* MRProgressOverlayView.m */; };
+		40CE6933194B5000003FCEF0 /* MRStopButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 40CE6924194B5000003FCEF0 /* MRStopButton.m */; };
+		40CE6934194B5000003FCEF0 /* MRMessageInterceptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 40CE6928194B5000003FCEF0 /* MRMessageInterceptor.m */; };
+		40CE6935194B5000003FCEF0 /* MRWeakProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 40CE692B194B5000003FCEF0 /* MRWeakProxy.m */; };
+		40CE6938194B7AD1003FCEF0 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 40CE6937194B7AD1003FCEF0 /* Reachability.m */; };
+		40E9A60318FE2D2B006FFA6A /* BKRoomViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 40E9A60118FE2D2B006FFA6A /* BKRoomViewController.m */; };
+		40E9A60418FE2D2B006FFA6A /* BKRoomViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 40E9A60218FE2D2B006FFA6A /* BKRoomViewController.xib */; };
 		40FB74EA18D7DF3B007AA208 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 40FB74E918D7DF3B007AA208 /* Foundation.framework */; };
 		40FB74EC18D7DF3B007AA208 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 40FB74EB18D7DF3B007AA208 /* CoreGraphics.framework */; };
 		40FB74EE18D7DF3B007AA208 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 40FB74ED18D7DF3B007AA208 /* UIKit.framework */; };
@@ -19,6 +45,19 @@
 		40FB750518D7DF3B007AA208 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 40FB74ED18D7DF3B007AA208 /* UIKit.framework */; };
 		40FB750D18D7DF3B007AA208 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 40FB750B18D7DF3B007AA208 /* InfoPlist.strings */; };
 		40FB750F18D7DF3B007AA208 /* ComputerAvailCheckTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 40FB750E18D7DF3B007AA208 /* ComputerAvailCheckTests.m */; };
+		40FB751B18D7DFAB007AA208 /* BKMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 40FB751918D7DFAB007AA208 /* BKMapViewController.m */; };
+		40FB752218D7E4D2007AA208 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 40FB752118D7E4D2007AA208 /* AVFoundation.framework */; };
+		40FB752618D7E4EE007AA208 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 40FB752318D7E4EE007AA208 /* CoreData.framework */; };
+		40FB752718D7E4EE007AA208 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 40FB752418D7E4EE007AA208 /* CoreLocation.framework */; };
+		40FB752818D7E4EE007AA208 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 40FB752518D7E4EE007AA208 /* CoreText.framework */; };
+		40FB752A18D7E4FF007AA208 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 40FB752918D7E4FF007AA208 /* GLKit.framework */; };
+		40FB752C18D7E50E007AA208 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 40FB752B18D7E50E007AA208 /* ImageIO.framework */; };
+		40FB752E18D7E521007AA208 /* libc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 40FB752D18D7E521007AA208 /* libc++.dylib */; };
+		40FB753018D7E52C007AA208 /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 40FB752F18D7E52C007AA208 /* libicucore.dylib */; };
+		40FB753218D7E535007AA208 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 40FB753118D7E535007AA208 /* libz.dylib */; };
+		40FB753418D7E53B007AA208 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 40FB753318D7E53B007AA208 /* OpenGLES.framework */; };
+		40FB753618D7E545007AA208 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 40FB753518D7E545007AA208 /* QuartzCore.framework */; };
+		40FB753818D7E551007AA208 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 40FB753718D7E551007AA208 /* SystemConfiguration.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -32,6 +71,55 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		40039DFC18E7960C0070975C /* SOAPEngine64.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SOAPEngine64.framework; sourceTree = "<group>"; };
+		4013325818E764F700B36321 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		4013325A18E7651700B36321 /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
+		4037DAF618F9C66E00528D28 /* BKBuildingMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BKBuildingMenuViewController.h; path = ../BKBuildingMenuViewController.h; sourceTree = "<group>"; };
+		4037DAF718F9C66E00528D28 /* BKBuildingMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BKBuildingMenuViewController.m; path = ../BKBuildingMenuViewController.m; sourceTree = "<group>"; };
+		4037DAF818F9C66E00528D28 /* BKBuildingMenuViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = BKBuildingMenuViewController.xib; path = ../BKBuildingMenuViewController.xib; sourceTree = "<group>"; };
+		407D45AA194668BF002E7278 /* GoogleMaps.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleMaps.framework; sourceTree = "<group>"; };
+		407D45AC1946696C002E7278 /* GoogleMaps.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = GoogleMaps.bundle; path = GoogleMaps.framework/Versions/A/Resources/GoogleMaps.bundle; sourceTree = "<group>"; };
+		408D0AB018F8AC6D0049C799 /* ECPercentDrivenInteractiveTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ECPercentDrivenInteractiveTransition.h; sourceTree = "<group>"; };
+		408D0AB118F8AC6D0049C799 /* ECPercentDrivenInteractiveTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ECPercentDrivenInteractiveTransition.m; sourceTree = "<group>"; };
+		408D0AB218F8AC6D0049C799 /* ECSlidingAnimationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ECSlidingAnimationController.h; sourceTree = "<group>"; };
+		408D0AB318F8AC6D0049C799 /* ECSlidingAnimationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ECSlidingAnimationController.m; sourceTree = "<group>"; };
+		408D0AB418F8AC6D0049C799 /* ECSlidingConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ECSlidingConstants.h; sourceTree = "<group>"; };
+		408D0AB518F8AC6D0049C799 /* ECSlidingInteractiveTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ECSlidingInteractiveTransition.h; sourceTree = "<group>"; };
+		408D0AB618F8AC6D0049C799 /* ECSlidingInteractiveTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ECSlidingInteractiveTransition.m; sourceTree = "<group>"; };
+		408D0AB718F8AC6D0049C799 /* ECSlidingSegue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ECSlidingSegue.h; sourceTree = "<group>"; };
+		408D0AB818F8AC6D0049C799 /* ECSlidingSegue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ECSlidingSegue.m; sourceTree = "<group>"; };
+		408D0AB918F8AC6D0049C799 /* ECSlidingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ECSlidingViewController.h; sourceTree = "<group>"; };
+		408D0ABA18F8AC6D0049C799 /* ECSlidingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ECSlidingViewController.m; sourceTree = "<group>"; };
+		408D0ABB18F8AC6D0049C799 /* UIViewController+ECSlidingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+ECSlidingViewController.h"; sourceTree = "<group>"; };
+		408D0ABC18F8AC6D0049C799 /* UIViewController+ECSlidingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+ECSlidingViewController.m"; sourceTree = "<group>"; };
+		40CE6913194B5000003FCEF0 /* MRBlurView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRBlurView.h; sourceTree = "<group>"; };
+		40CE6914194B5000003FCEF0 /* MRBlurView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRBlurView.m; sourceTree = "<group>"; };
+		40CE6915194B5000003FCEF0 /* UIImage+MRImageEffects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+MRImageEffects.h"; sourceTree = "<group>"; };
+		40CE6916194B5000003FCEF0 /* UIImage+MRImageEffects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+MRImageEffects.m"; sourceTree = "<group>"; };
+		40CE6918194B5000003FCEF0 /* MRActivityIndicatorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRActivityIndicatorView.h; sourceTree = "<group>"; };
+		40CE6919194B5000003FCEF0 /* MRActivityIndicatorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRActivityIndicatorView.m; sourceTree = "<group>"; };
+		40CE691A194B5000003FCEF0 /* MRCircularProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRCircularProgressView.h; sourceTree = "<group>"; };
+		40CE691B194B5000003FCEF0 /* MRCircularProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRCircularProgressView.m; sourceTree = "<group>"; };
+		40CE691C194B5000003FCEF0 /* MRIconView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRIconView.h; sourceTree = "<group>"; };
+		40CE691D194B5000003FCEF0 /* MRIconView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRIconView.m; sourceTree = "<group>"; };
+		40CE691E194B5000003FCEF0 /* MRNavigationBarProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRNavigationBarProgressView.h; sourceTree = "<group>"; };
+		40CE691F194B5000003FCEF0 /* MRNavigationBarProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRNavigationBarProgressView.m; sourceTree = "<group>"; };
+		40CE6920194B5000003FCEF0 /* MRProgressOverlayView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRProgressOverlayView.h; sourceTree = "<group>"; };
+		40CE6921194B5000003FCEF0 /* MRProgressOverlayView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRProgressOverlayView.m; sourceTree = "<group>"; };
+		40CE6922194B5000003FCEF0 /* MRStopableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRStopableView.h; sourceTree = "<group>"; };
+		40CE6923194B5000003FCEF0 /* MRStopButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRStopButton.h; sourceTree = "<group>"; };
+		40CE6924194B5000003FCEF0 /* MRStopButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRStopButton.m; sourceTree = "<group>"; };
+		40CE6925194B5000003FCEF0 /* MRProgress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRProgress.h; sourceTree = "<group>"; };
+		40CE6927194B5000003FCEF0 /* MRMessageInterceptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRMessageInterceptor.h; sourceTree = "<group>"; };
+		40CE6928194B5000003FCEF0 /* MRMessageInterceptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRMessageInterceptor.m; sourceTree = "<group>"; };
+		40CE6929194B5000003FCEF0 /* MRProgressHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRProgressHelper.h; sourceTree = "<group>"; };
+		40CE692A194B5000003FCEF0 /* MRWeakProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRWeakProxy.h; sourceTree = "<group>"; };
+		40CE692B194B5000003FCEF0 /* MRWeakProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRWeakProxy.m; sourceTree = "<group>"; };
+		40CE6936194B7AD1003FCEF0 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
+		40CE6937194B7AD1003FCEF0 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
+		40E9A60018FE2D2B006FFA6A /* BKRoomViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BKRoomViewController.h; sourceTree = "<group>"; };
+		40E9A60118FE2D2B006FFA6A /* BKRoomViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BKRoomViewController.m; sourceTree = "<group>"; };
+		40E9A60218FE2D2B006FFA6A /* BKRoomViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BKRoomViewController.xib; sourceTree = "<group>"; };
 		40FB74E618D7DF3B007AA208 /* ComputerAvailCheck.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ComputerAvailCheck.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		40FB74E918D7DF3B007AA208 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		40FB74EB18D7DF3B007AA208 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -48,6 +136,20 @@
 		40FB750A18D7DF3B007AA208 /* ComputerAvailCheckTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ComputerAvailCheckTests-Info.plist"; sourceTree = "<group>"; };
 		40FB750C18D7DF3B007AA208 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		40FB750E18D7DF3B007AA208 /* ComputerAvailCheckTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ComputerAvailCheckTests.m; sourceTree = "<group>"; };
+		40FB751818D7DFAB007AA208 /* BKMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BKMapViewController.h; sourceTree = "<group>"; };
+		40FB751918D7DFAB007AA208 /* BKMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BKMapViewController.m; sourceTree = "<group>"; };
+		40FB752118D7E4D2007AA208 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		40FB752318D7E4EE007AA208 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		40FB752418D7E4EE007AA208 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		40FB752518D7E4EE007AA208 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
+		40FB752918D7E4FF007AA208 /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
+		40FB752B18D7E50E007AA208 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
+		40FB752D18D7E521007AA208 /* libc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libc++.dylib"; path = "usr/lib/libc++.dylib"; sourceTree = SDKROOT; };
+		40FB752F18D7E52C007AA208 /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = usr/lib/libicucore.dylib; sourceTree = SDKROOT; };
+		40FB753118D7E535007AA208 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		40FB753318D7E53B007AA208 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
+		40FB753518D7E545007AA208 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		40FB753718D7E551007AA208 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,6 +157,22 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				407D45AB194668BF002E7278 /* GoogleMaps.framework in Frameworks */,
+				4013325B18E7651700B36321 /* libxml2.dylib in Frameworks */,
+				4013325918E764F700B36321 /* Security.framework in Frameworks */,
+				40FB753818D7E551007AA208 /* SystemConfiguration.framework in Frameworks */,
+				40FB753618D7E545007AA208 /* QuartzCore.framework in Frameworks */,
+				40FB753418D7E53B007AA208 /* OpenGLES.framework in Frameworks */,
+				40039DFD18E7960C0070975C /* SOAPEngine64.framework in Frameworks */,
+				40FB753218D7E535007AA208 /* libz.dylib in Frameworks */,
+				40FB753018D7E52C007AA208 /* libicucore.dylib in Frameworks */,
+				40FB752E18D7E521007AA208 /* libc++.dylib in Frameworks */,
+				40FB752C18D7E50E007AA208 /* ImageIO.framework in Frameworks */,
+				40FB752A18D7E4FF007AA208 /* GLKit.framework in Frameworks */,
+				40FB752618D7E4EE007AA208 /* CoreData.framework in Frameworks */,
+				40FB752718D7E4EE007AA208 /* CoreLocation.framework in Frameworks */,
+				40FB752818D7E4EE007AA208 /* CoreText.framework in Frameworks */,
+				40FB752218D7E4D2007AA208 /* AVFoundation.framework in Frameworks */,
 				40FB74EC18D7DF3B007AA208 /* CoreGraphics.framework in Frameworks */,
 				40FB74EE18D7DF3B007AA208 /* UIKit.framework in Frameworks */,
 				40FB74EA18D7DF3B007AA208 /* Foundation.framework in Frameworks */,
@@ -74,6 +192,80 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		408D0AAF18F8AC6D0049C799 /* ECSlidingViewController */ = {
+			isa = PBXGroup;
+			children = (
+				408D0AB018F8AC6D0049C799 /* ECPercentDrivenInteractiveTransition.h */,
+				408D0AB118F8AC6D0049C799 /* ECPercentDrivenInteractiveTransition.m */,
+				408D0AB218F8AC6D0049C799 /* ECSlidingAnimationController.h */,
+				408D0AB318F8AC6D0049C799 /* ECSlidingAnimationController.m */,
+				408D0AB418F8AC6D0049C799 /* ECSlidingConstants.h */,
+				408D0AB518F8AC6D0049C799 /* ECSlidingInteractiveTransition.h */,
+				408D0AB618F8AC6D0049C799 /* ECSlidingInteractiveTransition.m */,
+				408D0AB718F8AC6D0049C799 /* ECSlidingSegue.h */,
+				408D0AB818F8AC6D0049C799 /* ECSlidingSegue.m */,
+				408D0AB918F8AC6D0049C799 /* ECSlidingViewController.h */,
+				408D0ABA18F8AC6D0049C799 /* ECSlidingViewController.m */,
+				408D0ABB18F8AC6D0049C799 /* UIViewController+ECSlidingViewController.h */,
+				408D0ABC18F8AC6D0049C799 /* UIViewController+ECSlidingViewController.m */,
+			);
+			path = ECSlidingViewController;
+			sourceTree = "<group>";
+		};
+		40CE6911194B5000003FCEF0 /* MRProgress */ = {
+			isa = PBXGroup;
+			children = (
+				40CE6912194B5000003FCEF0 /* Blur */,
+				40CE6917194B5000003FCEF0 /* Components */,
+				40CE6925194B5000003FCEF0 /* MRProgress.h */,
+				40CE6926194B5000003FCEF0 /* Utils */,
+			);
+			path = MRProgress;
+			sourceTree = "<group>";
+		};
+		40CE6912194B5000003FCEF0 /* Blur */ = {
+			isa = PBXGroup;
+			children = (
+				40CE6913194B5000003FCEF0 /* MRBlurView.h */,
+				40CE6914194B5000003FCEF0 /* MRBlurView.m */,
+				40CE6915194B5000003FCEF0 /* UIImage+MRImageEffects.h */,
+				40CE6916194B5000003FCEF0 /* UIImage+MRImageEffects.m */,
+			);
+			path = Blur;
+			sourceTree = "<group>";
+		};
+		40CE6917194B5000003FCEF0 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				40CE6918194B5000003FCEF0 /* MRActivityIndicatorView.h */,
+				40CE6919194B5000003FCEF0 /* MRActivityIndicatorView.m */,
+				40CE691A194B5000003FCEF0 /* MRCircularProgressView.h */,
+				40CE691B194B5000003FCEF0 /* MRCircularProgressView.m */,
+				40CE691C194B5000003FCEF0 /* MRIconView.h */,
+				40CE691D194B5000003FCEF0 /* MRIconView.m */,
+				40CE691E194B5000003FCEF0 /* MRNavigationBarProgressView.h */,
+				40CE691F194B5000003FCEF0 /* MRNavigationBarProgressView.m */,
+				40CE6920194B5000003FCEF0 /* MRProgressOverlayView.h */,
+				40CE6921194B5000003FCEF0 /* MRProgressOverlayView.m */,
+				40CE6922194B5000003FCEF0 /* MRStopableView.h */,
+				40CE6923194B5000003FCEF0 /* MRStopButton.h */,
+				40CE6924194B5000003FCEF0 /* MRStopButton.m */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		40CE6926194B5000003FCEF0 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				40CE6927194B5000003FCEF0 /* MRMessageInterceptor.h */,
+				40CE6928194B5000003FCEF0 /* MRMessageInterceptor.m */,
+				40CE6929194B5000003FCEF0 /* MRProgressHelper.h */,
+				40CE692A194B5000003FCEF0 /* MRWeakProxy.h */,
+				40CE692B194B5000003FCEF0 /* MRWeakProxy.m */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
 		40FB74DD18D7DF3B007AA208 = {
 			isa = PBXGroup;
 			children = (
@@ -96,6 +288,23 @@
 		40FB74E818D7DF3B007AA208 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				407D45AC1946696C002E7278 /* GoogleMaps.bundle */,
+				407D45AA194668BF002E7278 /* GoogleMaps.framework */,
+				40039DFC18E7960C0070975C /* SOAPEngine64.framework */,
+				4013325A18E7651700B36321 /* libxml2.dylib */,
+				4013325818E764F700B36321 /* Security.framework */,
+				40FB753718D7E551007AA208 /* SystemConfiguration.framework */,
+				40FB753518D7E545007AA208 /* QuartzCore.framework */,
+				40FB753318D7E53B007AA208 /* OpenGLES.framework */,
+				40FB753118D7E535007AA208 /* libz.dylib */,
+				40FB752F18D7E52C007AA208 /* libicucore.dylib */,
+				40FB752D18D7E521007AA208 /* libc++.dylib */,
+				40FB752B18D7E50E007AA208 /* ImageIO.framework */,
+				40FB752918D7E4FF007AA208 /* GLKit.framework */,
+				40FB752318D7E4EE007AA208 /* CoreData.framework */,
+				40FB752418D7E4EE007AA208 /* CoreLocation.framework */,
+				40FB752518D7E4EE007AA208 /* CoreText.framework */,
+				40FB752118D7E4D2007AA208 /* AVFoundation.framework */,
 				40FB74E918D7DF3B007AA208 /* Foundation.framework */,
 				40FB74EB18D7DF3B007AA208 /* CoreGraphics.framework */,
 				40FB74ED18D7DF3B007AA208 /* UIKit.framework */,
@@ -107,8 +316,20 @@
 		40FB74EF18D7DF3B007AA208 /* ComputerAvailCheck */ = {
 			isa = PBXGroup;
 			children = (
+				40CE6911194B5000003FCEF0 /* MRProgress */,
+				408D0AAF18F8AC6D0049C799 /* ECSlidingViewController */,
 				40FB74F818D7DF3B007AA208 /* BKAppDelegate.h */,
 				40FB74F918D7DF3B007AA208 /* BKAppDelegate.m */,
+				40FB751818D7DFAB007AA208 /* BKMapViewController.h */,
+				40FB751918D7DFAB007AA208 /* BKMapViewController.m */,
+				4037DAF618F9C66E00528D28 /* BKBuildingMenuViewController.h */,
+				4037DAF718F9C66E00528D28 /* BKBuildingMenuViewController.m */,
+				4037DAF818F9C66E00528D28 /* BKBuildingMenuViewController.xib */,
+				40E9A60018FE2D2B006FFA6A /* BKRoomViewController.h */,
+				40E9A60118FE2D2B006FFA6A /* BKRoomViewController.m */,
+				40E9A60218FE2D2B006FFA6A /* BKRoomViewController.xib */,
+				40CE6936194B7AD1003FCEF0 /* Reachability.h */,
+				40CE6937194B7AD1003FCEF0 /* Reachability.m */,
 				40FB74FB18D7DF3B007AA208 /* Images.xcassets */,
 				40FB74F018D7DF3B007AA208 /* Supporting Files */,
 			);
@@ -192,6 +413,9 @@
 				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = "Penn State";
 				TargetAttributes = {
+					40FB74E518D7DF3B007AA208 = {
+						DevelopmentTeam = TCXFX6H5P2;
+					};
 					40FB750018D7DF3B007AA208 = {
 						TestTargetID = 40FB74E518D7DF3B007AA208;
 					};
@@ -220,8 +444,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4037DAFA18F9C66E00528D28 /* BKBuildingMenuViewController.xib in Resources */,
 				40FB74F418D7DF3B007AA208 /* InfoPlist.strings in Resources */,
+				40E9A60418FE2D2B006FFA6A /* BKRoomViewController.xib in Resources */,
 				40FB74FC18D7DF3B007AA208 /* Images.xcassets in Resources */,
+				407D45AD1946696C002E7278 /* GoogleMaps.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -241,7 +468,27 @@
 			buildActionMask = 2147483647;
 			files = (
 				40FB74F618D7DF3B007AA208 /* main.m in Sources */,
+				40CE692F194B5000003FCEF0 /* MRCircularProgressView.m in Sources */,
+				40E9A60318FE2D2B006FFA6A /* BKRoomViewController.m in Sources */,
+				40CE692C194B5000003FCEF0 /* MRBlurView.m in Sources */,
+				40CE6933194B5000003FCEF0 /* MRStopButton.m in Sources */,
+				408D0AC218F8AC6D0049C799 /* UIViewController+ECSlidingViewController.m in Sources */,
+				40CE6931194B5000003FCEF0 /* MRNavigationBarProgressView.m in Sources */,
 				40FB74FA18D7DF3B007AA208 /* BKAppDelegate.m in Sources */,
+				408D0ABF18F8AC6D0049C799 /* ECSlidingInteractiveTransition.m in Sources */,
+				4037DAF918F9C66E00528D28 /* BKBuildingMenuViewController.m in Sources */,
+				40CE6932194B5000003FCEF0 /* MRProgressOverlayView.m in Sources */,
+				40CE6935194B5000003FCEF0 /* MRWeakProxy.m in Sources */,
+				408D0AC018F8AC6D0049C799 /* ECSlidingSegue.m in Sources */,
+				40CE6934194B5000003FCEF0 /* MRMessageInterceptor.m in Sources */,
+				40CE6938194B7AD1003FCEF0 /* Reachability.m in Sources */,
+				40CE692E194B5000003FCEF0 /* MRActivityIndicatorView.m in Sources */,
+				40CE6930194B5000003FCEF0 /* MRIconView.m in Sources */,
+				40FB751B18D7DFAB007AA208 /* BKMapViewController.m in Sources */,
+				408D0AC118F8AC6D0049C799 /* ECSlidingViewController.m in Sources */,
+				408D0ABE18F8AC6D0049C799 /* ECSlidingAnimationController.m in Sources */,
+				40CE692D194B5000003FCEF0 /* UIImage+MRImageEffects.m in Sources */,
+				408D0ABD18F8AC6D0049C799 /* ECPercentDrivenInteractiveTransition.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -287,6 +534,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -299,7 +547,8 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Bokang Huang (UWS6428YWU)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Bokang Huang (UWS6428YWU)";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -317,6 +566,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = "-ObjC";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -325,6 +575,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -337,7 +588,8 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Bokang Huang (TCXFX6H5P2)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Bokang Huang (TCXFX6H5P2)";
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -348,6 +600,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				OTHER_LDFLAGS = "-ObjC";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -356,12 +609,24 @@
 		40FB751318D7DF3B007AA208 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Bokang Huang (UWS6428YWU)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Bokang Huang (UWS6428YWU)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ComputerAvailCheck/ComputerAvailCheck-Prefix.pch";
 				INFOPLIST_FILE = "ComputerAvailCheck/ComputerAvailCheck-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALID_ARCHS = "arm64 armv7 armv7s";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -369,12 +634,24 @@
 		40FB751418D7DF3B007AA208 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Bokang Huang (TCXFX6H5P2)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Bokang Huang (TCXFX6H5P2)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ComputerAvailCheck/ComputerAvailCheck-Prefix.pch";
 				INFOPLIST_FILE = "ComputerAvailCheck/ComputerAvailCheck-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALID_ARCHS = "arm64 armv7 armv7s";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -438,6 +715,7 @@
 				40FB751418D7DF3B007AA208 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		40FB751518D7DF3B007AA208 /* Build configuration list for PBXNativeTarget "ComputerAvailCheckTests" */ = {
 			isa = XCConfigurationList;
@@ -446,6 +724,7 @@
 				40FB751718D7DF3B007AA208 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
