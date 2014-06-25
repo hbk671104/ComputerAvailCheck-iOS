@@ -33,6 +33,7 @@ static bool is_connected;
 		
 		// No connection
 		is_connected = NO;
+		NSLog(@"No Connection");
 		
 		// Instantiate a UIAlertView object
 		UIAlertView *connectivity_alert = [[UIAlertView alloc] initWithTitle:@"No Network Connection"
@@ -51,6 +52,7 @@ static bool is_connected;
 	
 		// Connection OK
 		is_connected = YES;
+		NSLog(@"Connected!");
 		
 		// Add map to the view
 		[self addGoogleMap];
