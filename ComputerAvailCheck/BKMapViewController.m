@@ -53,7 +53,6 @@ static bool is_connected;
 		// Connection OK
 		is_connected = YES;
 		NSLog(@"Connected!");
-		NSLog(@"Hello");
 		
 		// Add map to the view
 		[self addGoogleMap];
