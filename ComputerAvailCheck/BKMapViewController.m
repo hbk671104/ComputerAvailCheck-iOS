@@ -242,6 +242,17 @@ static bool is_connected;
 	// Instantiate the map view with the frame
 	map_view = [GMSMapView mapWithFrame:frame camera:camera];
 	
+	// Configure the segmented control
+	UISegmentedControl *segmented_control = [[UISegmentedControl alloc] initWithItems:[NSArray arrayWithObjects:@"Normal", @"Satellite", @"Hybrid", nil]];
+	segmented_control.tintColor = [UIColor yellowColor];
+	segmented_control.selectedSegmentIndex = 0;
+	[segmented_control addTarget:self action:@selector(segmentAction:) forControlEvents:UIControlEventValueChanged];
+	[segmented_control sizeToFit];
+	
+	
+	// Add it to the navigation bar title view
+	self.navigationItem.titleView = segmented_control;
+	
 	// Enable users' location
 	map_view.myLocationEnabled = YES;
 	map_view.settings.myLocationButton = YES;
@@ -420,6 +431,32 @@ static bool is_connected;
 		[marker setIcon:[UIImage imageNamed:@"computers_yellow"]];
 	else
 		[marker setIcon:[UIImage imageNamed:@"computers_green"]];
+	
+}
+
+# pragma mark - Selector Method
+
+-(void)segmentAction:(UISegmentedControl *)Seg{
+	
+    switch (Seg.selectedSegmentIndex) {
+			
+        case 0:
+			[map_view setMapType:kGMSTypeNormal];
+            break;
+			
+        case 1:
+			[map_view setMapType:kGMSTypeSatellite];
+            break;
+			
+        case 2:
+			[map_view setMapType:kGMSTypeHybrid];
+            break;
+			
+        default:
+			NSLog(@"Invalid Segment Index!");
+			break;
+			
+    }
 	
 }
 

@@ -43,7 +43,7 @@
 										  action:@selector(showAboutAlert)];
 	
 	// Configure the navigation bar
-    self.map_view_controller.navigationItem.title = @"Map View";
+	//self.map_view_controller.navigationItem.title = @"Map View";
     self.map_view_controller.navigationItem.leftBarButtonItem  = anchorRightButton;
     self.map_view_controller.navigationItem.rightBarButtonItem = anchorLeftButton;
 	[self.map_view_controller.navigationController.navigationBar setBarTintColor:[UIColor blackColor]];
