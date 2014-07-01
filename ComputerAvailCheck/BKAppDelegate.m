@@ -8,7 +8,6 @@
 
 #import "BKAppDelegate.h"
 #import <GoogleMaps/GoogleMaps.h>
-#import "MEFoldAnimationController.h"
 
 @implementation BKAppDelegate
 
@@ -31,9 +30,17 @@
 	self.navi_controller = [[UINavigationController alloc] initWithRootViewController:self.map_view_controller];
 	
 	// Add two bar buttons: on the top left, the other on the top right
-    UIBarButtonItem *anchorRightButton = [[UIBarButtonItem alloc] initWithTitle:@"Buildings" style:UIBarButtonItemStylePlain target:self action:@selector(anchorNavigationController)];
+    UIBarButtonItem *anchorRightButton = [[UIBarButtonItem alloc]
+										  initWithImage:[UIImage imageNamed:@"building_icon"]
+										  style:UIBarButtonItemStylePlain
+										  target:self
+										  action:@selector(anchorNavigationController)];
 	
-    UIBarButtonItem *anchorLeftButton  = [[UIBarButtonItem alloc] initWithTitle:@"About" style:UIBarButtonItemStylePlain target:self action:@selector(showAboutAlert)];
+    UIBarButtonItem *anchorLeftButton  = [[UIBarButtonItem alloc]
+										  initWithImage:[UIImage imageNamed:@"info_icon"]
+										  style:UIBarButtonItemStylePlain
+										  target:self
+										  action:@selector(showAboutAlert)];
 	
 	// Configure the navigation bar
     self.map_view_controller.navigationItem.title = @"Map View";
