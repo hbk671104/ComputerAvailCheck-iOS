@@ -19,7 +19,6 @@ static NSMutableArray *building_array = nil;
 static NSMutableArray *marker_array = nil;
 static GMSMapView *google_map = nil;
 static ECSlidingViewController *sliding_view_controller = nil;
-static bool is_sliding_view_open = nil;
 
 + (void)setBuildingArray:(NSMutableArray *)array {building_array = array;}
 + (void)setMarkerArray:(NSMutableArray *)array {marker_array = array;}
@@ -27,8 +26,6 @@ static bool is_sliding_view_open = nil;
 + (void)setSlidingViewController:(ECSlidingViewController *)controller {
 	sliding_view_controller = controller;
 }
-+ (BOOL)getSlidingViewIsOpen {return is_sliding_view_open;}
-+ (void)setSlidingViewIsOpen:(BOOL)open {is_sliding_view_open = open;}
 
 - (void)viewDidLoad {
 	
@@ -102,9 +99,6 @@ static bool is_sliding_view_open = nil;
 										   // then show the info window of the marker
 										   [google_map setSelectedMarker:marker];
 									   }];
-	
-	// Sliding View is closed
-	[BKBuildingMenuViewController setSlidingViewIsOpen:NO];
 	
 }
 

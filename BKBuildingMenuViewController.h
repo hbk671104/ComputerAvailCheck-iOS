@@ -17,7 +17,5 @@
 + (void)setMarkerArray:(NSMutableArray *)array;
 + (void)setMapView:(GMSMapView *)map;
 + (void)setSlidingViewController:(ECSlidingViewController *)controller;
-+ (BOOL)getSlidingViewIsOpen;
-+ (void)setSlidingViewIsOpen:(BOOL)open;
 
 @end

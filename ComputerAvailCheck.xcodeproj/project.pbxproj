@@ -20,6 +20,9 @@
 		408D0AC018F8AC6D0049C799 /* ECSlidingSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = 408D0AB818F8AC6D0049C799 /* ECSlidingSegue.m */; };
 		408D0AC118F8AC6D0049C799 /* ECSlidingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 408D0ABA18F8AC6D0049C799 /* ECSlidingViewController.m */; };
 		408D0AC218F8AC6D0049C799 /* UIViewController+ECSlidingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 408D0ABC18F8AC6D0049C799 /* UIViewController+ECSlidingViewController.m */; };
+		40AA46AE19632B67004B5535 /* MEDynamicTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 40AA46A919632B67004B5535 /* MEDynamicTransition.m */; };
+		40AA46AF19632B67004B5535 /* MEFoldAnimationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 40AA46AB19632B67004B5535 /* MEFoldAnimationController.m */; };
+		40AA46B019632B67004B5535 /* MEZoomAnimationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 40AA46AD19632B67004B5535 /* MEZoomAnimationController.m */; };
 		40CE692C194B5000003FCEF0 /* MRBlurView.m in Sources */ = {isa = PBXBuildFile; fileRef = 40CE6914194B5000003FCEF0 /* MRBlurView.m */; };
 		40CE692D194B5000003FCEF0 /* UIImage+MRImageEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = 40CE6916194B5000003FCEF0 /* UIImage+MRImageEffects.m */; };
 		40CE692E194B5000003FCEF0 /* MRActivityIndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 40CE6919194B5000003FCEF0 /* MRActivityIndicatorView.m */; };
@@ -92,6 +95,12 @@
 		408D0ABA18F8AC6D0049C799 /* ECSlidingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ECSlidingViewController.m; sourceTree = "<group>"; };
 		408D0ABB18F8AC6D0049C799 /* UIViewController+ECSlidingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+ECSlidingViewController.h"; sourceTree = "<group>"; };
 		408D0ABC18F8AC6D0049C799 /* UIViewController+ECSlidingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+ECSlidingViewController.m"; sourceTree = "<group>"; };
+		40AA46A819632B67004B5535 /* MEDynamicTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MEDynamicTransition.h; sourceTree = "<group>"; };
+		40AA46A919632B67004B5535 /* MEDynamicTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MEDynamicTransition.m; sourceTree = "<group>"; };
+		40AA46AA19632B67004B5535 /* MEFoldAnimationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MEFoldAnimationController.h; sourceTree = "<group>"; };
+		40AA46AB19632B67004B5535 /* MEFoldAnimationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MEFoldAnimationController.m; sourceTree = "<group>"; };
+		40AA46AC19632B67004B5535 /* MEZoomAnimationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MEZoomAnimationController.h; sourceTree = "<group>"; };
+		40AA46AD19632B67004B5535 /* MEZoomAnimationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MEZoomAnimationController.m; sourceTree = "<group>"; };
 		40CE6913194B5000003FCEF0 /* MRBlurView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRBlurView.h; sourceTree = "<group>"; };
 		40CE6914194B5000003FCEF0 /* MRBlurView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRBlurView.m; sourceTree = "<group>"; };
 		40CE6915194B5000003FCEF0 /* UIImage+MRImageEffects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+MRImageEffects.h"; sourceTree = "<group>"; };
@@ -212,6 +221,19 @@
 			path = ECSlidingViewController;
 			sourceTree = "<group>";
 		};
+		40AA46A719632B45004B5535 /* METransitions */ = {
+			isa = PBXGroup;
+			children = (
+				40AA46A819632B67004B5535 /* MEDynamicTransition.h */,
+				40AA46A919632B67004B5535 /* MEDynamicTransition.m */,
+				40AA46AA19632B67004B5535 /* MEFoldAnimationController.h */,
+				40AA46AB19632B67004B5535 /* MEFoldAnimationController.m */,
+				40AA46AC19632B67004B5535 /* MEZoomAnimationController.h */,
+				40AA46AD19632B67004B5535 /* MEZoomAnimationController.m */,
+			);
+			name = METransitions;
+			sourceTree = "<group>";
+		};
 		40CE6911194B5000003FCEF0 /* MRProgress */ = {
 			isa = PBXGroup;
 			children = (
@@ -316,6 +338,7 @@
 		40FB74EF18D7DF3B007AA208 /* ComputerAvailCheck */ = {
 			isa = PBXGroup;
 			children = (
+				40AA46A719632B45004B5535 /* METransitions */,
 				40CE6911194B5000003FCEF0 /* MRProgress */,
 				408D0AAF18F8AC6D0049C799 /* ECSlidingViewController */,
 				40FB74F818D7DF3B007AA208 /* BKAppDelegate.h */,
@@ -468,6 +491,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				40FB74F618D7DF3B007AA208 /* main.m in Sources */,
+				40AA46AF19632B67004B5535 /* MEFoldAnimationController.m in Sources */,
 				40CE692F194B5000003FCEF0 /* MRCircularProgressView.m in Sources */,
 				40E9A60318FE2D2B006FFA6A /* BKRoomViewController.m in Sources */,
 				40CE692C194B5000003FCEF0 /* MRBlurView.m in Sources */,
@@ -482,10 +506,12 @@
 				408D0AC018F8AC6D0049C799 /* ECSlidingSegue.m in Sources */,
 				40CE6934194B5000003FCEF0 /* MRMessageInterceptor.m in Sources */,
 				40CE6938194B7AD1003FCEF0 /* Reachability.m in Sources */,
+				40AA46AE19632B67004B5535 /* MEDynamicTransition.m in Sources */,
 				40CE692E194B5000003FCEF0 /* MRActivityIndicatorView.m in Sources */,
 				40CE6930194B5000003FCEF0 /* MRIconView.m in Sources */,
 				40FB751B18D7DFAB007AA208 /* BKMapViewController.m in Sources */,
 				408D0AC118F8AC6D0049C799 /* ECSlidingViewController.m in Sources */,
+				40AA46B019632B67004B5535 /* MEZoomAnimationController.m in Sources */,
 				408D0ABE18F8AC6D0049C799 /* ECSlidingAnimationController.m in Sources */,
 				40CE692D194B5000003FCEF0 /* UIImage+MRImageEffects.m in Sources */,
 				408D0ABD18F8AC6D0049C799 /* ECPercentDrivenInteractiveTransition.m in Sources */,

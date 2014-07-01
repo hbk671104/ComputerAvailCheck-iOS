@@ -10,18 +10,17 @@
 #import "ECSlidingViewController.h"
 #import "BKMapViewController.h"
 #import "BKBuildingMenuViewController.h"
+#import "MEFoldAnimationController.h"
+#import "MEZoomAnimationController.h"
 
-@interface BKAppDelegate : UIResponder <UIApplicationDelegate> {
-	
-	bool sliding_view_is_open;
-	
-}
+@interface BKAppDelegate : UIResponder <UIApplicationDelegate, ECSlidingViewControllerDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
 @property (strong, nonatomic) ECSlidingViewController *slidingViewController;
 @property (strong, nonatomic) BKMapViewController *map_view_controller;
 @property (strong, nonatomic) BKBuildingMenuViewController *menu_view_controller;
 @property (strong, nonatomic) UINavigationController *navi_controller;
+@property (strong, nonatomic) MEZoomAnimationController *zoom_animation_controller;
 
 - (void)anchorNavigationController;
 

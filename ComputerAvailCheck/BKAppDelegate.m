@@ -8,8 +8,11 @@
 
 #import "BKAppDelegate.h"
 #import <GoogleMaps/GoogleMaps.h>
+#import "MEFoldAnimationController.h"
 
 @implementation BKAppDelegate
+
+@synthesize zoom_animation_controller;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 	
@@ -18,9 +21,6 @@
 	
 	// Initialize the main window
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-	
-	// Sliding drawer is not open yet
-	sliding_view_is_open = NO;
 	
 	// Create the map view controller
 	self.map_view_controller = [[BKMapViewController alloc] init];
@@ -60,7 +60,14 @@
 	// Grant the access of sliding view controller to BKBuildingMenuViewController
 	[BKBuildingMenuViewController setSlidingViewController:self.slidingViewController];
 	
-	// Add pan gesture
+	// Add pan gesture with zoom animation
+	zoom_animation_controller = [[MEZoomAnimationController alloc] init];
+	id<ECSlidingViewControllerDelegate> transition = zoom_animation_controller;
+	self.slidingViewController.delegate = transition;
+	
+	self.slidingViewController.topViewAnchoredGesture =
+		ECSlidingViewControllerAnchoredGestureTapping |
+		ECSlidingViewControllerAnchoredGesturePanning;
 	[self.navi_controller.view addGestureRecognizer:self.slidingViewController.panGesture];
 	
 	// configure anchored layout
@@ -81,23 +88,8 @@
  */
 - (void)anchorNavigationController {
 	
-	if (sliding_view_is_open && [BKBuildingMenuViewController getSlidingViewIsOpen]) {
-		
-		// Reset top view
-		[self.slidingViewController resetTopViewAnimated:YES];
-		// Sliding view is now closed
-		sliding_view_is_open = NO;
-		
-	} else {
-		
-		// Anchor top view to the right
-		[self.slidingViewController anchorTopViewToRightAnimated:YES];
-		// Sliding view is now open
-		sliding_view_is_open = YES;
-		// Tell BKBuildingViewController the sliding view is open
-		[BKBuildingMenuViewController setSlidingViewIsOpen:YES];
-		
-	}
+	// Anchor top view to the right
+	[self.slidingViewController anchorTopViewToRightAnimated:YES];
 
 }
 
