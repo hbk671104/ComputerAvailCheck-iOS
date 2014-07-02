@@ -133,7 +133,6 @@ static NSMutableArray *opp_code_array = nil;
 							 
 							 // Reload the data
 							 [self.tableView reloadData];
-							 NSLog(@"Data Reloaded!");
 							 
 						 });
 						 
