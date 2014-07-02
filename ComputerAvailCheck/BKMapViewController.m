@@ -246,9 +246,10 @@ static bool is_connected;
 	UISegmentedControl *segmented_control = [[UISegmentedControl alloc] initWithItems:[NSArray arrayWithObjects:@"Normal", @"Satellite", @"Hybrid", nil]];
 	segmented_control.tintColor = [UIColor yellowColor];
 	segmented_control.selectedSegmentIndex = 0;
-	[segmented_control addTarget:self action:@selector(segmentAction:) forControlEvents:UIControlEventValueChanged];
+	[segmented_control addTarget:self
+						  action:@selector(segmentAction:)
+				forControlEvents:UIControlEventValueChanged];
 	[segmented_control sizeToFit];
-	
 	
 	// Add it to the navigation bar title view
 	self.navigationItem.titleView = segmented_control;
