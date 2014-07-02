@@ -52,12 +52,14 @@
 	[[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
 	
 	// Customize the navigation title
+	/*
 	[self.map_view_controller.navigationController.navigationBar setTitleTextAttributes:
 	 [NSDictionary dictionaryWithObjectsAndKeys:
 						[UIColor whiteColor], NSForegroundColorAttributeName,
 						[UIFont fontWithName:@"ArialMT"
 										size:20.0], NSFontAttributeName,
 						nil]];
+	*/
 	
 	// Set the sliding view controller to the navigation controller
 	self.slidingViewController = [ECSlidingViewController slidingWithTopViewController:self.navi_controller];

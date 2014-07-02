@@ -91,8 +91,6 @@ static bool is_connected;
 	room_avail_mac = nil;
 	room_avail_linux = nil;
 	
-	NSLog(@"Released!");
-	
 }
 
 #pragma mark - SOAPEngine Delegate
@@ -203,10 +201,13 @@ static bool is_connected;
 							room_view_c.navigationItem.title = [building_name_array objectAtIndex:[marker_array indexOfObject:marker]];
 							
 							// Pass the data to the room view controller
+							[BKRoomViewController setTotalRoom:total_room_array];
 							[BKRoomViewController setAvailWin:room_avail_win];
 							[BKRoomViewController setAvailMac:room_avail_mac];
 							[BKRoomViewController setAvailLinux:room_avail_linux];
 							[BKRoomViewController setRoomNumber:room_number];
+							[BKRoomViewController setOppCode:opp_code];
+							[BKRoomViewController setOppCodeArray:opp_code_array];
 							
 							// Push it to the Room view controller
 							[self presentViewController:navi_c animated:YES completion:nil];

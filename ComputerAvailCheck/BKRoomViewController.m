@@ -14,15 +14,21 @@
 
 @implementation BKRoomViewController
 
+static NSMutableArray *total_room = nil;
 static NSMutableArray *avail_win = nil;
 static NSMutableArray *avail_mac = nil;
 static NSMutableArray *avail_linux = nil;
 static NSMutableArray *room_number = nil;
+static NSString *opp_code = nil;
+static NSMutableArray *opp_code_array = nil;
 
++ (void)setTotalRoom:(NSMutableArray *)total {total_room = total;}
 + (void)setAvailWin:(NSMutableArray *)win {avail_win = win;}
 + (void)setAvailMac:(NSMutableArray *)mac {avail_mac = mac;}
 + (void)setAvailLinux:(NSMutableArray *)linux {avail_linux = linux;}
-+ (void)setRoomNumber:(NSMutableArray *)number {room_number = number;};
++ (void)setRoomNumber:(NSMutableArray *)number {room_number = number;}
++ (void)setOppCode:(NSString *)opp {opp_code = opp;}
++ (void)setOppCodeArray:(NSMutableArray *)opp_array {opp_code_array = opp_array;}
 
 - (void)viewDidLoad {
 	
@@ -53,13 +59,18 @@ static NSMutableArray *room_number = nil;
 	
 }
 
+# pragma mark - GUI Setup
+
 - (void)setupNavigationBar {
 	
 	// Instantiate the back bar
-	UIBarButtonItem *back_button = [[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:self action:@selector(backToPreviousViewController)];
+	UIBarButtonItem *back_button = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"back_icon"] style:UIBarButtonItemStylePlain target:self action:@selector(backToPreviousViewController)];
+	
+	UIBarButtonItem *refresh_button = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"reload_icon"] style:UIBarButtonItemStylePlain target:self action:@selector(reloadRoomData)];
 	
 	// Attach it to the navigation bar
 	self.navigationItem.leftBarButtonItem = back_button;
+	self.navigationItem.rightBarButtonItem = refresh_button;
 	
 	// Set bar tint color
 	[self.navigationController.navigationBar setBarTintColor:[UIColor blackColor]];
@@ -73,8 +84,10 @@ static NSMutableArray *room_number = nil;
 	
 }
 
+# pragma mark - Selector Method
+
 // Dismiss the current view controller
-- (void)backToPreviousViewController {
+- (void) backToPreviousViewController {
 	
 	[self.navigationController dismissViewControllerAnimated:YES completion:^{
 	
@@ -83,11 +96,93 @@ static NSMutableArray *room_number = nil;
 		avail_mac = nil;
 		avail_linux = nil;
 		room_number = nil;
+		opp_code = nil;
+		total_room = nil;
+		opp_code_array = nil;
 		
 	}];
 	
 }
+									   
+// Refresh table view room data
+- (void) reloadRoomData {
 	
+	// Instantiate a soap engine
+	soap_room = [[SOAPEngine alloc] init];
+	soap_room.actionNamespaceSlash = YES;
+	soap_room.version = VERSION_1_1;
+	soap_room.delegate = self;
+	
+	// Add the parameter to the soap request and make a request
+	[soap_room setValue:opp_code forKey:@"OppCode"];
+	[soap_room requestURL:@"https://clc.its.psu.edu/ComputerAvailabilityWS/Service.asmx"
+			   soapAction:@"https://clc.its.psu.edu/ComputerAvailabilityWS/Rooms"
+				 complete:^(NSInteger statusCode, NSString *stringXML) {
+					 
+					 // After getting the response, parse building data in a separate thread
+					 dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+						 
+						 NSLog(@"SOAP Room Response Received!");
+						 
+						 // Parse and put all the building data into their corresponding array
+						 [self queryRoomData:opp_code];
+						 
+						 // After all the array has been fully loaded, update UI back in the
+						 // main thread
+						 dispatch_async(dispatch_get_main_queue(), ^{
+							 
+							 // Reload the data
+							 [self.tableView reloadData];
+							 NSLog(@"Data Reloaded!");
+							 
+						 });
+						 
+					 });
+					 
+				 } failWithError:nil];
+	
+}									
+
+/*
+ * Query room result
+ */
+- (void) queryRoomData:(NSString *)opp_code {
+	
+	// Convert the raw xml result into NSDictionary
+	NSDictionary *dic_result = [soap_room dictionaryValue];
+	
+	// Get down the hierarchy to the room array
+	NSMutableArray *room_array = [[[dic_result valueForKey:@"diffgram"]
+								   valueForKey:@"DocumentElement"]
+								  valueForKey:@"Rooms"];
+	
+	// Instantiate the available arrays
+	room_number = [[NSMutableArray alloc] init];
+	avail_win = [[NSMutableArray alloc] init];
+	avail_mac = [[NSMutableArray alloc] init];
+	avail_linux = [[NSMutableArray alloc] init];
+	
+	// For those building that has only one room that has available computers
+	// The xml callbackr return room list as an array
+	// so we have to manually add it to each array
+	if ([[total_room objectAtIndex:[opp_code_array indexOfObject:opp_code]] isEqual: @"1"]) {
+		
+		[room_number addObject:[room_array valueForKey:@"Room"]];
+		[avail_win addObject:[room_array valueForKey:@"nWindows"]];
+		[avail_mac addObject:[room_array valueForKey:@"nMacintosh"]];
+		[avail_linux addObject:[room_array valueForKey:@"nLinux"]];
+		
+	} else {
+		
+		room_number = [room_array valueForKey:@"Room"];
+		avail_win = [room_array valueForKey:@"nWindows"];
+		avail_mac = [room_array valueForKey:@"nMacintosh"];
+		avail_linux = [room_array valueForKey:@"nLinux"];
+		
+	}
+	
+}
+
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -104,7 +199,7 @@ static NSMutableArray *room_number = nil;
 	
 }
 
-- (CGFloat) tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
 	
 	return section_header_height;
 	
@@ -138,15 +233,6 @@ static NSMutableArray *room_number = nil;
 	// Set the label color to white
 	left_label.textColor = [UIColor whiteColor];
 	right_label.textColor = [UIColor yellowColor];
-
-	/*
-	// Clear all the subview in a cell before drawing new content 
-	for(UIView *view in cell.contentView.subviews){
-        if ([view isKindOfClass:[UIView class]]) {
-            [view removeFromSuperview];
-        }
-    }
-	*/
 	
 	// Set the text to each label based on section number
 	switch (indexPath.section) {

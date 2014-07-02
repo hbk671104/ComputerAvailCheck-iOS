@@ -7,17 +7,22 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <SOAPEngine64/SOAPEngine.h>
 
-@interface BKRoomViewController : UITableViewController {
+@interface BKRoomViewController : UITableViewController <SOAPEngineDelegate> {
 	
 	CGFloat section_header_height;
+	SOAPEngine *soap_room;
 	
 }
 
++ (void)setTotalRoom:(NSMutableArray *)total;
 + (void)setAvailWin:(NSMutableArray *)win;
 + (void)setAvailMac:(NSMutableArray *)mac;
 + (void)setAvailLinux:(NSMutableArray *)linux;
 + (void)setRoomNumber:(NSMutableArray *)number;
++ (void)setOppCode:(NSString *)opp;
++ (void)setOppCodeArray:(NSMutableArray *)opp_array;
 
 - (void)setupNavigationBar;
 
