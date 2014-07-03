@@ -12,6 +12,7 @@
 #import "BKBuildingMenuViewController.h"
 #import "MEFoldAnimationController.h"
 #import "MEZoomAnimationController.h"
+#import "MEDynamicTransition.h"
 
 @interface BKAppDelegate : UIResponder <UIApplicationDelegate, ECSlidingViewControllerDelegate>
 
@@ -21,6 +22,9 @@
 @property (strong, nonatomic) BKBuildingMenuViewController *menu_view_controller;
 @property (strong, nonatomic) UINavigationController *navi_controller;
 @property (strong, nonatomic) MEZoomAnimationController *zoom_animation_controller;
+//@property (strong, nonatomic) MEDynamicTransition *dynamic_animation_controller;
+//@property (strong, nonatomic, retain) UIPanGestureRecognizer *dynamic_transition_pan_gesture;
+
 
 - (void)anchorNavigationController;
 

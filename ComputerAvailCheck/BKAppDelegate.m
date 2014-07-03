@@ -11,7 +11,7 @@
 
 @implementation BKAppDelegate
 
-@synthesize zoom_animation_controller;
+@synthesize zoom_animation_controller;//, dynamic_animation_controller;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 	
@@ -79,6 +79,34 @@
 		ECSlidingViewControllerAnchoredGesturePanning;
 	[self.navi_controller.view addGestureRecognizer:self.slidingViewController.panGesture];
 	
+	/*
+	// Add pan gesture with dynamic transition
+	self.dynamic_animation_controller = [[MEDynamicTransition alloc] init];
+	self.dynamic_transition_pan_gesture = [[UIPanGestureRecognizer alloc] initWithTarget:self.dynamic_animation_controller action:@selector(handlePanGesture:)];
+	
+	// Specify which kind of transition to use
+	id<ECSlidingViewControllerDelegate> transition = self.dynamic_animation_controller;
+	if (transition == (id)[NSNull null]) {
+        self.slidingViewController.delegate = nil;
+    } else {
+        self.slidingViewController.delegate = transition;
+    }
+	
+	// Add custom anchored gestures
+	self.slidingViewController.customAnchoredGestures =
+	[NSArray arrayWithObject:self.dynamic_transition_pan_gesture];
+	NSLog(@"%@", self.slidingViewController.customAnchoredGestures);
+	
+	// Set either tapping or custom to top view anchored gesture
+	self.slidingViewController.topViewAnchoredGesture =
+	ECSlidingViewControllerAnchoredGestureTapping |
+	ECSlidingViewControllerAnchoredGestureCustom;
+	
+	// Remove pan gesture and hook up dynamic transition
+	[self.navi_controller.view removeGestureRecognizer:self.slidingViewController.panGesture];
+	[self.navi_controller.view addGestureRecognizer:self.dynamic_transition_pan_gesture];
+	*/
+	 
 	// configure anchored layout
     self.slidingViewController.anchorRightRevealAmount = 175.0;
 	
