@@ -245,7 +245,7 @@ static bool is_connected;
 	
 	// Configure the segmented control
 	UISegmentedControl *segmented_control = [[UISegmentedControl alloc] initWithItems:[NSArray arrayWithObjects:@"Normal", @"Satellite", @"Hybrid", nil]];
-	segmented_control.tintColor = [UIColor yellowColor];
+	segmented_control.tintColor = [UIColor whiteColor];
 	segmented_control.selectedSegmentIndex = 0;
 	[segmented_control addTarget:self
 						  action:@selector(segmentAction:)

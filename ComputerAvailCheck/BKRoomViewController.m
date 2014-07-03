@@ -7,6 +7,7 @@
 //
 
 #import "BKRoomViewController.h"
+#import "TSMessage.h"
 
 @interface BKRoomViewController ()
 
@@ -133,6 +134,7 @@ static NSMutableArray *opp_code_array = nil;
 							 
 							 // Reload the data
 							 [self.tableView reloadData];
+							 [TSMessage showNotificationInViewController:self title:@"Success:)" subtitle:nil type:TSMessageNotificationTypeSuccess duration:1.0];						
 							 
 						 });
 						 
