@@ -11,7 +11,7 @@
 
 @implementation BKAppDelegate
 
-@synthesize zoom_animation_controller;//, dynamic_animation_controller;
+@synthesize zoom_animation_controller, dynamic_animation_controller, dynamic_transition_pan_gesture;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 	
@@ -69,6 +69,7 @@
 	// Grant the access of sliding view controller to BKBuildingMenuViewController
 	[BKBuildingMenuViewController setSlidingViewController:self.slidingViewController];
 	
+	/*
 	// Add pan gesture with zoom animation
 	zoom_animation_controller = [[MEZoomAnimationController alloc] init];
 	id<ECSlidingViewControllerDelegate> transition = zoom_animation_controller;
@@ -78,8 +79,8 @@
 		ECSlidingViewControllerAnchoredGestureTapping |
 		ECSlidingViewControllerAnchoredGesturePanning;
 	[self.navi_controller.view addGestureRecognizer:self.slidingViewController.panGesture];
-	
-	/*
+	*/
+	 
 	// Add pan gesture with dynamic transition
 	self.dynamic_animation_controller = [[MEDynamicTransition alloc] init];
 	self.dynamic_transition_pan_gesture = [[UIPanGestureRecognizer alloc] initWithTarget:self.dynamic_animation_controller action:@selector(handlePanGesture:)];
@@ -93,9 +94,7 @@
     }
 	
 	// Add custom anchored gestures
-	self.slidingViewController.customAnchoredGestures =
-	[NSArray arrayWithObject:self.dynamic_transition_pan_gesture];
-	NSLog(@"%@", self.slidingViewController.customAnchoredGestures);
+	self.slidingViewController.customAnchoredGestures = @[self.dynamic_transition_pan_gesture];
 	
 	// Set either tapping or custom to top view anchored gesture
 	self.slidingViewController.topViewAnchoredGesture =
@@ -103,9 +102,7 @@
 	ECSlidingViewControllerAnchoredGestureCustom;
 	
 	// Remove pan gesture and hook up dynamic transition
-	[self.navi_controller.view removeGestureRecognizer:self.slidingViewController.panGesture];
 	[self.navi_controller.view addGestureRecognizer:self.dynamic_transition_pan_gesture];
-	*/
 	 
 	// configure anchored layout
     self.slidingViewController.anchorRightRevealAmount = 175.0;
