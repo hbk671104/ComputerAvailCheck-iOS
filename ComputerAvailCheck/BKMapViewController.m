@@ -244,7 +244,7 @@ static bool is_connected;
 	map_view = [GMSMapView mapWithFrame:frame camera:camera];
 	
 	// Configure the segmented control
-	UISegmentedControl *segmented_control = [[UISegmentedControl alloc] initWithItems:[NSArray arrayWithObjects:@"Normal", @"Satellite", @"Hybrid", nil]];
+	UISegmentedControl *segmented_control = [[UISegmentedControl alloc] initWithItems:[NSArray arrayWithObjects:@"Standard", @"Satellite", @"Hybrid", nil]];
 	segmented_control.tintColor = [UIColor whiteColor];
 	segmented_control.selectedSegmentIndex = 0;
 	[segmented_control addTarget:self

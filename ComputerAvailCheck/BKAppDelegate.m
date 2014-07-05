@@ -87,11 +87,7 @@
 	
 	// Specify which kind of transition to use
 	id<ECSlidingViewControllerDelegate> transition = self.dynamic_animation_controller;
-	if (transition == (id)[NSNull null]) {
-        self.slidingViewController.delegate = nil;
-    } else {
-        self.slidingViewController.delegate = transition;
-    }
+	self.slidingViewController.delegate = transition;
 	
 	// Add custom anchored gestures
 	self.slidingViewController.customAnchoredGestures = @[self.dynamic_transition_pan_gesture];
