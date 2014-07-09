@@ -27,7 +27,8 @@
 	self.menu_view_controller = [[BKBuildingMenuViewController alloc] init];
 	
 	// Create the navigation controller and initialize it with map view controller
-	self.navi_controller = [[UINavigationController alloc] initWithRootViewController:self.map_view_controller];
+	self.navi_controller = [[UINavigationController alloc]
+							initWithRootViewController:self.map_view_controller];
 	
 	// Add two bar buttons: on the top left, the other on the top right
     UIBarButtonItem *anchorRightButton = [[UIBarButtonItem alloc]
