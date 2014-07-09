@@ -31,8 +31,6 @@
 		402B38781965AF3A003F7E34 /* TSBlurView.m in Sources */ = {isa = PBXBuildFile; fileRef = 402B38631965AF3A003F7E34 /* TSBlurView.m */; };
 		402B38791965AF3A003F7E34 /* TSMessageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 402B38651965AF3A003F7E34 /* TSMessageView.m */; };
 		402B387C1965B01C003F7E34 /* HexColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 402B387B1965B01C003F7E34 /* HexColor.m */; };
-		4037DAF918F9C66E00528D28 /* BKBuildingMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4037DAF718F9C66E00528D28 /* BKBuildingMenuViewController.m */; };
-		4037DAFA18F9C66E00528D28 /* BKBuildingMenuViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4037DAF818F9C66E00528D28 /* BKBuildingMenuViewController.xib */; };
 		407D45AB194668BF002E7278 /* GoogleMaps.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 407D45AA194668BF002E7278 /* GoogleMaps.framework */; };
 		407D45AD1946696C002E7278 /* GoogleMaps.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 407D45AC1946696C002E7278 /* GoogleMaps.bundle */; };
 		408D0ABD18F8AC6D0049C799 /* ECPercentDrivenInteractiveTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 408D0AB118F8AC6D0049C799 /* ECPercentDrivenInteractiveTransition.m */; };
@@ -44,6 +42,8 @@
 		40AA46AE19632B67004B5535 /* MEDynamicTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 40AA46A919632B67004B5535 /* MEDynamicTransition.m */; };
 		40AA46AF19632B67004B5535 /* MEFoldAnimationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 40AA46AB19632B67004B5535 /* MEFoldAnimationController.m */; };
 		40AA46B019632B67004B5535 /* MEZoomAnimationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 40AA46AD19632B67004B5535 /* MEZoomAnimationController.m */; };
+		40CAF71B196D879700676DDC /* BKBuildingMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 40CAF719196D879700676DDC /* BKBuildingMenuViewController.m */; };
+		40CAF71C196D879700676DDC /* BKBuildingMenuViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 40CAF71A196D879700676DDC /* BKBuildingMenuViewController.xib */; };
 		40CE692C194B5000003FCEF0 /* MRBlurView.m in Sources */ = {isa = PBXBuildFile; fileRef = 40CE6914194B5000003FCEF0 /* MRBlurView.m */; };
 		40CE692D194B5000003FCEF0 /* UIImage+MRImageEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = 40CE6916194B5000003FCEF0 /* UIImage+MRImageEffects.m */; };
 		40CE692E194B5000003FCEF0 /* MRActivityIndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 40CE6919194B5000003FCEF0 /* MRActivityIndicatorView.m */; };
@@ -123,9 +123,6 @@
 		402B38651965AF3A003F7E34 /* TSMessageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSMessageView.m; sourceTree = "<group>"; };
 		402B387A1965B01C003F7E34 /* HexColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HexColor.h; sourceTree = "<group>"; };
 		402B387B1965B01C003F7E34 /* HexColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HexColor.m; sourceTree = "<group>"; };
-		4037DAF618F9C66E00528D28 /* BKBuildingMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BKBuildingMenuViewController.h; path = ../BKBuildingMenuViewController.h; sourceTree = "<group>"; };
-		4037DAF718F9C66E00528D28 /* BKBuildingMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BKBuildingMenuViewController.m; path = ../BKBuildingMenuViewController.m; sourceTree = "<group>"; };
-		4037DAF818F9C66E00528D28 /* BKBuildingMenuViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = BKBuildingMenuViewController.xib; path = ../BKBuildingMenuViewController.xib; sourceTree = "<group>"; };
 		407D45AA194668BF002E7278 /* GoogleMaps.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleMaps.framework; sourceTree = "<group>"; };
 		407D45AC1946696C002E7278 /* GoogleMaps.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = GoogleMaps.bundle; path = GoogleMaps.framework/Versions/A/Resources/GoogleMaps.bundle; sourceTree = "<group>"; };
 		408D0AB018F8AC6D0049C799 /* ECPercentDrivenInteractiveTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ECPercentDrivenInteractiveTransition.h; sourceTree = "<group>"; };
@@ -147,6 +144,9 @@
 		40AA46AB19632B67004B5535 /* MEFoldAnimationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MEFoldAnimationController.m; sourceTree = "<group>"; };
 		40AA46AC19632B67004B5535 /* MEZoomAnimationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MEZoomAnimationController.h; sourceTree = "<group>"; };
 		40AA46AD19632B67004B5535 /* MEZoomAnimationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MEZoomAnimationController.m; sourceTree = "<group>"; };
+		40CAF718196D879700676DDC /* BKBuildingMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BKBuildingMenuViewController.h; sourceTree = "<group>"; };
+		40CAF719196D879700676DDC /* BKBuildingMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BKBuildingMenuViewController.m; sourceTree = "<group>"; };
+		40CAF71A196D879700676DDC /* BKBuildingMenuViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BKBuildingMenuViewController.xib; sourceTree = "<group>"; };
 		40CE6913194B5000003FCEF0 /* MRBlurView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRBlurView.h; sourceTree = "<group>"; };
 		40CE6914194B5000003FCEF0 /* MRBlurView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRBlurView.m; sourceTree = "<group>"; };
 		40CE6915194B5000003FCEF0 /* UIImage+MRImageEffects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+MRImageEffects.h"; sourceTree = "<group>"; };
@@ -456,9 +456,9 @@
 				40FB74F918D7DF3B007AA208 /* BKAppDelegate.m */,
 				40FB751818D7DFAB007AA208 /* BKMapViewController.h */,
 				40FB751918D7DFAB007AA208 /* BKMapViewController.m */,
-				4037DAF618F9C66E00528D28 /* BKBuildingMenuViewController.h */,
-				4037DAF718F9C66E00528D28 /* BKBuildingMenuViewController.m */,
-				4037DAF818F9C66E00528D28 /* BKBuildingMenuViewController.xib */,
+				40CAF718196D879700676DDC /* BKBuildingMenuViewController.h */,
+				40CAF719196D879700676DDC /* BKBuildingMenuViewController.m */,
+				40CAF71A196D879700676DDC /* BKBuildingMenuViewController.xib */,
 				40E9A60018FE2D2B006FFA6A /* BKRoomViewController.h */,
 				40E9A60118FE2D2B006FFA6A /* BKRoomViewController.m */,
 				40E9A60218FE2D2B006FFA6A /* BKRoomViewController.xib */,
@@ -584,9 +584,9 @@
 				402B38691965AF3A003F7E34 /* NotificationBackgroundErrorIcon.png in Resources */,
 				402B38711965AF3A003F7E34 /* NotificationBackgroundWarning.png in Resources */,
 				402B38761965AF3A003F7E34 /* NotificationButtonBackground@2x.png in Resources */,
-				4037DAFA18F9C66E00528D28 /* BKBuildingMenuViewController.xib in Resources */,
 				402B386C1965AF3A003F7E34 /* NotificationBackgroundMessage@2x.png in Resources */,
 				40FB74F418D7DF3B007AA208 /* InfoPlist.strings in Resources */,
+				40CAF71C196D879700676DDC /* BKBuildingMenuViewController.xib in Resources */,
 				40E9A60418FE2D2B006FFA6A /* BKRoomViewController.xib in Resources */,
 				402B38671965AF3A003F7E34 /* NotificationBackgroundError.png in Resources */,
 				40FB74FC18D7DF3B007AA208 /* Images.xcassets in Resources */,
@@ -620,6 +620,7 @@
 			files = (
 				402B38661965AF3A003F7E34 /* TSMessage.m in Sources */,
 				40FB74F618D7DF3B007AA208 /* main.m in Sources */,
+				40CAF71B196D879700676DDC /* BKBuildingMenuViewController.m in Sources */,
 				40AA46AF19632B67004B5535 /* MEFoldAnimationController.m in Sources */,
 				40CE692F194B5000003FCEF0 /* MRCircularProgressView.m in Sources */,
 				40E9A60318FE2D2B006FFA6A /* BKRoomViewController.m in Sources */,
@@ -629,7 +630,6 @@
 				40CE6931194B5000003FCEF0 /* MRNavigationBarProgressView.m in Sources */,
 				40FB74FA18D7DF3B007AA208 /* BKAppDelegate.m in Sources */,
 				408D0ABF18F8AC6D0049C799 /* ECSlidingInteractiveTransition.m in Sources */,
-				4037DAF918F9C66E00528D28 /* BKBuildingMenuViewController.m in Sources */,
 				40CE6932194B5000003FCEF0 /* MRProgressOverlayView.m in Sources */,
 				402B38791965AF3A003F7E34 /* TSMessageView.m in Sources */,
 				40CE6935194B5000003FCEF0 /* MRWeakProxy.m in Sources */,
