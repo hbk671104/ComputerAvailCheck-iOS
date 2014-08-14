@@ -11,7 +11,7 @@
 
 @implementation BKAppDelegate
 
-@synthesize zoom_animation_controller, dynamic_animation_controller, dynamic_transition_pan_gesture;
+@synthesize zoom_animation_controller;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 	
@@ -70,9 +70,8 @@
 	// Grant the access of sliding view controller to BKBuildingMenuViewController
 	[BKBuildingMenuViewController setSlidingViewController:self.slidingViewController];
 	
-	/*
 	// Add pan gesture with zoom animation
-	zoom_animation_controller = [[MEZoomAnimationController alloc] init];
+	self.zoom_animation_controller = [[MEZoomAnimationController alloc] init];
 	id<ECSlidingViewControllerDelegate> transition = zoom_animation_controller;
 	self.slidingViewController.delegate = transition;
 	
@@ -80,8 +79,8 @@
 		ECSlidingViewControllerAnchoredGestureTapping |
 		ECSlidingViewControllerAnchoredGesturePanning;
 	[self.navi_controller.view addGestureRecognizer:self.slidingViewController.panGesture];
-	*/
 	 
+	/*
 	// Add pan gesture with dynamic transition
 	self.dynamic_animation_controller = [[MEDynamicTransition alloc] init];
 	self.dynamic_transition_pan_gesture = [[UIPanGestureRecognizer alloc] initWithTarget:self.dynamic_animation_controller action:@selector(handlePanGesture:)];
@@ -100,6 +99,7 @@
 	
 	// Remove pan gesture and hook up dynamic transition
 	[self.navi_controller.view addGestureRecognizer:self.dynamic_transition_pan_gesture];
+	*/
 	 
 	// configure anchored layout
     self.slidingViewController.anchorRightRevealAmount = 175.0;
@@ -129,7 +129,7 @@
  */
 - (void)showAboutAlert {
 	
-	NSString *msg = @"Thanks for your support! Penn State Available Computers is made by Bokang Huang\n\nSpecial thanks to: \n 1. Derek Morr for providing computer availability data \n 2. Chloe Yangqingqing Hu for logo design and optimization \n 3. Manikanth Challa for GUI design inspiration";
+	NSString *msg = @"Thanks for your support! Penn State Available Computers is made by Bokang Huang\n\nSpecial thanks to: \n 1. Derek Morr for providing computer availability data \n 2. Chloe Yangqingqing Hu for logo design and optimization \n 3. Zitong Wang for icon redesign and optimization \n 4. Manikanth Challa for GUI design inspiration";
 	
 	// Instantiate a UIAlertView object
 	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"About"

@@ -208,15 +208,14 @@ static NSMutableArray *opp_code_array = nil;
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 	
-	// Instantiate a cell
-	/*
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"UITableViewCell"
-															forIndexPath:indexPath];
-	*/
+	// Dequeue reusable cell
+	NSString *cellIdentifier = [NSString stringWithFormat:@"%d_%d", indexPath.section, indexPath.row];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
 	
-	// Instantiate a cell
-	UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault
-												   reuseIdentifier:@"UITableViewCell"];
+	// If old one is not usable, instantiate a new one
+	if (cell == nil) {
+		cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+	}
 	
 	// Set the cell background color
 	cell.backgroundColor = [UIColor clearColor];

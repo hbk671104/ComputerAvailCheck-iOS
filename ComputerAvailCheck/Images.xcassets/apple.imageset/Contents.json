@@ -3,22 +3,22 @@
     {
       "idiom" : "universal",
       "scale" : "1x",
-      "filename" : "Operating-Sysytems-Mac-os-icon-1.png"
+      "filename" : "Systems-Mac-Os-icon-32.png"
     },
     {
       "idiom" : "universal",
       "scale" : "2x",
-      "filename" : "Operating-Sysytems-Mac-os-icon.png"
+      "filename" : "Systems-Mac-Os-64.png"
     },
     {
       "idiom" : "ipad",
       "scale" : "1x",
-      "filename" : "Operating-Sysytems-Mac-os-icon-2.png"
+      "filename" : "Systems-Mac-Os-64-1.png"
     },
     {
       "idiom" : "ipad",
       "scale" : "2x",
-      "filename" : "Operating-Sysytems-Mac-os-icon (1).png"
+      "filename" : "Systems-Mac-Os-128.png"
     }
   ],
   "info" : {

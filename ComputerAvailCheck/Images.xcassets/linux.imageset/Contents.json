@@ -3,22 +3,22 @@
     {
       "idiom" : "universal",
       "scale" : "1x",
-      "filename" : "Operating-Sysytems-Linux-icon-1.png"
+      "filename" : "Systems-Linux-icon-32.png"
     },
     {
       "idiom" : "universal",
       "scale" : "2x",
-      "filename" : "Operating-Sysytems-Linux-icon.png"
+      "filename" : "Systems-Linux-icon-64.png"
     },
     {
       "idiom" : "ipad",
       "scale" : "1x",
-      "filename" : "Operating-Sysytems-Linux-icon-2.png"
+      "filename" : "Systems-Linux-icon-64-1.png"
     },
     {
       "idiom" : "ipad",
       "scale" : "2x",
-      "filename" : "Operating-Sysytems-Linux-icon (1).png"
+      "filename" : "Systems-Linux-icon-128.png"
     }
   ],
   "info" : {
