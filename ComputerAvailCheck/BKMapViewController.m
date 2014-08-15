@@ -171,6 +171,9 @@ static bool is_connected;
  */
 - (void) mapView:(GMSMapView *)mapView didTapInfoWindowOfMarker:(GMSMarker *)marker {
 	
+	// Show progress bar
+	[MRProgressOverlayView showOverlayAddedTo:self.navigationController.view animated:YES];
+	
 	// Get the opp code first
 	NSString *opp_code = [opp_code_array objectAtIndex:[marker_array indexOfObject:marker]];
 	
@@ -213,8 +216,12 @@ static bool is_connected;
 							[BKRoomViewController setOppCode:opp_code];
 							[BKRoomViewController setOppCodeArray:opp_code_array];
 							
-							// Push it to the Room view controller
-							[self presentViewController:navi_c animated:YES completion:nil];
+							// Dismiss the progress bar and push it to the Room view controller while completed
+							[MRProgressOverlayView dismissOverlayForView:self.navigationController.view animated:YES completion:^{
+								
+								[self presentViewController:navi_c animated:YES completion:nil];
+								
+							}];
 							
 						});
 						
