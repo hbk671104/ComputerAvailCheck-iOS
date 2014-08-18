@@ -55,6 +55,8 @@
 		40CE6934194B5000003FCEF0 /* MRMessageInterceptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 40CE6928194B5000003FCEF0 /* MRMessageInterceptor.m */; };
 		40CE6935194B5000003FCEF0 /* MRWeakProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 40CE692B194B5000003FCEF0 /* MRWeakProxy.m */; };
 		40CE6938194B7AD1003FCEF0 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 40CE6937194B7AD1003FCEF0 /* Reachability.m */; };
+		40E74C3319A2574D00E796B4 /* iRate.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 40E74C3019A2574D00E796B4 /* iRate.bundle */; };
+		40E74C3419A2574D00E796B4 /* iRate.m in Sources */ = {isa = PBXBuildFile; fileRef = 40E74C3219A2574D00E796B4 /* iRate.m */; };
 		40E9A60318FE2D2B006FFA6A /* BKRoomViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 40E9A60118FE2D2B006FFA6A /* BKRoomViewController.m */; };
 		40E9A60418FE2D2B006FFA6A /* BKRoomViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 40E9A60218FE2D2B006FFA6A /* BKRoomViewController.xib */; };
 		40FB74EA18D7DF3B007AA208 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 40FB74E918D7DF3B007AA208 /* Foundation.framework */; };
@@ -172,6 +174,9 @@
 		40CE692B194B5000003FCEF0 /* MRWeakProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRWeakProxy.m; sourceTree = "<group>"; };
 		40CE6936194B7AD1003FCEF0 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		40CE6937194B7AD1003FCEF0 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
+		40E74C3019A2574D00E796B4 /* iRate.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = iRate.bundle; sourceTree = "<group>"; };
+		40E74C3119A2574D00E796B4 /* iRate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iRate.h; sourceTree = "<group>"; };
+		40E74C3219A2574D00E796B4 /* iRate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iRate.m; sourceTree = "<group>"; };
 		40E9A60018FE2D2B006FFA6A /* BKRoomViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BKRoomViewController.h; sourceTree = "<group>"; };
 		40E9A60118FE2D2B006FFA6A /* BKRoomViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BKRoomViewController.m; sourceTree = "<group>"; };
 		40E9A60218FE2D2B006FFA6A /* BKRoomViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BKRoomViewController.xib; sourceTree = "<group>"; };
@@ -398,6 +403,16 @@
 			path = Utils;
 			sourceTree = "<group>";
 		};
+		40E74C2F19A2574D00E796B4 /* iRate */ = {
+			isa = PBXGroup;
+			children = (
+				40E74C3019A2574D00E796B4 /* iRate.bundle */,
+				40E74C3119A2574D00E796B4 /* iRate.h */,
+				40E74C3219A2574D00E796B4 /* iRate.m */,
+			);
+			path = iRate;
+			sourceTree = "<group>";
+		};
 		40FB74DD18D7DF3B007AA208 = {
 			isa = PBXGroup;
 			children = (
@@ -448,6 +463,7 @@
 		40FB74EF18D7DF3B007AA208 /* ComputerAvailCheck */ = {
 			isa = PBXGroup;
 			children = (
+				40E74C2F19A2574D00E796B4 /* iRate */,
 				402B384A1965AF3A003F7E34 /* TSMessages */,
 				40AA46A719632B45004B5535 /* METransitions */,
 				40CE6911194B5000003FCEF0 /* MRProgress */,
@@ -578,6 +594,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				40E74C3319A2574D00E796B4 /* iRate.bundle in Resources */,
 				402B386D1965AF3A003F7E34 /* NotificationBackgroundSuccess.png in Resources */,
 				402B386A1965AF3A003F7E34 /* NotificationBackgroundErrorIcon@2x.png in Resources */,
 				402B38721965AF3A003F7E34 /* NotificationBackgroundWarning@2x.png in Resources */,
@@ -639,6 +656,7 @@
 				40CE6938194B7AD1003FCEF0 /* Reachability.m in Sources */,
 				40AA46AE19632B67004B5535 /* MEDynamicTransition.m in Sources */,
 				40CE692E194B5000003FCEF0 /* MRActivityIndicatorView.m in Sources */,
+				40E74C3419A2574D00E796B4 /* iRate.m in Sources */,
 				402B38781965AF3A003F7E34 /* TSBlurView.m in Sources */,
 				40CE6930194B5000003FCEF0 /* MRIconView.m in Sources */,
 				40FB751B18D7DFAB007AA208 /* BKMapViewController.m in Sources */,

@@ -8,10 +8,19 @@
 
 #import "BKAppDelegate.h"
 #import <GoogleMaps/GoogleMaps.h>
+#import "iRate.h"
 
 @implementation BKAppDelegate
 
 @synthesize zoom_animation_controller;
+
++ (void)initialize {
+	
+	// configure iRate
+	[iRate sharedInstance].daysUntilPrompt = 3;
+	[iRate sharedInstance].usesUntilPrompt = 5;
+	
+}
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 	

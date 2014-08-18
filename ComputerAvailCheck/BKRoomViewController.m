@@ -311,7 +311,7 @@ static NSMutableArray *opp_code_array = nil;
 		[view addSubview:linux_icon];
 	
 	return view;
-	
+	 
 }
 
 @end
