@@ -11,6 +11,8 @@
 
 @interface BKRoomViewController ()
 
+@property (strong, nonatomic) UIRefreshControl *refreshControl;
+
 @end
 
 @implementation BKRoomViewController
@@ -45,6 +47,13 @@ static NSMutableArray *opp_code_array = nil;
 	// Instantiate the section header height
 	section_header_height = [[UIScreen mainScreen] bounds].size.height / 12;
     
+	// Pull to refresh
+	self.refreshControl = [[UIRefreshControl alloc] init];
+	[self.refreshControl addTarget:self
+							action:@selector(reloadRoomData)
+				  forControlEvents:UIControlEventValueChanged];
+	[self.tableView addSubview:self.refreshControl];
+	
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
@@ -67,11 +76,11 @@ static NSMutableArray *opp_code_array = nil;
 	// Instantiate the back bar
 	//UIBarButtonItem *back_button = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"back_icon"] style:UIBarButtonItemStylePlain target:self action:@selector(backToPreviousViewController)];
 	
-	UIBarButtonItem *refresh_button = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"reload_icon"] style:UIBarButtonItemStylePlain target:self action:@selector(reloadRoomData)];
+	//UIBarButtonItem *refresh_button = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"reload_icon"] style:UIBarButtonItemStylePlain target:self action:@selector(reloadRoomData)];
 	
 	// Attach it to the navigation bar
 	//self.navigationItem.leftBarButtonItem = back_button;
-	self.navigationItem.rightBarButtonItem = refresh_button;
+	//self.navigationItem.rightBarButtonItem = refresh_button;
 	
 	// Set bar tint color
 	[self.navigationController.navigationBar setBarTintColor:[UIColor blackColor]];
@@ -132,8 +141,13 @@ static NSMutableArray *opp_code_array = nil;
 						 // main thread
 						 dispatch_async(dispatch_get_main_queue(), ^{
 							 
+							 // Stop refreshing data
+							 [self.refreshControl endRefreshing];
+							 
 							 // Reload the data
 							 [self.tableView reloadData];
+							 
+							 // Show toast message
 							 [TSMessage showNotificationInViewController:self title:@"Success:)" subtitle:nil type:TSMessageNotificationTypeSuccess duration:1.0];						
 							 
 						 });
