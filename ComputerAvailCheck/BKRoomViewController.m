@@ -65,12 +65,12 @@ static NSMutableArray *opp_code_array = nil;
 - (void)setupNavigationBar {
 	
 	// Instantiate the back bar
-	UIBarButtonItem *back_button = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"back_icon"] style:UIBarButtonItemStylePlain target:self action:@selector(backToPreviousViewController)];
+	//UIBarButtonItem *back_button = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"back_icon"] style:UIBarButtonItemStylePlain target:self action:@selector(backToPreviousViewController)];
 	
 	UIBarButtonItem *refresh_button = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"reload_icon"] style:UIBarButtonItemStylePlain target:self action:@selector(reloadRoomData)];
 	
 	// Attach it to the navigation bar
-	self.navigationItem.leftBarButtonItem = back_button;
+	//self.navigationItem.leftBarButtonItem = back_button;
 	self.navigationItem.rightBarButtonItem = refresh_button;
 	
 	// Set bar tint color

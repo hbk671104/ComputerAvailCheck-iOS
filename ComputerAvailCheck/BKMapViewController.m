@@ -202,7 +202,7 @@ static bool is_connected;
 						dispatch_async(dispatch_get_main_queue(), ^{
 							
 							BKRoomViewController *room_view_c = [[BKRoomViewController alloc] init];
-							UINavigationController *navi_c = [[UINavigationController alloc] initWithRootViewController:room_view_c];
+							//UINavigationController *navi_c = [[UINavigationController alloc] initWithRootViewController:room_view_c];
 							
 							// Set the title
 							room_view_c.navigationItem.title = [building_name_array objectAtIndex:[marker_array indexOfObject:marker]];
@@ -219,7 +219,8 @@ static bool is_connected;
 							// Dismiss the progress bar and push it to the Room view controller while completed
 							[MRProgressOverlayView dismissOverlayForView:self.navigationController.view animated:YES completion:^{
 								
-								[self presentViewController:navi_c animated:YES completion:nil];
+								//[self presentViewController:navi_c animated:YES completion:nil];
+								[self.navigationController pushViewController:room_view_c animated:YES];
 								
 							}];
 							
