@@ -289,45 +289,45 @@ static bool is_connected;
 	
 	// Initialized the marker array and populate it
 	marker_array = [[NSMutableArray alloc] init];
-	[marker_array addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.803636, -77.863764)]];
-	[marker_array addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.799342, -77.861819)]];
-	[marker_array addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.809053, -77.855428)]];
-	[marker_array addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.803926, -77.865199)]];
-	[marker_array addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.799135, -77.868380)]];
-	[marker_array addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.798325, -77.867731)]];
-	[marker_array addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.798116, -77.862798)]];
-	[marker_array addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.794266, -77.865405)]];
-	[marker_array addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.804889, -77.856182)]];
-	[marker_array addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.792146, -77.870880)]];
-	[marker_array addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.801011, -77.863638)]];
-	[marker_array addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.806479, -77.862265)]];
-	[marker_array addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.799691, -77.869528)]];
-	[marker_array addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.80483,  -77.863994)]];
-	[marker_array addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.793742, -77.862985)]];
-	[marker_array addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.796982, -77.861375)]];
-	[marker_array addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.796544, -77.859884)]];
-	[marker_array addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.794668, -77.865838)]];
-	[marker_array addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.798136, -77.861272)]];
-	[marker_array addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.793673, -77.868112)]];
-	[marker_array addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.807461, -77.866494)]];
-	[marker_array addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.798144, -77.870666)]];
-	[marker_array addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.800934, -77.861492)]];
-	[marker_array addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.798623, -77.870312)]];
-	[marker_array addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.798607, -77.862223)]];
-	[marker_array addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.798493, -77.865452)]];
-	[marker_array addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.800239, -77.864937)]];
-	[marker_array addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.801129, -77.858510)]];
-	[marker_array addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.798233, -77.868628)]];
-	[marker_array addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.795435, -77.868651)]];
-	[marker_array addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.799585, -77.855996)]];
-	[marker_array addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.794757, -77.862641)]];
-	[marker_array addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.796962, -77.865757)]];
-	[marker_array addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.801108, -77.866744)]];
-	[marker_array addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.79323,  -77.866857)]];
-	//[marker_array addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.795715, -77.867405)]];
-	[marker_array addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.80294,  -77.866079)]];
-	[marker_array addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.797546, -77.866610)]];
-	[marker_array addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.795967, -77.864255)]];
+	[marker_array addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.803636, -77.863764)]]; // Ag Science
+	[marker_array addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.799342, -77.861819)]]; // Boucke
+	[marker_array addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.809053, -77.855428)]]; // BJC
+	[marker_array addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.803926, -77.865199)]]; // Business
+	[marker_array addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.799135, -77.868380)]]; // Cedar
+	[marker_array addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.798325, -77.867731)]]; // Chambers
+	[marker_array addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.798116, -77.862798)]]; // Davey Lab
+	[marker_array addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.794266, -77.865405)]]; // Deike
+	[marker_array addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.804889, -77.856182)]]; // EAL
+	[marker_array addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.792146, -77.870880)]]; // EES
+	[marker_array addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.801011, -77.863638)]]; // Ferguson
+	[marker_array addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.806479, -77.862265)]]; // Findlay
+	[marker_array addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.799691, -77.869528)]]; // Ford
+	[marker_array addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.80483,  -77.863994)]]; // Forest Resources
+	[marker_array addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.793742, -77.862985)]]; // Hammond
+	//[marker_array addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.796982, -77.861375)]]; // Henderson
+	[marker_array addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.796544, -77.859884)]]; // HHDev
+	[marker_array addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.794668, -77.865838)]]; // Hosler
+	[marker_array addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.798136, -77.861272)]]; // Hub
+	[marker_array addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.793673, -77.868112)]]; // IST
+	[marker_array addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.807461, -77.866494)]]; // Katz
+	[marker_array addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.798144, -77.870666)]]; // Keller
+	[marker_array addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.800934, -77.861492)]]; // Life Science
+	[marker_array addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.798623, -77.870312)]]; // Mateer
+	[marker_array addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.798607, -77.862223)]]; // Osmond
+	[marker_array addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.798493, -77.865452)]]; // Paterno
+	[marker_array addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.800239, -77.864937)]]; // Patterson
+	[marker_array addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.801129, -77.858510)]]; // Pollock
+	[marker_array addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.798233, -77.868628)]]; // Rackley
+	[marker_array addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.795435, -77.868651)]]; // Rec Hall
+	[marker_array addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.799585, -77.855996)]]; // Redifer
+	[marker_array addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.794757, -77.862641)]]; // Sackett
+	[marker_array addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.796962, -77.865757)]]; // Sparks
+	[marker_array addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.801108, -77.866744)]]; // Stuckeman
+	[marker_array addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.79323,  -77.866857)]]; // Walker
+	//[marker_array addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.795715, -77.867405)]]; // Waring
+	[marker_array addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.80294,  -77.866079)]]; // Warnock
+	[marker_array addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.797546, -77.866610)]]; // West Pattee
+	[marker_array addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.795967, -77.864255)]]; // Willard
 	
 }
 
