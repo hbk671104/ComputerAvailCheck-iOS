@@ -58,16 +58,19 @@ static bool is_connected;
 		[self addGoogleMap];
 		
 		// Instantiate all the markers
-		[self initializeMarkers];
+		[self initializeMarkerPool];
+		[self initBuildingNamePool];
 
 		// Show progress bar until all the markers have been finalized
 		[MRProgressOverlayView showOverlayAddedTo:self.navigationController.view animated:YES];
 	
 		// Instantiate a soap engine for building
 		soap_building = [[SOAPEngine alloc] init];
+		soap_building.userAgent = @"SOAPEngine";
 		soap_building.actionNamespaceSlash = YES;
 		soap_building.version = VERSION_1_1;
 		soap_building.delegate = self;
+		soap_building.licenseKey = @"i4P459CjYnQ2MV09N4/4V/KbVsU4iiLBG9BOvDWAq0HNFTcJGvD1wmGNzHtI6XA6H+x8shUCOcRlrsaJ+3L0bQ==";
 		
 		// Add the parameter to the soap request and make a request
 		[soap_building setValue:@"UP" forKey:@"Campus"];
@@ -107,6 +110,9 @@ static bool is_connected;
 		
 		// Parse and put all the building data into their corresponding array
 		[self queryBuildingData];
+		
+		// Init Marker Array
+		[self initMarker];
 		
 		// After all the array has been fully loaded, update UI back in the
 		// main thread
@@ -179,9 +185,11 @@ static bool is_connected;
 	
 	// Instantiate a soap engine
 	soap_room = [[SOAPEngine alloc] init];
+	soap_room.userAgent = @"SOAPEngine";
 	soap_room.actionNamespaceSlash = YES;
 	soap_room.version = VERSION_1_1;
 	soap_room.delegate = self;
+	soap_room.licenseKey = @"i4P459CjYnQ2MV09N4/4V/KbVsU4iiLBG9BOvDWAq0HNFTcJGvD1wmGNzHtI6XA6H+x8shUCOcRlrsaJ+3L0bQ==";
 	
 	// Add the parameter to the soap request and make a request
 	[soap_room setValue:opp_code forKey:@"OppCode"];
@@ -283,51 +291,126 @@ static bool is_connected;
 }
 
 /*
- * Add building markers
+ * Init Building Name Pool
  */
-- (void) initializeMarkers {
+- (void) initBuildingNamePool {
+	
+	building_name_pool = [[NSMutableArray alloc] init];
+	[building_name_pool addObject:@"AgSci"];
+	[building_name_pool addObject:@"Boucke"];
+	[building_name_pool addObject:@"Bryce Jordan Center"];
+	[building_name_pool addObject:@"Business Bldg"];
+	[building_name_pool addObject:@"Cedar"];
+	[building_name_pool addObject:@"Chambers"];
+	[building_name_pool addObject:@"Davey Lab"];
+	[building_name_pool addObject:@"Deike"];
+	[building_name_pool addObject:@"EAL"];
+	[building_name_pool addObject:@"EES"];
+	[building_name_pool addObject:@"Ferguson"];
+	[building_name_pool addObject:@"Findlay"];
+	[building_name_pool addObject:@"Ford Building"];
+	[building_name_pool addObject:@"Forest Resources"];
+	[building_name_pool addObject:@"Hammond"];
+	[building_name_pool addObject:@"Henderson"];
+	[building_name_pool addObject:@"HHDev"];
+	[building_name_pool addObject:@"Hosler"];
+	[building_name_pool addObject:@"HUB"];
+	[building_name_pool addObject:@"IST"];
+	[building_name_pool addObject:@"Katz"];
+	[building_name_pool addObject:@"Keller"];
+	[building_name_pool addObject:@"LifeSci"];
+	[building_name_pool addObject:@"Mateer"];
+	[building_name_pool addObject:@"Osmond"];
+	[building_name_pool addObject:@"Paterno"];
+	[building_name_pool addObject:@"Patterson"];
+	[building_name_pool addObject:@"Pollock"];
+	[building_name_pool addObject:@"Rackley"];
+	[building_name_pool addObject:@"RecHall"];
+	[building_name_pool addObject:@"Redifer"];
+	[building_name_pool addObject:@"Sackett"];
+	[building_name_pool addObject:@"Sparks"];
+	[building_name_pool addObject:@"Stuckeman"];
+	[building_name_pool addObject:@"Walker"];
+	[building_name_pool addObject:@"Waring"];
+	[building_name_pool addObject:@"Warnock"];
+	[building_name_pool addObject:@"West Pattee"];
+	[building_name_pool addObject:@"Willard"];
+	
+}
+
+/*
+ * Init building markers pool
+ */
+- (void) initializeMarkerPool {
 	
 	// Initialized the marker array and populate it
+	marker_pool = [[NSMutableArray alloc] init];
+	[marker_pool addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.803636, -77.863764)]]; // Ag Science
+	[marker_pool addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.799342, -77.861819)]]; // Boucke
+	[marker_pool addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.809053, -77.855428)]]; // BJC
+	[marker_pool addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.803926, -77.865199)]]; // Business
+	[marker_pool addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.799135, -77.868380)]]; // Cedar
+	[marker_pool addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.798325, -77.867731)]]; // Chambers
+	[marker_pool addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.798116, -77.862798)]]; // Davey Lab
+	[marker_pool addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.794266, -77.865405)]]; // Deike
+	[marker_pool addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.804889, -77.856182)]]; // EAL
+	[marker_pool addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.792146, -77.870880)]]; // EES
+	[marker_pool addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.801011, -77.863638)]]; // Ferguson
+	[marker_pool addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.806479, -77.862265)]]; // Findlay
+	[marker_pool addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.799691, -77.869528)]]; // Ford
+	[marker_pool addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.80483,  -77.863994)]]; // Forest Resources
+	[marker_pool addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.793742, -77.862985)]]; // Hammond
+	[marker_pool addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.796982, -77.861375)]]; // Henderson
+	[marker_pool addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.796544, -77.859884)]]; // HHDev
+	[marker_pool addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.794668, -77.865838)]]; // Hosler
+	[marker_pool addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.798136, -77.861272)]]; // Hub
+	[marker_pool addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.793673, -77.868112)]]; // IST
+	[marker_pool addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.807461, -77.866494)]]; // Katz
+	[marker_pool addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.798144, -77.870666)]]; // Keller
+	[marker_pool addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.800934, -77.861492)]]; // Life Science
+	[marker_pool addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.798623, -77.870312)]]; // Mateer
+	[marker_pool addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.798607, -77.862223)]]; // Osmond
+	[marker_pool addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.798493, -77.865452)]]; // Paterno
+	[marker_pool addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.800239, -77.864937)]]; // Patterson
+	[marker_pool addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.801129, -77.858510)]]; // Pollock
+	[marker_pool addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.798233, -77.868628)]]; // Rackley
+	[marker_pool addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.795435, -77.868651)]]; // Rec Hall
+	[marker_pool addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.799585, -77.855996)]]; // Redifer
+	[marker_pool addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.794757, -77.862641)]]; // Sackett
+	[marker_pool addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.796962, -77.865757)]]; // Sparks
+	[marker_pool addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.801108, -77.866744)]]; // Stuckeman
+	[marker_pool addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.79323,  -77.866857)]]; // Walker
+	[marker_pool addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.795715, -77.867405)]]; // Waring
+	[marker_pool addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.80294,  -77.866079)]]; // Warnock
+	[marker_pool addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.797546, -77.866610)]]; // West Pattee
+	[marker_pool addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.795967, -77.864255)]]; // Willard
+	
+}
+
+/*
+ * Init markers
+ */
+
+- (void) initMarker {
+	
 	marker_array = [[NSMutableArray alloc] init];
-	[marker_array addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.803636, -77.863764)]]; // Ag Science
-	[marker_array addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.799342, -77.861819)]]; // Boucke
-	[marker_array addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.809053, -77.855428)]]; // BJC
-	[marker_array addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.803926, -77.865199)]]; // Business
-	[marker_array addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.799135, -77.868380)]]; // Cedar
-	[marker_array addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.798325, -77.867731)]]; // Chambers
-	[marker_array addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.798116, -77.862798)]]; // Davey Lab
-	[marker_array addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.794266, -77.865405)]]; // Deike
-	[marker_array addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.804889, -77.856182)]]; // EAL
-	[marker_array addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.792146, -77.870880)]]; // EES
-	[marker_array addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.801011, -77.863638)]]; // Ferguson
-	[marker_array addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.806479, -77.862265)]]; // Findlay
-	[marker_array addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.799691, -77.869528)]]; // Ford
-	[marker_array addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.80483,  -77.863994)]]; // Forest Resources
-	[marker_array addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.793742, -77.862985)]]; // Hammond
-	//[marker_array addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.796982, -77.861375)]]; // Henderson
-	[marker_array addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.796544, -77.859884)]]; // HHDev
-	[marker_array addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.794668, -77.865838)]]; // Hosler
-	[marker_array addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.798136, -77.861272)]]; // Hub
-	[marker_array addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.793673, -77.868112)]]; // IST
-	[marker_array addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.807461, -77.866494)]]; // Katz
-	[marker_array addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.798144, -77.870666)]]; // Keller
-	[marker_array addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.800934, -77.861492)]]; // Life Science
-	[marker_array addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.798623, -77.870312)]]; // Mateer
-	[marker_array addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.798607, -77.862223)]]; // Osmond
-	[marker_array addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.798493, -77.865452)]]; // Paterno
-	[marker_array addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.800239, -77.864937)]]; // Patterson
-	[marker_array addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.801129, -77.858510)]]; // Pollock
-	[marker_array addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.798233, -77.868628)]]; // Rackley
-	[marker_array addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.795435, -77.868651)]]; // Rec Hall
-	[marker_array addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.799585, -77.855996)]]; // Redifer
-	[marker_array addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.794757, -77.862641)]]; // Sackett
-	[marker_array addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.796962, -77.865757)]]; // Sparks
-	[marker_array addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.801108, -77.866744)]]; // Stuckeman
-	[marker_array addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.79323,  -77.866857)]]; // Walker
-	//[marker_array addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.795715, -77.867405)]]; // Waring
-	[marker_array addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.80294,  -77.866079)]]; // Warnock
-	[marker_array addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.797546, -77.866610)]]; // West Pattee
-	[marker_array addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.795967, -77.864255)]]; // Willard
+	for (int i = 0; i < [building_name_array count]; i++) {
+		
+		NSString *name = [building_name_array objectAtIndex:i];
+		
+		for (int j = 0; i < [building_name_pool count]; j++) {
+			
+			if ([name isEqual:[building_name_pool objectAtIndex:j]]) {
+				
+				// If name matches, add the marker
+				[marker_array addObject:[marker_pool objectAtIndex:j]];
+				break;
+				
+			}
+			
+		}
+		
+	}
 	
 }
 

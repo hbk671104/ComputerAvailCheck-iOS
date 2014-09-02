@@ -119,9 +119,11 @@ static NSMutableArray *opp_code_array = nil;
 	
 	// Instantiate a soap engine
 	soap_room = [[SOAPEngine alloc] init];
+	soap_room.userAgent = @"SOAPEngine";
 	soap_room.actionNamespaceSlash = YES;
 	soap_room.version = VERSION_1_1;
 	soap_room.delegate = self;
+	soap_room.licenseKey = @"i4P459CjYnQ2MV09N4/4V/KbVsU4iiLBG9BOvDWAq0HNFTcJGvD1wmGNzHtI6XA6H+x8shUCOcRlrsaJ+3L0bQ==";
 	
 	// Add the parameter to the soap request and make a request
 	[soap_room setValue:opp_code forKey:@"OppCode"];

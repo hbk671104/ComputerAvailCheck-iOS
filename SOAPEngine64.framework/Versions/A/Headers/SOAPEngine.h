@@ -10,6 +10,19 @@
 //
 // Change-log
 //
+// 08-27-2014 v.1.8.1
+// 1. added a supported version for Mac OS X.
+//
+// 08-12-2014 v.1.8.0
+// 1. added dictionary response on delegate, notification and completion block.
+// 2. added delegate and notification before parsing response data.
+// 3. added encryption/decryption content data with AES256+BASE64.
+// 4. fixes BASE64 conversion for NSData and UIImage/UIImageView objects.
+// 5. automatic setting of the property named actionNamespaceSlash in the case of a failure of the first request.
+// 6. automatic setting of the property named actionQuotes in the case where the soapAction path contains unsupported characters.
+// 7. default to YES for the property named escapingHTML.
+// 8. requires a license code, as required by the new EULA.
+//
 // 06-20-2014 v.1.7.0
 // 1. added the support for sending of UIImage and UIImageView objects.
 // 2. added the conversion of special characters in a compatible html format.
@@ -47,7 +60,7 @@
 // 1. Thread Safety
 // 2. Support nil/null values replaced with xsi:nil="true"
 //
-// 12-02-2013 v.1.3
+// 12-02-2013 v.1.3.0
 // 1. added local notifications.
 // 2. fixes last path slash for namespace actions.
 //
@@ -76,27 +89,33 @@
 
 #import <Foundation/Foundation.h>
 
+#if TARGET_OS_IPHONE
+    #import <UIKit/UIKit.h>
+#endif
+
 // Local Notification names
 extern const NSString *SOAPEngineDidFinishLoadingNotification;
 extern const NSString *SOAPEngineDidFailWithErrorNotification;
 extern const NSString *SOAPEngineDidReceiveResponseCodeNotification;
 extern const NSString *SOAPEngineDidBeforeSendingURLRequestNotification;
+extern const NSString *SOAPEngineDidBeforeParsingResponseStringNotification;
 
 // UserInfo dictionary keys for Local Noficiations
 extern const NSString *SOAPEngineStatusCodeKey;
 extern const NSString *SOAPEngineXMLResponseKey;
+extern const NSString *SOAPEngineXMLDictionaryKey;
 extern const NSString *SOAPEngineURLRequestKey;
 extern const NSString *SOAPEngineErrorKey;
 
 typedef __block void(^SOAPEngineCompleteBlock)(NSInteger statusCode, NSString *stringXML);
+typedef __block void(^SOAPEngineCompleteBlockWithDictionary)(NSInteger statusCode, NSDictionary *dict);
 typedef __block void(^SOAPEngineFailBlock)(NSError *error);
 
 typedef enum
 {
     VERSION_1_1,
     VERSION_1_2,
-    // below only for basicHttpBinding wcf services
-    VERSION_WCF_1_1,
+    VERSION_WCF_1_1 // only basicHttpBinding wcf services (.svc)
 } SOAPVersion;
 
 typedef enum
@@ -105,8 +124,14 @@ typedef enum
     SOAP_AUTH_BASIC,        // located in header request (base64)
     SOAP_AUTH_BASICAUTH,    // valid only for SOAP 1.1
     SOAP_AUTH_WSSECURITY,   // digest password
-    SOAP_AUTH_CUSTOM
+    SOAP_AUTH_CUSTOM        // sets header property for custom auth
 } SOAPAuthorization;
+
+typedef enum
+{
+    SOAP_ENCRYPT_NONE,
+    SOAP_ENCRYPT_AES256
+} SOAPEnryption;
 
 @protocol SOAPEngineDelegate;
 
@@ -167,6 +192,15 @@ typedef enum
 // enables the conversion of special characters in a compatible html format (eg &amp;) 
 @property (nonatomic, assign) BOOL escapingHTML;
 
+// sets the encryption/decryption type for content data.
+@property (nonatomic, assign) SOAPEnryption encryptionType;
+
+// sets the encryption/decryption password for content data.
+@property (nonatomic, strong) NSString *encryptionPassword;
+
+// license key for full-version (no limitations).
+@property (nonatomic, strong) NSString *licenseKey;
+
 // sets the receiver of the delegates 
 @property (nonatomic, assign) id<SOAPEngineDelegate> delegate;
 
@@ -193,7 +227,10 @@ typedef enum
 - (void)setDoubleValue:(double)value forKey:(NSString*)key;
 - (void)setFloatValue:(float)value forKey:(NSString*)key;
 - (void)setLongValue:(long)value forKey:(NSString*)key;
-- (void)setImage:(UIImage*)image forKey:(NSString*)key;
+
+#if TARGET_OS_IPHONE
+- (void)setImage:(UIImage*)image forKey:(NSString*)key; // only for iOS
+#endif
 
 // clear all parameters
 - (void)clearValues;
@@ -222,6 +259,24 @@ typedef enum
           complete:(SOAPEngineCompleteBlock)complete
      failWithError:(SOAPEngineFailBlock)fail;
 
+- (void)requestURL:(id)asmxURL
+        soapAction:(NSString *)soapAction
+completeWithDictionary:(SOAPEngineCompleteBlockWithDictionary)complete
+     failWithError:(SOAPEngineFailBlock)fail;
+
+- (void)requestURL:(id)asmxURL
+        soapAction:(NSString *)soapAction
+             value:(id)value
+completeWithDictionary:(SOAPEngineCompleteBlockWithDictionary)complete
+     failWithError:(SOAPEngineFailBlock)fail;
+
+- (void)requestURL:(id)asmxURL
+        soapAction:(NSString *)soapAction
+             value:(id)value
+            forKey:(NSString*)key
+completeWithDictionary:(SOAPEngineCompleteBlockWithDictionary)complete
+     failWithError:(SOAPEngineFailBlock)fail;
+
 // cancel all delegates, blocks or notifications
 - (void)cancel;
 
@@ -232,8 +287,10 @@ typedef enum
 @optional
 
 - (void)soapEngine:(SOAPEngine*)soapEngine didFinishLoading:(NSString*)stringXML;
+- (void)soapEngine:(SOAPEngine*)soapEngine didFinishLoading:(NSString*)stringXML dictionary:(NSDictionary*)dict;
 - (void)soapEngine:(SOAPEngine *)soapEngine didFailWithError:(NSError*)error;
 - (BOOL)soapEngine:(SOAPEngine *)soapEngine didReceiveResponseCode:(NSInteger)statusCode;
 - (NSMutableURLRequest*)soapEngine:(SOAPEngine *)soapEngine didBeforeSendingURLRequest:(NSMutableURLRequest*)request;
+- (NSString*)soapEngine:(SOAPEngine*)soapEngine didBeforeParsingResponseString:(NSString*)stringXML;
 
 @end
