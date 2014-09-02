@@ -18,12 +18,10 @@
 
 @property (strong, nonatomic) UIWindow *window;
 @property (strong, nonatomic) ECSlidingViewController *slidingViewController;
-@property (strong, nonatomic) BKMapViewController *map_view_controller;
-@property (strong, nonatomic) BKBuildingMenuViewController *menu_view_controller;
-@property (strong, nonatomic) UINavigationController *navi_controller;
-@property (strong, nonatomic) MEZoomAnimationController *zoom_animation_controller;
-//@property (strong, nonatomic) MEDynamicTransition *dynamic_animation_controller;
-//@property (strong, nonatomic) UIPanGestureRecognizer *dynamic_transition_pan_gesture;
+@property (strong, nonatomic) BKMapViewController *mapViewController;
+@property (strong, nonatomic) BKBuildingMenuViewController *menuViewController;
+@property (strong, nonatomic) UINavigationController *navigationController;
+@property (strong, nonatomic) MEZoomAnimationController *zoomAnimationController;
 
 - (void)anchorNavigationController;
 

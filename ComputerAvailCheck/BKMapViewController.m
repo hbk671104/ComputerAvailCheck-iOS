@@ -65,16 +65,16 @@ static bool is_connected;
 		[MRProgressOverlayView showOverlayAddedTo:self.navigationController.view animated:YES];
 	
 		// Instantiate a soap engine for building
-		soap_building = [[SOAPEngine alloc] init];
-		soap_building.userAgent = @"SOAPEngine";
-		soap_building.actionNamespaceSlash = YES;
-		soap_building.version = VERSION_1_1;
-		soap_building.delegate = self;
-		soap_building.licenseKey = @"i4P459CjYnQ2MV09N4/4V/KbVsU4iiLBG9BOvDWAq0HNFTcJGvD1wmGNzHtI6XA6H+x8shUCOcRlrsaJ+3L0bQ==";
+		soapBuilding = [[SOAPEngine alloc] init];
+		soapBuilding.userAgent = @"SOAPEngine";
+		soapBuilding.actionNamespaceSlash = YES;
+		soapBuilding.version = VERSION_1_1;
+		soapBuilding.delegate = self;
+		soapBuilding.licenseKey = @"i4P459CjYnQ2MV09N4/4V/KbVsU4iiLBG9BOvDWAq0HNFTcJGvD1wmGNzHtI6XA6H+x8shUCOcRlrsaJ+3L0bQ==";
 		
 		// Add the parameter to the soap request and make a request
-		[soap_building setValue:@"UP" forKey:@"Campus"];
-		[soap_building requestURL:@"https://clc.its.psu.edu/ComputerAvailabilityWS/Service.asmx"
+		[soapBuilding setValue:@"UP" forKey:@"Campus"];
+		[soapBuilding requestURL:@"https://clc.its.psu.edu/ComputerAvailabilityWS/Service.asmx"
 					   soapAction:@"https://clc.its.psu.edu/ComputerAvailabilityWS/Buildings"];
 	
 		NSLog(@"Map View Loaded Successfully!");
@@ -89,10 +89,10 @@ static bool is_connected;
  */
 - (void) viewWillDisappear:(BOOL)animated {
 	
-	room_number = nil;
-	room_avail_win = nil;
-	room_avail_mac = nil;
-	room_avail_linux = nil;
+	roomNumber = nil;
+	roomAvailWin = nil;
+	roomAvailMac = nil;
+	roomAvailLinux = nil;
 	
 }
 
@@ -119,19 +119,15 @@ static bool is_connected;
 		dispatch_async(dispatch_get_main_queue(), ^{
 			
 			// Send those data to Building Menu View controller
-			[BKBuildingMenuViewController setBuildingArray:building_name_array];
-			[BKBuildingMenuViewController setMarkerArray:marker_array];
-			[BKBuildingMenuViewController setMapView:map_view];
+			[BKBuildingMenuViewController setBuildingArray:buildingNameArray];
+			[BKBuildingMenuViewController setMarkerArray:markerArray];
+			[BKBuildingMenuViewController setMapView:mapView];
 		
 			// Add building data to each correponding marker
 			[self finalizeMarkers];
 			
 			// Dismiss the progress bar
 			[MRProgressOverlayView dismissOverlayForView:self.navigationController.view animated:YES];
-			
-			NSLog(@"Marker Array Count:%d", marker_array.count);
-			NSLog(@"Building Array Count:%d", building_name_array.count);
-			NSLog(@"Building Names:%@", building_name_array);
 			
 		});
 		
@@ -181,19 +177,19 @@ static bool is_connected;
 	[MRProgressOverlayView showOverlayAddedTo:self.navigationController.view animated:YES];
 	
 	// Get the opp code first
-	NSString *opp_code = [opp_code_array objectAtIndex:[marker_array indexOfObject:marker]];
+	NSString *opp_code = [oppCodeArray objectAtIndex:[markerArray indexOfObject:marker]];
 	
 	// Instantiate a soap engine
-	soap_room = [[SOAPEngine alloc] init];
-	soap_room.userAgent = @"SOAPEngine";
-	soap_room.actionNamespaceSlash = YES;
-	soap_room.version = VERSION_1_1;
-	soap_room.delegate = self;
-	soap_room.licenseKey = @"i4P459CjYnQ2MV09N4/4V/KbVsU4iiLBG9BOvDWAq0HNFTcJGvD1wmGNzHtI6XA6H+x8shUCOcRlrsaJ+3L0bQ==";
+	soapRoom = [[SOAPEngine alloc] init];
+	soapRoom.userAgent = @"SOAPEngine";
+	soapRoom.actionNamespaceSlash = YES;
+	soapRoom.version = VERSION_1_1;
+	soapRoom.delegate = self;
+	soapRoom.licenseKey = @"i4P459CjYnQ2MV09N4/4V/KbVsU4iiLBG9BOvDWAq0HNFTcJGvD1wmGNzHtI6XA6H+x8shUCOcRlrsaJ+3L0bQ==";
 	
 	// Add the parameter to the soap request and make a request
-	[soap_room setValue:opp_code forKey:@"OppCode"];
-	[soap_room requestURL:@"https://clc.its.psu.edu/ComputerAvailabilityWS/Service.asmx"
+	[soapRoom setValue:opp_code forKey:@"OppCode"];
+	[soapRoom requestURL:@"https://clc.its.psu.edu/ComputerAvailabilityWS/Service.asmx"
 			   soapAction:@"https://clc.its.psu.edu/ComputerAvailabilityWS/Rooms"
 				complete:^(NSInteger statusCode, NSString *stringXML) {
 					
@@ -213,16 +209,16 @@ static bool is_connected;
 							//UINavigationController *navi_c = [[UINavigationController alloc] initWithRootViewController:room_view_c];
 							
 							// Set the title
-							room_view_c.navigationItem.title = [building_name_array objectAtIndex:[marker_array indexOfObject:marker]];
+							room_view_c.navigationItem.title = [buildingNameArray objectAtIndex:[markerArray indexOfObject:marker]];
 							
 							// Pass the data to the room view controller
-							[BKRoomViewController setTotalRoom:total_room_array];
-							[BKRoomViewController setAvailWin:room_avail_win];
-							[BKRoomViewController setAvailMac:room_avail_mac];
-							[BKRoomViewController setAvailLinux:room_avail_linux];
-							[BKRoomViewController setRoomNumber:room_number];
+							[BKRoomViewController setTotalRoom:totalRoomArray];
+							[BKRoomViewController setAvailWin:roomAvailWin];
+							[BKRoomViewController setAvailMac:roomAvailMac];
+							[BKRoomViewController setAvailLinux:roomAvailLinux];
+							[BKRoomViewController setRoomNumber:roomNumber];
 							[BKRoomViewController setOppCode:opp_code];
-							[BKRoomViewController setOppCodeArray:opp_code_array];
+							[BKRoomViewController setOppCodeArray:oppCodeArray];
 							
 							// Dismiss the progress bar and push it to the Room view controller while completed
 							[MRProgressOverlayView dismissOverlayForView:self.navigationController.view animated:YES completion:^{
@@ -261,7 +257,7 @@ static bool is_connected;
 	CGRect frame = CGRectMake(0, navi_bar_height + status_bar_height, self.view.frame.size.width, screen_height - (navi_bar_height + status_bar_height));
 	
 	// Instantiate the map view with the frame
-	map_view = [GMSMapView mapWithFrame:frame camera:camera];
+	mapView = [GMSMapView mapWithFrame:frame camera:camera];
 	
 	// Configure the segmented control
 	UISegmentedControl *segmented_control = [[UISegmentedControl alloc] initWithItems:[NSArray arrayWithObjects:@"Standard", @"Satellite", @"Hybrid", nil]];
@@ -276,17 +272,17 @@ static bool is_connected;
 	self.navigationItem.titleView = segmented_control;
 	
 	// Enable users' location
-	map_view.myLocationEnabled = YES;
-	map_view.settings.myLocationButton = YES;
+	mapView.myLocationEnabled = YES;
+	mapView.settings.myLocationButton = YES;
 	
 	// Enable compass button
-	map_view.settings.compassButton = YES;
+	mapView.settings.compassButton = YES;
 	
 	// Set the delegate to itself
-	map_view.delegate = self;
+	mapView.delegate = self;
 	
 	// Add the map view as a subview
-	[self.view addSubview:map_view];
+	[self.view addSubview:mapView];
 		
 }
 
@@ -295,46 +291,46 @@ static bool is_connected;
  */
 - (void) initBuildingNamePool {
 	
-	building_name_pool = [[NSMutableArray alloc] init];
-	[building_name_pool addObject:@"AgSci"];
-	[building_name_pool addObject:@"Boucke"];
-	[building_name_pool addObject:@"Bryce Jordan Center"];
-	[building_name_pool addObject:@"Business Bldg"];
-	[building_name_pool addObject:@"Cedar"];
-	[building_name_pool addObject:@"Chambers"];
-	[building_name_pool addObject:@"Davey Lab"];
-	[building_name_pool addObject:@"Deike"];
-	[building_name_pool addObject:@"EAL"];
-	[building_name_pool addObject:@"EES"];
-	[building_name_pool addObject:@"Ferguson"];
-	[building_name_pool addObject:@"Findlay"];
-	[building_name_pool addObject:@"Ford Building"];
-	[building_name_pool addObject:@"Forest Resources"];
-	[building_name_pool addObject:@"Hammond"];
-	[building_name_pool addObject:@"Henderson"];
-	[building_name_pool addObject:@"HHDev"];
-	[building_name_pool addObject:@"Hosler"];
-	[building_name_pool addObject:@"HUB"];
-	[building_name_pool addObject:@"IST"];
-	[building_name_pool addObject:@"Katz"];
-	[building_name_pool addObject:@"Keller"];
-	[building_name_pool addObject:@"LifeSci"];
-	[building_name_pool addObject:@"Mateer"];
-	[building_name_pool addObject:@"Osmond"];
-	[building_name_pool addObject:@"Paterno"];
-	[building_name_pool addObject:@"Patterson"];
-	[building_name_pool addObject:@"Pollock"];
-	[building_name_pool addObject:@"Rackley"];
-	[building_name_pool addObject:@"RecHall"];
-	[building_name_pool addObject:@"Redifer"];
-	[building_name_pool addObject:@"Sackett"];
-	[building_name_pool addObject:@"Sparks"];
-	[building_name_pool addObject:@"Stuckeman"];
-	[building_name_pool addObject:@"Walker"];
-	[building_name_pool addObject:@"Waring"];
-	[building_name_pool addObject:@"Warnock"];
-	[building_name_pool addObject:@"West Pattee"];
-	[building_name_pool addObject:@"Willard"];
+	buildingNamePool = [[NSMutableArray alloc] init];
+	[buildingNamePool addObject:@"AgSci"];
+	[buildingNamePool addObject:@"Boucke"];
+	[buildingNamePool addObject:@"Bryce Jordan Center"];
+	[buildingNamePool addObject:@"Business Bldg"];
+	[buildingNamePool addObject:@"Cedar"];
+	[buildingNamePool addObject:@"Chambers"];
+	[buildingNamePool addObject:@"Davey Lab"];
+	[buildingNamePool addObject:@"Deike"];
+	[buildingNamePool addObject:@"EAL"];
+	[buildingNamePool addObject:@"EES"];
+	[buildingNamePool addObject:@"Ferguson"];
+	[buildingNamePool addObject:@"Findlay"];
+	[buildingNamePool addObject:@"Ford Building"];
+	[buildingNamePool addObject:@"Forest Resources"];
+	[buildingNamePool addObject:@"Hammond"];
+	[buildingNamePool addObject:@"Henderson"];
+	[buildingNamePool addObject:@"HHDev"];
+	[buildingNamePool addObject:@"Hosler"];
+	[buildingNamePool addObject:@"HUB"];
+	[buildingNamePool addObject:@"IST"];
+	[buildingNamePool addObject:@"Katz"];
+	[buildingNamePool addObject:@"Keller"];
+	[buildingNamePool addObject:@"LifeSci"];
+	[buildingNamePool addObject:@"Mateer"];
+	[buildingNamePool addObject:@"Osmond"];
+	[buildingNamePool addObject:@"Paterno"];
+	[buildingNamePool addObject:@"Patterson"];
+	[buildingNamePool addObject:@"Pollock"];
+	[buildingNamePool addObject:@"Rackley"];
+	[buildingNamePool addObject:@"RecHall"];
+	[buildingNamePool addObject:@"Redifer"];
+	[buildingNamePool addObject:@"Sackett"];
+	[buildingNamePool addObject:@"Sparks"];
+	[buildingNamePool addObject:@"Stuckeman"];
+	[buildingNamePool addObject:@"Walker"];
+	[buildingNamePool addObject:@"Waring"];
+	[buildingNamePool addObject:@"Warnock"];
+	[buildingNamePool addObject:@"West Pattee"];
+	[buildingNamePool addObject:@"Willard"];
 	
 }
 
@@ -344,46 +340,46 @@ static bool is_connected;
 - (void) initializeMarkerPool {
 	
 	// Initialized the marker array and populate it
-	marker_pool = [[NSMutableArray alloc] init];
-	[marker_pool addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.803636, -77.863764)]]; // Ag Science
-	[marker_pool addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.799342, -77.861819)]]; // Boucke
-	[marker_pool addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.809053, -77.855428)]]; // BJC
-	[marker_pool addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.803926, -77.865199)]]; // Business
-	[marker_pool addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.799135, -77.868380)]]; // Cedar
-	[marker_pool addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.798325, -77.867731)]]; // Chambers
-	[marker_pool addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.798116, -77.862798)]]; // Davey Lab
-	[marker_pool addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.794266, -77.865405)]]; // Deike
-	[marker_pool addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.804889, -77.856182)]]; // EAL
-	[marker_pool addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.792146, -77.870880)]]; // EES
-	[marker_pool addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.801011, -77.863638)]]; // Ferguson
-	[marker_pool addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.806479, -77.862265)]]; // Findlay
-	[marker_pool addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.799691, -77.869528)]]; // Ford
-	[marker_pool addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.80483,  -77.863994)]]; // Forest Resources
-	[marker_pool addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.793742, -77.862985)]]; // Hammond
-	[marker_pool addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.796982, -77.861375)]]; // Henderson
-	[marker_pool addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.796544, -77.859884)]]; // HHDev
-	[marker_pool addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.794668, -77.865838)]]; // Hosler
-	[marker_pool addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.798136, -77.861272)]]; // Hub
-	[marker_pool addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.793673, -77.868112)]]; // IST
-	[marker_pool addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.807461, -77.866494)]]; // Katz
-	[marker_pool addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.798144, -77.870666)]]; // Keller
-	[marker_pool addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.800934, -77.861492)]]; // Life Science
-	[marker_pool addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.798623, -77.870312)]]; // Mateer
-	[marker_pool addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.798607, -77.862223)]]; // Osmond
-	[marker_pool addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.798493, -77.865452)]]; // Paterno
-	[marker_pool addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.800239, -77.864937)]]; // Patterson
-	[marker_pool addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.801129, -77.858510)]]; // Pollock
-	[marker_pool addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.798233, -77.868628)]]; // Rackley
-	[marker_pool addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.795435, -77.868651)]]; // Rec Hall
-	[marker_pool addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.799585, -77.855996)]]; // Redifer
-	[marker_pool addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.794757, -77.862641)]]; // Sackett
-	[marker_pool addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.796962, -77.865757)]]; // Sparks
-	[marker_pool addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.801108, -77.866744)]]; // Stuckeman
-	[marker_pool addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.79323,  -77.866857)]]; // Walker
-	[marker_pool addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.795715, -77.867405)]]; // Waring
-	[marker_pool addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.80294,  -77.866079)]]; // Warnock
-	[marker_pool addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.797546, -77.866610)]]; // West Pattee
-	[marker_pool addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.795967, -77.864255)]]; // Willard
+	markerPool = [[NSMutableArray alloc] init];
+	[markerPool addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.803636, -77.863764)]]; // Ag Science
+	[markerPool addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.799342, -77.861819)]]; // Boucke
+	[markerPool addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.809053, -77.855428)]]; // BJC
+	[markerPool addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.803926, -77.865199)]]; // Business
+	[markerPool addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.799135, -77.868380)]]; // Cedar
+	[markerPool addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.798325, -77.867731)]]; // Chambers
+	[markerPool addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.798116, -77.862798)]]; // Davey Lab
+	[markerPool addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.794266, -77.865405)]]; // Deike
+	[markerPool addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.804889, -77.856182)]]; // EAL
+	[markerPool addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.792146, -77.870880)]]; // EES
+	[markerPool addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.801011, -77.863638)]]; // Ferguson
+	[markerPool addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.806479, -77.862265)]]; // Findlay
+	[markerPool addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.799691, -77.869528)]]; // Ford
+	[markerPool addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.80483,  -77.863994)]]; // Forest Resources
+	[markerPool addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.793742, -77.862985)]]; // Hammond
+	[markerPool addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.796982, -77.861375)]]; // Henderson
+	[markerPool addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.796544, -77.859884)]]; // HHDev
+	[markerPool addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.794668, -77.865838)]]; // Hosler
+	[markerPool addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.798136, -77.861272)]]; // Hub
+	[markerPool addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.793673, -77.868112)]]; // IST
+	[markerPool addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.807461, -77.866494)]]; // Katz
+	[markerPool addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.798144, -77.870666)]]; // Keller
+	[markerPool addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.800934, -77.861492)]]; // Life Science
+	[markerPool addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.798623, -77.870312)]]; // Mateer
+	[markerPool addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.798607, -77.862223)]]; // Osmond
+	[markerPool addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.798493, -77.865452)]]; // Paterno
+	[markerPool addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.800239, -77.864937)]]; // Patterson
+	[markerPool addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.801129, -77.858510)]]; // Pollock
+	[markerPool addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.798233, -77.868628)]]; // Rackley
+	[markerPool addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.795435, -77.868651)]]; // Rec Hall
+	[markerPool addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.799585, -77.855996)]]; // Redifer
+	[markerPool addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.794757, -77.862641)]]; // Sackett
+	[markerPool addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.796962, -77.865757)]]; // Sparks
+	[markerPool addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.801108, -77.866744)]]; // Stuckeman
+	[markerPool addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.79323,  -77.866857)]]; // Walker
+	[markerPool addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.795715, -77.867405)]]; // Waring
+	[markerPool addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.80294,  -77.866079)]]; // Warnock
+	[markerPool addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.797546, -77.866610)]]; // West Pattee
+	[markerPool addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.795967, -77.864255)]]; // Willard
 	
 }
 
@@ -393,17 +389,17 @@ static bool is_connected;
 
 - (void) initMarker {
 	
-	marker_array = [[NSMutableArray alloc] init];
-	for (int i = 0; i < [building_name_array count]; i++) {
+	markerArray = [[NSMutableArray alloc] init];
+	for (int i = 0; i < [buildingNameArray count]; i++) {
 		
-		NSString *name = [building_name_array objectAtIndex:i];
+		NSString *name = [buildingNameArray objectAtIndex:i];
 		
-		for (int j = 0; i < [building_name_pool count]; j++) {
+		for (int j = 0; i < [buildingNamePool count]; j++) {
 			
-			if ([name isEqual:[building_name_pool objectAtIndex:j]]) {
+			if ([name isEqual:[buildingNamePool objectAtIndex:j]]) {
 				
 				// If name matches, add the marker
-				[marker_array addObject:[marker_pool objectAtIndex:j]];
+				[markerArray addObject:[markerPool objectAtIndex:j]];
 				break;
 				
 			}
@@ -420,7 +416,7 @@ static bool is_connected;
 - (void) queryBuildingData {
 	
 	// Convert the raw xml result into NSDictionary
-	NSDictionary *dic_result = [soap_building dictionaryValue];
+	NSDictionary *dic_result = [soapBuilding dictionaryValue];
 	
 	// Get down the hierarchy to the building array
 	NSMutableArray *building_array = [[[dic_result valueForKey:@"diffgram"]
@@ -428,24 +424,24 @@ static bool is_connected;
 							   valueForKey:@"Buildings"];
 	
 	// Instantiate each array
-	opp_code_array = [[NSMutableArray alloc] init];
-	building_name_array = [[NSMutableArray alloc] init];
-	total_room_array = [[NSMutableArray alloc] init];
-	total_comp_array = [[NSMutableArray alloc] init];
-	total_avail_array = [[NSMutableArray alloc] init];
-	avail_win_array = [[NSMutableArray alloc] init];
-	avail_mac_array = [[NSMutableArray alloc] init];
-	avail_linux_array = [[NSMutableArray alloc] init];
+	oppCodeArray = [[NSMutableArray alloc] init];
+	buildingNameArray = [[NSMutableArray alloc] init];
+	totalRoomArray = [[NSMutableArray alloc] init];
+	totalCompArray = [[NSMutableArray alloc] init];
+	totalAvailArray = [[NSMutableArray alloc] init];
+	availWinArray = [[NSMutableArray alloc] init];
+	availMacArray = [[NSMutableArray alloc] init];
+	availLinuxArray = [[NSMutableArray alloc] init];
 	
 	// Populate each array
-	opp_code_array = [building_array valueForKey:@"OppCode"];
-	building_name_array = [building_array valueForKey:@"Building"];
-	total_room_array = [building_array valueForKey:@"nRooms"];
-	total_comp_array = [building_array valueForKey:@"nComputers"];
-	total_avail_array = [building_array valueForKey:@"nAvailable"];
-	avail_win_array = [building_array valueForKey:@"nWindows"];
-	avail_mac_array = [building_array valueForKey:@"nMacintosh"];
-	avail_linux_array = [building_array valueForKey:@"nLinux"];
+	oppCodeArray = [building_array valueForKey:@"OppCode"];
+	buildingNameArray = [building_array valueForKey:@"Building"];
+	totalRoomArray = [building_array valueForKey:@"nRooms"];
+	totalCompArray = [building_array valueForKey:@"nComputers"];
+	totalAvailArray = [building_array valueForKey:@"nAvailable"];
+	availWinArray = [building_array valueForKey:@"nWindows"];
+	availMacArray = [building_array valueForKey:@"nMacintosh"];
+	availLinuxArray = [building_array valueForKey:@"nLinux"];
 	 
 }
 
@@ -455,7 +451,7 @@ static bool is_connected;
 - (void) queryRoomData:(NSString *)opp_code {
 	
 	// Convert the raw xml result into NSDictionary
-	NSDictionary *dic_result = [soap_room dictionaryValue];
+	NSDictionary *dic_result = [soapRoom dictionaryValue];
 
 	// Get down the hierarchy to the room array
 	NSMutableArray *room_array = [[[dic_result valueForKey:@"diffgram"]
@@ -463,27 +459,27 @@ static bool is_connected;
 								  valueForKey:@"Rooms"];
 	
 	// Instantiate the available arrays
-	room_number = [[NSMutableArray alloc] init];
-	room_avail_win = [[NSMutableArray alloc] init];
-	room_avail_mac = [[NSMutableArray alloc] init];
-	room_avail_linux = [[NSMutableArray alloc] init];
+	roomNumber = [[NSMutableArray alloc] init];
+	roomAvailWin = [[NSMutableArray alloc] init];
+	roomAvailMac = [[NSMutableArray alloc] init];
+	roomAvailLinux = [[NSMutableArray alloc] init];
 	
 	// For those building that has only one room that has available computers
 	// The xml callbackr return room list as an array
 	// so we have to manually add it to each array
-	if ([[total_room_array objectAtIndex:[opp_code_array indexOfObject:opp_code]] isEqual: @"1"]) {
+	if ([[totalRoomArray objectAtIndex:[oppCodeArray indexOfObject:opp_code]] isEqual: @"1"]) {
 		
-		[room_number addObject:[room_array valueForKey:@"Room"]];
-		[room_avail_win addObject:[room_array valueForKey:@"nWindows"]];
-		[room_avail_mac addObject:[room_array valueForKey:@"nMacintosh"]];
-		[room_avail_linux addObject:[room_array valueForKey:@"nLinux"]];
+		[roomNumber addObject:[room_array valueForKey:@"Room"]];
+		[roomAvailWin addObject:[room_array valueForKey:@"nWindows"]];
+		[roomAvailMac addObject:[room_array valueForKey:@"nMacintosh"]];
+		[roomAvailLinux addObject:[room_array valueForKey:@"nLinux"]];
 		
 	} else {
 	
-		room_number = [room_array valueForKey:@"Room"];
-		room_avail_win = [room_array valueForKey:@"nWindows"];
-		room_avail_mac = [room_array valueForKey:@"nMacintosh"];
-		room_avail_linux = [room_array valueForKey:@"nLinux"];
+		roomNumber = [room_array valueForKey:@"Room"];
+		roomAvailWin = [room_array valueForKey:@"nWindows"];
+		roomAvailMac = [room_array valueForKey:@"nMacintosh"];
+		roomAvailLinux = [room_array valueForKey:@"nLinux"];
 	
 	}
 	
@@ -495,20 +491,20 @@ static bool is_connected;
  */
 - (void) finalizeMarkers {
 	
-	for (int i = 0; i < [marker_array count]; i++) {
+	for (int i = 0; i < [markerArray count]; i++) {
 		
 		// Make the marker snippet display computer avail info for each building
-		[[marker_array objectAtIndex:i] setTitle:[building_name_array objectAtIndex:i]];
-		[[marker_array objectAtIndex:i] setSnippet:[NSString stringWithFormat:@"Win:%@ Mac:%@ Linux:%@",
-													[avail_win_array objectAtIndex:i],
-													[avail_mac_array objectAtIndex:i],
-													[avail_linux_array objectAtIndex:i]]];
+		[[markerArray objectAtIndex:i] setTitle:[buildingNameArray objectAtIndex:i]];
+		[[markerArray objectAtIndex:i] setSnippet:[NSString stringWithFormat:@"Win:%@ Mac:%@ Linux:%@",
+													[availWinArray objectAtIndex:i],
+													[availMacArray objectAtIndex:i],
+													[availLinuxArray objectAtIndex:i]]];
 		
 		// Change the color of the marker based on crowdedness
-		[self changeMarkerColor:[marker_array objectAtIndex:i]];
+		[self changeMarkerColor:[markerArray objectAtIndex:i]];
 		
 		// Put the markers onto the map
-		[[marker_array objectAtIndex:i] setMap:map_view];
+		[[markerArray objectAtIndex:i] setMap:mapView];
 		
 	}
 	
@@ -519,9 +515,9 @@ static bool is_connected;
  */
 - (void) changeMarkerColor:(GMSMarker *)marker {
 	
-	long index = [marker_array indexOfObject:marker];
-	NSInteger total_avail = [[total_avail_array objectAtIndex:index] integerValue];
-	NSInteger total_computers = [[total_comp_array objectAtIndex:index] integerValue];
+	long index = [markerArray indexOfObject:marker];
+	NSInteger total_avail = [[totalAvailArray objectAtIndex:index] integerValue];
+	NSInteger total_computers = [[totalCompArray objectAtIndex:index] integerValue];
 	
 	if (total_avail < total_computers / 3)
 		[marker setIcon:[UIImage imageNamed:@"computers_red"]];
@@ -539,15 +535,15 @@ static bool is_connected;
     switch (Seg.selectedSegmentIndex) {
 			
         case 0:
-			[map_view setMapType:kGMSTypeNormal];
+			[mapView setMapType:kGMSTypeNormal];
             break;
 			
         case 1:
-			[map_view setMapType:kGMSTypeSatellite];
+			[mapView setMapType:kGMSTypeSatellite];
             break;
 			
         case 2:
-			[map_view setMapType:kGMSTypeHybrid];
+			[mapView setMapType:kGMSTypeHybrid];
             break;
 			
         default:

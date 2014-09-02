@@ -45,7 +45,7 @@ static NSMutableArray *opp_code_array = nil;
 	[self setupNavigationBar];
 	
 	// Instantiate the section header height
-	section_header_height = [[UIScreen mainScreen] bounds].size.height / 12;
+	sectionHeaderHeight = [[UIScreen mainScreen] bounds].size.height / 12;
     
 	// Pull to refresh
 	self.refreshControl = [[UIRefreshControl alloc] init];
@@ -118,16 +118,16 @@ static NSMutableArray *opp_code_array = nil;
 - (void) reloadRoomData {
 	
 	// Instantiate a soap engine
-	soap_room = [[SOAPEngine alloc] init];
-	soap_room.userAgent = @"SOAPEngine";
-	soap_room.actionNamespaceSlash = YES;
-	soap_room.version = VERSION_1_1;
-	soap_room.delegate = self;
-	soap_room.licenseKey = @"i4P459CjYnQ2MV09N4/4V/KbVsU4iiLBG9BOvDWAq0HNFTcJGvD1wmGNzHtI6XA6H+x8shUCOcRlrsaJ+3L0bQ==";
+	soapRoom = [[SOAPEngine alloc] init];
+	soapRoom.userAgent = @"SOAPEngine";
+	soapRoom.actionNamespaceSlash = YES;
+	soapRoom.version = VERSION_1_1;
+	soapRoom.delegate = self;
+	soapRoom.licenseKey = @"i4P459CjYnQ2MV09N4/4V/KbVsU4iiLBG9BOvDWAq0HNFTcJGvD1wmGNzHtI6XA6H+x8shUCOcRlrsaJ+3L0bQ==";
 	
 	// Add the parameter to the soap request and make a request
-	[soap_room setValue:opp_code forKey:@"OppCode"];
-	[soap_room requestURL:@"https://clc.its.psu.edu/ComputerAvailabilityWS/Service.asmx"
+	[soapRoom setValue:opp_code forKey:@"OppCode"];
+	[soapRoom requestURL:@"https://clc.its.psu.edu/ComputerAvailabilityWS/Service.asmx"
 			   soapAction:@"https://clc.its.psu.edu/ComputerAvailabilityWS/Rooms"
 				 complete:^(NSInteger statusCode, NSString *stringXML) {
 					 
@@ -166,7 +166,7 @@ static NSMutableArray *opp_code_array = nil;
 - (void) queryRoomData:(NSString *)opp_code {
 	
 	// Convert the raw xml result into NSDictionary
-	NSDictionary *dic_result = [soap_room dictionaryValue];
+	NSDictionary *dic_result = [soapRoom dictionaryValue];
 	
 	// Get down the hierarchy to the room array
 	NSMutableArray *room_array = [[[dic_result valueForKey:@"diffgram"]
@@ -218,7 +218,7 @@ static NSMutableArray *opp_code_array = nil;
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
 	
-	return section_header_height;
+	return sectionHeaderHeight;
 	
 }
 
@@ -303,7 +303,7 @@ static NSMutableArray *opp_code_array = nil;
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
 	
 	// Instantiate the view container first
-    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.frame.size.width, section_header_height)];
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.frame.size.width, sectionHeaderHeight)];
 	
 	// Set view's background color
 	[view setBackgroundColor:[UIColor clearColor]];

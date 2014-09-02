@@ -14,12 +14,12 @@
 
 @interface BKMapViewController : UIViewController <SOAPEngineDelegate, GMSMapViewDelegate> {
 	
-	GMSMapView *map_view;
-	SOAPEngine *soap_building, *soap_room;
-	NSMutableArray *marker_array, *marker_pool, *building_name_array, *building_name_pool, *total_comp_array,
-				*avail_win_array, *avail_mac_array, *avail_linux_array,
-				*opp_code_array, *total_room_array, *total_avail_array;
-	NSMutableArray *room_avail_win, *room_avail_mac, *room_avail_linux, *room_number;
+	GMSMapView *mapView;
+	SOAPEngine *soapBuilding, *soapRoom;
+	NSMutableArray *markerArray, *markerPool, *buildingNameArray, *buildingNamePool, *totalCompArray,
+				*availWinArray, *availMacArray, *availLinuxArray,
+				*oppCodeArray, *totalRoomArray, *totalAvailArray;
+	NSMutableArray *roomAvailWin, *roomAvailMac, *roomAvailLinux, *roomNumber;
 	
 }
 

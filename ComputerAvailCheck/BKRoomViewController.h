@@ -11,8 +11,8 @@
 
 @interface BKRoomViewController : UITableViewController <SOAPEngineDelegate> {
 	
-	CGFloat section_header_height;
-	SOAPEngine *soap_room;
+	CGFloat sectionHeaderHeight;
+	SOAPEngine *soapRoom;
 	
 }
 

@@ -12,7 +12,7 @@
 
 @implementation BKAppDelegate
 
-@synthesize zoom_animation_controller;
+@synthesize zoomAnimationController;
 
 + (void)initialize {
 	
@@ -31,13 +31,13 @@
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
 	
 	// Create the map view controller
-	self.map_view_controller = [[BKMapViewController alloc] init];
+	self.mapViewController = [[BKMapViewController alloc] init];
 	// Create the menu view controller
-	self.menu_view_controller = [[BKBuildingMenuViewController alloc] init];
+	self.menuViewController = [[BKBuildingMenuViewController alloc] init];
 	
 	// Create the navigation controller and initialize it with map view controller
-	self.navi_controller = [[UINavigationController alloc]
-							initWithRootViewController:self.map_view_controller];
+	self.navigationController = [[UINavigationController alloc]
+							initWithRootViewController:self.mapViewController];
 	
 	// Add two bar buttons: on the top left, the other on the top right
     UIBarButtonItem *anchorRightButton = [[UIBarButtonItem alloc]
@@ -54,9 +54,9 @@
 	
 	// Configure the navigation bar
 	//self.map_view_controller.navigationItem.title = @"Map View";
-    self.map_view_controller.navigationItem.leftBarButtonItem  = anchorRightButton;
-    self.map_view_controller.navigationItem.rightBarButtonItem = anchorLeftButton;
-	[self.map_view_controller.navigationController.navigationBar setBarTintColor:[UIColor blackColor]];
+    self.mapViewController.navigationItem.leftBarButtonItem  = anchorRightButton;
+    self.mapViewController.navigationItem.rightBarButtonItem = anchorLeftButton;
+	[self.mapViewController.navigationController.navigationBar setBarTintColor:[UIColor blackColor]];
 	
 	// Set the color of the status bar to light color
 	[[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
@@ -72,43 +72,22 @@
 	*/
 	
 	// Set the sliding view controller to the navigation controller
-	self.slidingViewController = [ECSlidingViewController slidingWithTopViewController:self.navi_controller];
+	self.slidingViewController = [ECSlidingViewController slidingWithTopViewController:self.navigationController];
 	// Set the left view controller to the menu view controller
-	self.slidingViewController.underLeftViewController = self.menu_view_controller;
+	self.slidingViewController.underLeftViewController = self.menuViewController;
 	
 	// Grant the access of sliding view controller to BKBuildingMenuViewController
 	[BKBuildingMenuViewController setSlidingViewController:self.slidingViewController];
 	
 	// Add pan gesture with zoom animation
-	self.zoom_animation_controller = [[MEZoomAnimationController alloc] init];
-	id<ECSlidingViewControllerDelegate> transition = zoom_animation_controller;
+	self.zoomAnimationController = [[MEZoomAnimationController alloc] init];
+	id<ECSlidingViewControllerDelegate> transition = zoomAnimationController;
 	self.slidingViewController.delegate = transition;
 	
 	self.slidingViewController.topViewAnchoredGesture =
 		ECSlidingViewControllerAnchoredGestureTapping |
 		ECSlidingViewControllerAnchoredGesturePanning;
-	[self.navi_controller.view addGestureRecognizer:self.slidingViewController.panGesture];
-	 
-	/*
-	// Add pan gesture with dynamic transition
-	self.dynamic_animation_controller = [[MEDynamicTransition alloc] init];
-	self.dynamic_transition_pan_gesture = [[UIPanGestureRecognizer alloc] initWithTarget:self.dynamic_animation_controller action:@selector(handlePanGesture:)];
-	
-	// Specify which kind of transition to use
-	id<ECSlidingViewControllerDelegate> transition = self.dynamic_animation_controller;
-	self.slidingViewController.delegate = transition;
-	
-	// Add custom anchored gestures
-	self.slidingViewController.customAnchoredGestures = @[self.dynamic_transition_pan_gesture];
-	
-	// Set either tapping or custom to top view anchored gesture
-	self.slidingViewController.topViewAnchoredGesture =
-	ECSlidingViewControllerAnchoredGestureTapping |
-	ECSlidingViewControllerAnchoredGestureCustom;
-	
-	// Remove pan gesture and hook up dynamic transition
-	[self.navi_controller.view addGestureRecognizer:self.dynamic_transition_pan_gesture];
-	*/
+	[self.navigationController.view addGestureRecognizer:self.slidingViewController.panGesture];
 	 
 	// configure anchored layout
     self.slidingViewController.anchorRightRevealAmount = 175.0;
