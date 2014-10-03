@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <SOAPEngine64/SOAPEngine.h>
 
-@interface BKRoomViewController : UITableViewController <SOAPEngineDelegate> {
+@interface BKRoomViewController : UITableViewController {
 	
 	CGFloat sectionHeaderHeight;
 	SOAPEngine *soapRoom;

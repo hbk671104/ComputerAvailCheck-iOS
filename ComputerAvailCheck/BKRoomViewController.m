@@ -119,16 +119,13 @@ static NSMutableArray *opp_code_array = nil;
 	
 	// Instantiate a soap engine
 	soapRoom = [[SOAPEngine alloc] init];
-	soapRoom.userAgent = @"SOAPEngine";
-	soapRoom.actionNamespaceSlash = YES;
-	soapRoom.version = VERSION_1_1;
-	soapRoom.delegate = self;
+	soapRoom.version = VERSION_1_2;
 	soapRoom.licenseKey = @"i4P459CjYnQ2MV09N4/4V/KbVsU4iiLBG9BOvDWAq0HNFTcJGvD1wmGNzHtI6XA6H+x8shUCOcRlrsaJ+3L0bQ==";
 	
 	// Add the parameter to the soap request and make a request
 	[soapRoom setValue:opp_code forKey:@"OppCode"];
 	[soapRoom requestURL:@"https://clc.its.psu.edu/ComputerAvailabilityWS/Service.asmx"
-			   soapAction:@"https://clc.its.psu.edu/ComputerAvailabilityWS/Rooms"
+			   soapAction:@"https://clc.its.psu.edu/ComputerAvailabilityWS/Service.asmx/Rooms"
 				 complete:^(NSInteger statusCode, NSString *stringXML) {
 					 
 					 // After getting the response, parse building data in a separate thread

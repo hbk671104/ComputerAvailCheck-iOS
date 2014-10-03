@@ -66,16 +66,49 @@ static bool is_connected;
 	
 		// Instantiate a soap engine for building
 		soapBuilding = [[SOAPEngine alloc] init];
-		soapBuilding.userAgent = @"SOAPEngine";
-		soapBuilding.actionNamespaceSlash = YES;
-		soapBuilding.version = VERSION_1_1;
-		soapBuilding.delegate = self;
+		soapBuilding.version = VERSION_1_2;
 		soapBuilding.licenseKey = @"i4P459CjYnQ2MV09N4/4V/KbVsU4iiLBG9BOvDWAq0HNFTcJGvD1wmGNzHtI6XA6H+x8shUCOcRlrsaJ+3L0bQ==";
 		
 		// Add the parameter to the soap request and make a request
-		[soapBuilding setValue:@"UP" forKey:@"Campus"];
 		[soapBuilding requestURL:@"https://clc.its.psu.edu/ComputerAvailabilityWS/Service.asmx"
-					   soapAction:@"https://clc.its.psu.edu/ComputerAvailabilityWS/Buildings"];
+					   soapAction:@"https://clc.its.psu.edu/ComputerAvailabilityWS/Service.asmx/Buildings"
+						   value:@"UP"
+						  forKey:@"Campus"
+		 completeWithDictionary:^(NSInteger statusCode, NSDictionary *dict) {
+			 
+			 NSLog(@"%@", dict);
+			 
+			 // After getting the response, parse building data in a separate thread
+			 dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+				 
+				 NSLog(@"SOAP Building Response Received!");
+				 
+				 // Parse and put all the building data into their corresponding array
+				 [self queryBuildingData:dict];
+				 
+				 // Init Marker Array
+				 [self initMarker];
+				 
+				 // After all the array has been fully loaded, update UI back in the
+				 // main thread
+				 dispatch_async(dispatch_get_main_queue(), ^{
+					 
+					 // Send those data to Building Menu View controller
+					 [BKBuildingMenuViewController setBuildingArray:buildingNameArray];
+					 [BKBuildingMenuViewController setMarkerArray:markerArray];
+					 [BKBuildingMenuViewController setMapView:mapView];
+					 
+					 // Add building data to each correponding marker
+					 [self finalizeMarkers];
+					 
+					 // Dismiss the progress bar
+					 [MRProgressOverlayView dismissOverlayForView:self.navigationController.view animated:YES];
+					 
+				 });
+				 
+			 });
+			  
+		 } failWithError:nil];
 	
 		NSLog(@"Map View Loaded Successfully!");
 		
@@ -96,76 +129,6 @@ static bool is_connected;
 	
 }
 
-#pragma mark - SOAPEngine Delegate
-
-/*
- * Callback when getting responses
- */
-- (void) soapEngine:(SOAPEngine *)soapEngine didFinishLoading:(NSString *)stringXML {
-	
-	// After getting the response, parse building data in a separate thread
-	dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-		
-		NSLog(@"SOAP Building Response Received!");
-		
-		// Parse and put all the building data into their corresponding array
-		[self queryBuildingData];
-		
-		// Init Marker Array
-		[self initMarker];
-		
-		// After all the array has been fully loaded, update UI back in the
-		// main thread
-		dispatch_async(dispatch_get_main_queue(), ^{
-			
-			// Send those data to Building Menu View controller
-			[BKBuildingMenuViewController setBuildingArray:buildingNameArray];
-			[BKBuildingMenuViewController setMarkerArray:markerArray];
-			[BKBuildingMenuViewController setMapView:mapView];
-		
-			// Add building data to each correponding marker
-			[self finalizeMarkers];
-			
-			// Dismiss the progress bar
-			[MRProgressOverlayView dismissOverlayForView:self.navigationController.view animated:YES];
-			
-		});
-		
-	});
-	
-}
-
-/*
- * Callback when the request failed
- */
-- (void) soapEngine:(SOAPEngine *)soapEngine didFailWithError:(NSError *)error {
-	
-	NSString *msg = [NSString stringWithFormat:@"ERROR: %@", error.localizedDescription];
-    NSLog(@"%@", msg);
-	
-}
-
-/*
- * Callback when it receives response code
- */
-- (BOOL) soapEngine:(SOAPEngine *)soapEngine didReceiveResponseCode:(NSInteger)statusCode {
-	
-    // 200 is response Ok, 500 Server error
-    // see http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html
-    // for more response codes
-    if (statusCode != 200 && statusCode != 500) {
-		
-        NSString *msg = [NSString stringWithFormat:@"ERROR: received status code %li", (long)statusCode];
-        NSLog(@"%@", msg);
-        
-        return NO;
-		
-    }
-    
-    return YES;
-	
-}
-
 # pragma mark - GMSMapView Delegate
 
 /*
@@ -181,58 +144,57 @@ static bool is_connected;
 	
 	// Instantiate a soap engine
 	soapRoom = [[SOAPEngine alloc] init];
-	soapRoom.userAgent = @"SOAPEngine";
-	soapRoom.actionNamespaceSlash = YES;
-	soapRoom.version = VERSION_1_1;
-	soapRoom.delegate = self;
+	soapRoom.version = VERSION_1_2;
 	soapRoom.licenseKey = @"i4P459CjYnQ2MV09N4/4V/KbVsU4iiLBG9BOvDWAq0HNFTcJGvD1wmGNzHtI6XA6H+x8shUCOcRlrsaJ+3L0bQ==";
 	
 	// Add the parameter to the soap request and make a request
-	[soapRoom setValue:opp_code forKey:@"OppCode"];
 	[soapRoom requestURL:@"https://clc.its.psu.edu/ComputerAvailabilityWS/Service.asmx"
-			   soapAction:@"https://clc.its.psu.edu/ComputerAvailabilityWS/Rooms"
-				complete:^(NSInteger statusCode, NSString *stringXML) {
-					
-					// After getting the response, parse building data in a separate thread
-					dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-						
-						NSLog(@"SOAP Room Response Received!");
-						
-						// Parse and put all the building data into their corresponding array
-						[self queryRoomData:opp_code];
-						
-						// After all the array has been fully loaded, update UI back in the
-						// main thread
-						dispatch_async(dispatch_get_main_queue(), ^{
-							
-							BKRoomViewController *room_view_c = [[BKRoomViewController alloc] init];
-							//UINavigationController *navi_c = [[UINavigationController alloc] initWithRootViewController:room_view_c];
-							
-							// Set the title
-							room_view_c.navigationItem.title = [buildingNameArray objectAtIndex:[markerArray indexOfObject:marker]];
-							
-							// Pass the data to the room view controller
-							[BKRoomViewController setTotalRoom:totalRoomArray];
-							[BKRoomViewController setAvailWin:roomAvailWin];
-							[BKRoomViewController setAvailMac:roomAvailMac];
-							[BKRoomViewController setAvailLinux:roomAvailLinux];
-							[BKRoomViewController setRoomNumber:roomNumber];
-							[BKRoomViewController setOppCode:opp_code];
-							[BKRoomViewController setOppCodeArray:oppCodeArray];
-							
-							// Dismiss the progress bar and push it to the Room view controller while completed
-							[MRProgressOverlayView dismissOverlayForView:self.navigationController.view animated:YES completion:^{
-								
-								//[self presentViewController:navi_c animated:YES completion:nil];
-								[self.navigationController pushViewController:room_view_c animated:YES];
-								
-							}];
-							
-						});
-						
-					});
-					
-				} failWithError:nil];
+			  soapAction:@"https://clc.its.psu.edu/ComputerAvailabilityWS/Service.asmx/Rooms"
+				   value:opp_code
+				  forKey:@"OppCode"
+  completeWithDictionary:^(NSInteger statusCode, NSDictionary *dict) {
+		
+	  // After getting the response, parse building data in a separate thread
+	  dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+		  
+		  NSLog(@"SOAP Room Response Received!");
+		  
+		  // Parse and put all the building data into their corresponding array
+		  [self queryRoomData:opp_code dictValue:dict];
+		  
+		  // After all the array has been fully loaded, update UI back in the
+		  // main thread
+		  dispatch_async(dispatch_get_main_queue(), ^{
+		   
+			   BKRoomViewController *room_view_c = [[BKRoomViewController alloc] init];
+			   //UINavigationController *navi_c = [[UINavigationController alloc] initWithRootViewController:room_view_c];
+			   
+			   // Set the title
+			   room_view_c.navigationItem.title = [buildingNameArray objectAtIndex:[markerArray indexOfObject:marker]];
+			   
+			   // Pass the data to the room view controller
+			   [BKRoomViewController setTotalRoom:totalRoomArray];
+			   [BKRoomViewController setAvailWin:roomAvailWin];
+			   [BKRoomViewController setAvailMac:roomAvailMac];
+			   [BKRoomViewController setAvailLinux:roomAvailLinux];
+			   [BKRoomViewController setRoomNumber:roomNumber];
+			   [BKRoomViewController setOppCode:opp_code];
+			   [BKRoomViewController setOppCodeArray:oppCodeArray];
+			   
+			   // Dismiss the progress bar and push it to the Room view controller while completed
+			   [MRProgressOverlayView dismissOverlayForView:self.navigationController.view animated:YES completion:^{
+				   [self.navigationController pushViewController:room_view_c animated:YES];
+			   }];
+			  
+		  });
+		  
+	  });
+	  
+	} failWithError:^(NSError *error) {
+		
+		NSLog(@"Error Code: %d", error.code);
+		
+	}];
 	
 }
 
@@ -309,6 +271,7 @@ static bool is_connected;
 	[buildingNamePool addObject:@"Hammond"];
 	[buildingNamePool addObject:@"Henderson"];
 	[buildingNamePool addObject:@"HHDev"];
+	[buildingNamePool addObject:@"Hintz"];
 	[buildingNamePool addObject:@"Hosler"];
 	[buildingNamePool addObject:@"HUB"];
 	[buildingNamePool addObject:@"IST"];
@@ -358,6 +321,7 @@ static bool is_connected;
 	[markerPool addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.793742, -77.862985)]]; // Hammond
 	[markerPool addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.796982, -77.861375)]]; // Henderson
 	[markerPool addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.796544, -77.859884)]]; // HHDev
+	[markerPool addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.794306, -77.863671)]]; // Hintz
 	[markerPool addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.794668, -77.865838)]]; // Hosler
 	[markerPool addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.798136, -77.861272)]]; // Hub
 	[markerPool addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.793673, -77.868112)]]; // IST
@@ -386,7 +350,6 @@ static bool is_connected;
 /*
  * Init markers
  */
-
 - (void) initMarker {
 	
 	markerArray = [[NSMutableArray alloc] init];
@@ -413,10 +376,7 @@ static bool is_connected;
 /*
  * Query building result
  */
-- (void) queryBuildingData {
-	
-	// Convert the raw xml result into NSDictionary
-	NSDictionary *dic_result = [soapBuilding dictionaryValue];
+- (void) queryBuildingData:(NSDictionary *) dic_result{
 	
 	// Get down the hierarchy to the building array
 	NSMutableArray *building_array = [[[dic_result valueForKey:@"diffgram"]
@@ -448,11 +408,8 @@ static bool is_connected;
 /*
  * Query room result
  */
-- (void) queryRoomData:(NSString *)opp_code {
+- (void) queryRoomData:(NSString *)opp_code dictValue:(NSDictionary *)dic_result{
 	
-	// Convert the raw xml result into NSDictionary
-	NSDictionary *dic_result = [soapRoom dictionaryValue];
-
 	// Get down the hierarchy to the room array
 	NSMutableArray *room_array = [[[dic_result valueForKey:@"diffgram"]
 								   valueForKey:@"DocumentElement"]
@@ -482,7 +439,7 @@ static bool is_connected;
 		roomAvailLinux = [room_array valueForKey:@"nLinux"];
 	
 	}
-	
+	 
 }
 
 /*

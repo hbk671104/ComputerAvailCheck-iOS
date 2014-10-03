@@ -12,7 +12,7 @@
 #import <dispatch/dispatch.h>
 #import "BKRoomViewController.h"
 
-@interface BKMapViewController : UIViewController <SOAPEngineDelegate, GMSMapViewDelegate> {
+@interface BKMapViewController : UIViewController <GMSMapViewDelegate> {
 	
 	GMSMapView *mapView;
 	SOAPEngine *soapBuilding, *soapRoom;
@@ -28,8 +28,8 @@
 - (void) addGoogleMap;
 - (void) initializeMarkerPool;
 - (void) finalizeMarkers;
-- (void) queryBuildingData;
-- (void) queryRoomData:(NSString *)opp_code;
+- (void) queryBuildingData:(NSDictionary *)dic_result;
+- (void) queryRoomData:(NSString *)opp_code dictValue:(NSDictionary *)dic_result;
 - (void) changeMarkerColor:(GMSMarker*) marker;
 
 @end
