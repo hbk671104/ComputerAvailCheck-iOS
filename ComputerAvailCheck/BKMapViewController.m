@@ -19,10 +19,11 @@
 @implementation BKMapViewController {
 	
 	GMSMapView *mapView;
-	SOAPEngine *soapBuilding, *soapRoom;
+	
 	NSMutableArray *markerArray, *markerPool, *buildingNameArray, *buildingNamePool, *totalCompArray,
 	*availWinArray, *availMacArray, *availLinuxArray,
 	*oppCodeArray, *totalRoomArray, *totalAvailArray;
+	
 	NSMutableArray *roomAvailWin, *roomAvailMac, *roomAvailLinux, *roomNumber;
 	
 }
@@ -74,7 +75,7 @@ static bool is_connected;
 		[MRProgressOverlayView showOverlayAddedTo:self.navigationController.view animated:YES];
 	
 		// Instantiate a soap engine for building
-		soapBuilding = [[SOAPEngine alloc] init];
+		SOAPEngine *soapBuilding = [[SOAPEngine alloc] init];
 		soapBuilding.version = VERSION_1_2;
 		soapBuilding.licenseKey = @"i4P459CjYnQ2MV09N4/4V/KbVsU4iiLBG9BOvDWAq0HNFTcJGvD1wmGNzHtI6XA6H+x8shUCOcRlrsaJ+3L0bQ==";
 		
@@ -150,7 +151,7 @@ static bool is_connected;
 	NSString *opp_code = [oppCodeArray objectAtIndex:[markerArray indexOfObject:marker]];
 	
 	// Instantiate a soap engine
-	soapRoom = [[SOAPEngine alloc] init];
+	SOAPEngine *soapRoom = [[SOAPEngine alloc] init];
 	soapRoom.version = VERSION_1_2;
 	soapRoom.licenseKey = @"i4P459CjYnQ2MV09N4/4V/KbVsU4iiLBG9BOvDWAq0HNFTcJGvD1wmGNzHtI6XA6H+x8shUCOcRlrsaJ+3L0bQ==";
 	
@@ -174,7 +175,6 @@ static bool is_connected;
 		  dispatch_async(dispatch_get_main_queue(), ^{
 		   
 			   BKRoomViewController *room_view_c = [[BKRoomViewController alloc] init];
-			   //UINavigationController *navi_c = [[UINavigationController alloc] initWithRootViewController:room_view_c];
 			   
 			   // Set the title
 			   room_view_c.navigationItem.title = [buildingNameArray objectAtIndex:[markerArray indexOfObject:marker]];
