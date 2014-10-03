@@ -16,7 +16,16 @@
 
 @end
 
-@implementation BKMapViewController
+@implementation BKMapViewController {
+	
+	GMSMapView *mapView;
+	SOAPEngine *soapBuilding, *soapRoom;
+	NSMutableArray *markerArray, *markerPool, *buildingNameArray, *buildingNamePool, *totalCompArray,
+	*availWinArray, *availMacArray, *availLinuxArray,
+	*oppCodeArray, *totalRoomArray, *totalAvailArray;
+	NSMutableArray *roomAvailWin, *roomAvailMac, *roomAvailLinux, *roomNumber;
+	
+}
 
 static bool is_connected;
 
@@ -75,8 +84,6 @@ static bool is_connected;
 						   value:@"UP"
 						  forKey:@"Campus"
 		 completeWithDictionary:^(NSInteger statusCode, NSDictionary *dict) {
-			 
-			 NSLog(@"%@", dict);
 			 
 			 // After getting the response, parse building data in a separate thread
 			 dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
@@ -190,11 +197,7 @@ static bool is_connected;
 		  
 	  });
 	  
-	} failWithError:^(NSError *error) {
-		
-		NSLog(@"Error Code: %d", error.code);
-		
-	}];
+	} failWithError:nil];
 	
 }
 

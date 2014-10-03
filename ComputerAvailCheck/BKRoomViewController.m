@@ -8,6 +8,7 @@
 
 #import "BKRoomViewController.h"
 #import "TSMessage.h"
+#import <SOAPEngine64/SOAPEngine.h>
 
 @interface BKRoomViewController ()
 
@@ -15,7 +16,11 @@
 
 @end
 
-@implementation BKRoomViewController
+@implementation BKRoomViewController {
+
+	CGFloat sectionHeaderHeight;
+	
+}
 
 static NSMutableArray *total_room = nil;
 static NSMutableArray *avail_win = nil;
@@ -62,25 +67,9 @@ static NSMutableArray *opp_code_array = nil;
 	
 }
 
-- (void)didReceiveMemoryWarning {
-	
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-	
-}
-
 # pragma mark - GUI Setup
 
 - (void)setupNavigationBar {
-	
-	// Instantiate the back bar
-	//UIBarButtonItem *back_button = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"back_icon"] style:UIBarButtonItemStylePlain target:self action:@selector(backToPreviousViewController)];
-	
-	//UIBarButtonItem *refresh_button = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"reload_icon"] style:UIBarButtonItemStylePlain target:self action:@selector(reloadRoomData)];
-	
-	// Attach it to the navigation bar
-	//self.navigationItem.leftBarButtonItem = back_button;
-	//self.navigationItem.rightBarButtonItem = refresh_button;
 	
 	// Set bar tint color
 	[self.navigationController.navigationBar setBarTintColor:[UIColor blackColor]];
@@ -95,75 +84,55 @@ static NSMutableArray *opp_code_array = nil;
 }
 
 # pragma mark - Selector Method
-
-// Dismiss the current view controller
-- (void) backToPreviousViewController {
-	
-	[self.navigationController dismissViewControllerAnimated:YES completion:^{
-	
-		// Release memory when completed
-		avail_win = nil;
-		avail_mac = nil;
-		avail_linux = nil;
-		room_number = nil;
-		opp_code = nil;
-		total_room = nil;
-		opp_code_array = nil;
-		
-	}];
-	
-}
 									   
 // Refresh table view room data
 - (void) reloadRoomData {
 	
 	// Instantiate a soap engine
-	soapRoom = [[SOAPEngine alloc] init];
+	SOAPEngine *soapRoom = [[SOAPEngine alloc] init];
 	soapRoom.version = VERSION_1_2;
 	soapRoom.licenseKey = @"i4P459CjYnQ2MV09N4/4V/KbVsU4iiLBG9BOvDWAq0HNFTcJGvD1wmGNzHtI6XA6H+x8shUCOcRlrsaJ+3L0bQ==";
 	
 	// Add the parameter to the soap request and make a request
-	[soapRoom setValue:opp_code forKey:@"OppCode"];
 	[soapRoom requestURL:@"https://clc.its.psu.edu/ComputerAvailabilityWS/Service.asmx"
 			   soapAction:@"https://clc.its.psu.edu/ComputerAvailabilityWS/Service.asmx/Rooms"
-				 complete:^(NSInteger statusCode, NSString *stringXML) {
-					 
-					 // After getting the response, parse building data in a separate thread
-					 dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-						 
-						 NSLog(@"SOAP Room Response Received!");
-						 
-						 // Parse and put all the building data into their corresponding array
-						 [self queryRoomData:opp_code];
-						 
-						 // After all the array has been fully loaded, update UI back in the
-						 // main thread
-						 dispatch_async(dispatch_get_main_queue(), ^{
-							 
-							 // Stop refreshing data
-							 [self.refreshControl endRefreshing];
-							 
-							 // Reload the data
-							 [self.tableView reloadData];
-							 
-							 // Show toast message
-							 [TSMessage showNotificationInViewController:self title:@"Success:)" subtitle:nil type:TSMessageNotificationTypeSuccess duration:1.0];						
-							 
-						 });
-						 
-					 });
-					 
-				 } failWithError:nil];
+				   value:opp_code
+				  forKey:@"OppCode"
+  completeWithDictionary:^(NSInteger statusCode, NSDictionary *dict) {
+		
+		// After getting the response, parse building data in a separate thread
+		dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+			
+			NSLog(@"SOAP Room Response Received!");
+			
+			// Parse and put all the building data into their corresponding array
+			[self queryRoomData:opp_code dictValue:dict];
+			
+			// After all the array has been fully loaded, update UI back in the
+			// main thread
+			dispatch_async(dispatch_get_main_queue(), ^{
+				
+				// Stop refreshing data
+				[self.refreshControl endRefreshing];
+				
+				// Reload the data
+				[self.tableView reloadData];
+				
+				// Show toast message
+				[TSMessage showNotificationInViewController:self title:@"Success:)" subtitle:nil type:TSMessageNotificationTypeSuccess duration:1.0];
+				
+			});
+			
+		});
+		
+	} failWithError:nil];
 	
 }									
 
 /*
  * Query room result
  */
-- (void) queryRoomData:(NSString *)opp_code {
-	
-	// Convert the raw xml result into NSDictionary
-	NSDictionary *dic_result = [soapRoom dictionaryValue];
+- (void) queryRoomData:(NSString *)opp_code dictValue:(NSDictionary *)dic_result{
 	
 	// Get down the hierarchy to the room array
 	NSMutableArray *room_array = [[[dic_result valueForKey:@"diffgram"]
