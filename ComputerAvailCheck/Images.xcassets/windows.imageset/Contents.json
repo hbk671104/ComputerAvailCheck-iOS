@@ -11,6 +11,10 @@
       "filename" : "Systems-Windows-8-icon copy-64.png"
     },
     {
+      "idiom" : "universal",
+      "scale" : "3x"
+    },
+    {
       "idiom" : "ipad",
       "scale" : "1x",
       "filename" : "Systems-Windows-8-icon copy-64-1.png"

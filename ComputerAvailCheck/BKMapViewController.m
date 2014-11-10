@@ -259,6 +259,7 @@ static bool is_connected;
 	buildingNamePool = [[NSMutableArray alloc] init];
 	[buildingNamePool addObject:@"AgSci"];
 	[buildingNamePool addObject:@"Boucke"];
+	[buildingNamePool addObject:@"Brill Hall"];
 	[buildingNamePool addObject:@"Bryce Jordan Center"];
 	[buildingNamePool addObject:@"Business Bldg"];
 	[buildingNamePool addObject:@"Cedar"];
@@ -285,6 +286,7 @@ static bool is_connected;
 	[buildingNamePool addObject:@"Osmond"];
 	[buildingNamePool addObject:@"Paterno"];
 	[buildingNamePool addObject:@"Patterson"];
+	[buildingNamePool addObject:@"Penn Stater Hotel"];
 	[buildingNamePool addObject:@"Pollock"];
 	[buildingNamePool addObject:@"Rackley"];
 	[buildingNamePool addObject:@"RecHall"];
@@ -309,6 +311,7 @@ static bool is_connected;
 	markerPool = [[NSMutableArray alloc] init];
 	[markerPool addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.803636, -77.863764)]]; // Ag Science
 	[markerPool addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.799342, -77.861819)]]; // Boucke
+	[markerPool addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.801270, -77.854822)]]; // Brill Hall
 	[markerPool addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.809053, -77.855428)]]; // BJC
 	[markerPool addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.803926, -77.865199)]]; // Business
 	[markerPool addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.799135, -77.868380)]]; // Cedar
@@ -335,6 +338,7 @@ static bool is_connected;
 	[markerPool addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.798607, -77.862223)]]; // Osmond
 	[markerPool addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.798493, -77.865452)]]; // Paterno
 	[markerPool addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.800239, -77.864937)]]; // Patterson
+	[markerPool addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.831589, -77.844789)]]; // Penn Stater Hotel
 	[markerPool addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.801129, -77.858510)]]; // Pollock
 	[markerPool addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.798233, -77.868628)]]; // Rackley
 	[markerPool addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.795435, -77.868651)]]; // Rec Hall

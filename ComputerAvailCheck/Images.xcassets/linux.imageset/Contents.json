@@ -11,6 +11,10 @@
       "filename" : "Systems-Linux-icon-64.png"
     },
     {
+      "idiom" : "universal",
+      "scale" : "3x"
+    },
+    {
       "idiom" : "ipad",
       "scale" : "1x",
       "filename" : "Systems-Linux-icon-64-1.png"

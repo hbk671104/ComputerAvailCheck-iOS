@@ -14,7 +14,7 @@
 		<string>https://github.com/hbk671104/PennStateComputerAvailCheck-iOS.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>ComputerAvailCheck.xcodeproj/project.xcworkspace</string>
+	<string>ComputerAvailCheck.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>1DB46D53E12027C42A32673E8029081BFA2194AC</key>
