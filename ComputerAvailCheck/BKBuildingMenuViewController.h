@@ -8,7 +8,6 @@
 
 #import <UIKit/UIKit.h>
 #import "BKMapViewController.h"
-#import <ECSlidingViewController.h>
 #import <GoogleMaps/GoogleMaps.h>
 
 @interface BKBuildingMenuViewController : UITableViewController
@@ -16,6 +15,5 @@
 + (void)setBuildingArray:(NSMutableArray *)array;
 + (void)setMarkerArray:(NSMutableArray *)array;
 + (void)setMapView:(GMSMapView *)map;
-+ (void)setSlidingViewController:(ECSlidingViewController *)controller;
 
 @end

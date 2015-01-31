@@ -119,7 +119,12 @@ static NSMutableArray *opp_code_array = nil;
 				[self.tableView reloadData];
 				
 				// Show toast message
-				[TSMessage showNotificationInViewController:self title:@"Success:)" subtitle:nil type:TSMessageNotificationTypeSuccess duration:1.0];
+				[TSMessage showNotificationInViewController:[UIApplication sharedApplication].keyWindow.rootViewController
+													  title:@"Reload successfully:)"
+												   subtitle:nil
+													   type:TSMessageNotificationTypeSuccess
+												   duration:1.0f
+									   canBeDismissedByUser:NO];
 				
 			});
 			

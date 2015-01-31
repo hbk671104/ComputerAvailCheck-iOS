@@ -8,6 +8,7 @@
 
 #import "BKBuildingMenuViewController.h"
 #import "BKMapViewController.h"
+#import "BKAppDelegate.h"
 
 @interface BKBuildingMenuViewController ()
 
@@ -18,14 +19,10 @@
 static NSMutableArray *building_array = nil;
 static NSMutableArray *marker_array = nil;
 static GMSMapView *google_map = nil;
-static ECSlidingViewController *sliding_view_controller = nil;
 
-+ (void)setBuildingArray:(NSMutableArray *)array {building_array = array;}
++ (void)setBuildingArray:(NSMutableArray *)array {building_array = array; }
 + (void)setMarkerArray:(NSMutableArray *)array {marker_array = array;}
 + (void)setMapView:(GMSMapView *)map {google_map = map;}
-+ (void)setSlidingViewController:(ECSlidingViewController *)controller {
-	sliding_view_controller = controller;
-}
 
 - (void)viewDidLoad {
 	
@@ -75,6 +72,8 @@ static ECSlidingViewController *sliding_view_controller = nil;
 	cell.backgroundColor = [UIColor clearColor];
 	// Set the text color
 	cell.textLabel.textColor = [UIColor whiteColor];
+	// Selection style
+	cell.selectionStyle = UITableViewCellSelectionStyleNone;
 	
 	// Set the cell text
     cell.textLabel.text = [building_array objectAtIndex:indexPath.row];
@@ -91,14 +90,15 @@ static ECSlidingViewController *sliding_view_controller = nil;
 	// Instantiate a new marker object for each cell
 	GMSMarker *marker = [marker_array objectAtIndex:indexPath.row];
 	
-	// Reset the top view when the cell is tapped
-	[sliding_view_controller resetTopViewAnimated:YES
-									   onComplete:^{
-										   // animate to marker's location first
-										   [google_map animateToLocation:marker.position];
-										   // then show the info window of the marker
-										   [google_map setSelectedMarker:marker];
-									   }];
+	[[BKAppDelegate globalDelegate].floatingDrawerController toggleDrawerWithSide:JVFloatingDrawerSideLeft
+																		  animated:YES
+																		completion:^(BOOL finished) {
+																			
+																			[[BKAppDelegate globalDelegate].mapViewController.mapView animateToLocation:marker.position];
+																			
+																			[[BKAppDelegate globalDelegate].mapViewController.mapView setSelectedMarker:marker];
+																			
+	}];
 	
 }
 

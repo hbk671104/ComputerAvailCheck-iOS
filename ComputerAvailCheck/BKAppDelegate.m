@@ -34,15 +34,14 @@
 	self.menuViewController = [[BKBuildingMenuViewController alloc] init];
 	
 	// Create the navigation controller and initialize it with map view controller
-	self.navigationController = [[UINavigationController alloc]
-							initWithRootViewController:self.mapViewController];
+	self.naviController = [[UINavigationController alloc] initWithRootViewController:self.mapViewController];
 	
 	// Add two bar buttons: on the top left, the other on the top right
     UIBarButtonItem *anchorRightButton = [[UIBarButtonItem alloc]
 										  initWithImage:[UIImage imageNamed:@"building_icon"]
 										  style:UIBarButtonItemStylePlain
 										  target:self
-										  action:@selector(anchorNavigationController)];
+										  action:@selector(toggleLeftDrawer:animated:)];
 	
     UIBarButtonItem *anchorLeftButton  = [[UIBarButtonItem alloc]
 										  initWithImage:[UIImage imageNamed:@"info_icon"]
@@ -51,60 +50,40 @@
 										  action:@selector(showAboutAlert)];
 	
 	// Configure the navigation bar
-	//self.map_view_controller.navigationItem.title = @"Map View";
-    self.mapViewController.navigationItem.leftBarButtonItem  = anchorRightButton;
+    self.mapViewController.navigationItem.leftBarButtonItem = anchorRightButton;
     self.mapViewController.navigationItem.rightBarButtonItem = anchorLeftButton;
 	[self.mapViewController.navigationController.navigationBar setBarTintColor:[UIColor blackColor]];
 	
 	// Set the color of the status bar to light color
 	[[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
 	
-	// Customize the navigation title
-	/*
-	[self.map_view_controller.navigationController.navigationBar setTitleTextAttributes:
-	 [NSDictionary dictionaryWithObjectsAndKeys:
-						[UIColor whiteColor], NSForegroundColorAttributeName,
-						[UIFont fontWithName:@"ArialMT"
-										size:20.0], NSFontAttributeName,
-						nil]];
-	*/
+	// Floating drawer controller
+	self.floatingDrawerController = [[JVFloatingDrawerViewController alloc] init];
 	
-	// Set the sliding view controller to the navigation controller
-	self.slidingViewController = [ECSlidingViewController slidingWithTopViewController:self.navigationController];
-	// Set the left view controller to the menu view controller
-	self.slidingViewController.underLeftViewController = self.menuViewController;
+	// Assign to your own view controllers
+	self.floatingDrawerController.leftViewController = self.menuViewController;
+	self.floatingDrawerController.centerViewController = self.naviController;
 	
-	// Grant the access of sliding view controller to BKBuildingMenuViewController
-	[BKBuildingMenuViewController setSlidingViewController:self.slidingViewController];
+	JVFloatingDrawerSpringAnimator *animator = [[JVFloatingDrawerSpringAnimator alloc] init];
+	animator.initialSpringVelocity = 15.0;
+	animator.animationDuration = 0.5;
 	
-	self.slidingViewController.topViewAnchoredGesture =
-		ECSlidingViewControllerAnchoredGestureTapping |
-		ECSlidingViewControllerAnchoredGesturePanning;
-	[self.navigationController.view addGestureRecognizer:self.slidingViewController.panGesture];
-	 
-	// configure anchored layout
-    self.slidingViewController.anchorRightRevealAmount = 175.0;
+	self.floatingDrawerController.animator = animator;
+	self.floatingDrawerController.backgroundImage = [UIImage imageNamed:@"black_matte"];
+	
+	if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad )
+		[self.floatingDrawerController setLeftDrawerWidth:185.0f];
+	else
+		[self.floatingDrawerController setLeftDrawerWidth:180.0f];
 	
 	// Set the root view controller as the navigation controller
-	self.window.rootViewController = self.slidingViewController;
-	
-	NSLog(@"HELLO");
+	self.window.rootViewController = self.floatingDrawerController;
 	
     // Override point for customization after application launch.
     [self.window makeKeyAndVisible];
 	 
     return YES;
 	
-}
-
-/*
- * Anchor the top view to the left
- */
-- (void)anchorNavigationController {
-	
-	// Anchor top view to the right
-	[self.slidingViewController anchorTopViewToRightAnimated:YES];
-
 }
 
 /*
@@ -159,6 +138,20 @@
 - (void)applicationWillTerminate:(UIApplication *)application
 {
 	// Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+}
+
+#pragma mark - Global Access Helper
+
++ (BKAppDelegate *)globalDelegate {
+	return (BKAppDelegate *)[UIApplication sharedApplication].delegate;
+}
+
+- (void)toggleLeftDrawer:(id)sender animated:(BOOL)animated {
+	[self.floatingDrawerController toggleDrawerWithSide:JVFloatingDrawerSideLeft animated:animated completion:nil];
+}
+
+- (void)toggleRightDrawer:(id)sender animated:(BOOL)animated {
+	[self.floatingDrawerController toggleDrawerWithSide:JVFloatingDrawerSideRight animated:animated completion:nil];
 }
 
 @end

@@ -9,10 +9,11 @@
 #import <UIKit/UIKit.h>
 #import <GoogleMaps/GoogleMaps.h>
 #import <SOAPEngine64/SOAPEngine.h>
-#import <dispatch/dispatch.h>
 #import "BKRoomViewController.h"
 
 @interface BKMapViewController : UIViewController <GMSMapViewDelegate> 
+
+@property (strong, nonatomic) GMSMapView *mapView;
 
 + (BOOL) getConnectionStatus;
 

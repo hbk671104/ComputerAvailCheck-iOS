@@ -11,14 +11,13 @@
 #import "BKBuildingMenuViewController.h"
 #import <MRProgress.h>
 #import "Reachability.h"
+#import "BKAppDelegate.h"
 
 @interface BKMapViewController ()
 
 @end
 
 @implementation BKMapViewController {
-	
-	GMSMapView *mapView;
 	
 	NSMutableArray *markerArray, *markerPool, *buildingNameArray, *buildingNamePool, *totalCompArray,
 	*availWinArray, *availMacArray, *availLinuxArray,
@@ -27,6 +26,8 @@
 	NSMutableArray *roomAvailWin, *roomAvailMac, *roomAvailLinux, *roomNumber;
 	
 }
+
+@synthesize mapView;
 
 static bool is_connected;
 
@@ -105,6 +106,8 @@ static bool is_connected;
 					 [BKBuildingMenuViewController setBuildingArray:buildingNameArray];
 					 [BKBuildingMenuViewController setMarkerArray:markerArray];
 					 [BKBuildingMenuViewController setMapView:mapView];
+					 
+					 [[BKAppDelegate globalDelegate].menuViewController.tableView reloadData];
 					 
 					 // Add building data to each correponding marker
 					 [self finalizeMarkers];

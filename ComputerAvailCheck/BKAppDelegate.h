@@ -7,18 +7,21 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <ECSlidingViewController.h>
+#import <JVFloatingDrawerViewController.h>
+#import <JVFloatingDrawerSpringAnimator.h>
 #import "BKMapViewController.h"
 #import "BKBuildingMenuViewController.h"
 
-@interface BKAppDelegate : UIResponder <UIApplicationDelegate, ECSlidingViewControllerDelegate>
+@interface BKAppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
-@property (strong, nonatomic) ECSlidingViewController *slidingViewController;
 @property (strong, nonatomic) BKMapViewController *mapViewController;
 @property (strong, nonatomic) BKBuildingMenuViewController *menuViewController;
-@property (strong, nonatomic) UINavigationController *navigationController;
+@property (strong, nonatomic) UINavigationController *naviController;
+@property (strong, nonatomic) JVFloatingDrawerViewController *floatingDrawerController;
 
-- (void)anchorNavigationController;
++ (BKAppDelegate *)globalDelegate;
+- (void)toggleLeftDrawer:(id)sender animated:(BOOL)animated;
+- (void)toggleRightDrawer:(id)sender animated:(BOOL)animated;
 
 @end
