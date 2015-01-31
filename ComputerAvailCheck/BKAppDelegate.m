@@ -12,8 +12,6 @@
 
 @implementation BKAppDelegate
 
-@synthesize zoomAnimationController;
-
 + (void)initialize {
 	
 	// configure iRate
@@ -78,11 +76,6 @@
 	
 	// Grant the access of sliding view controller to BKBuildingMenuViewController
 	[BKBuildingMenuViewController setSlidingViewController:self.slidingViewController];
-	
-	// Add pan gesture with zoom animation
-	self.zoomAnimationController = [[MEZoomAnimationController alloc] init];
-	id<ECSlidingViewControllerDelegate> transition = zoomAnimationController;
-	self.slidingViewController.delegate = transition;
 	
 	self.slidingViewController.topViewAnchoredGesture =
 		ECSlidingViewControllerAnchoredGestureTapping |

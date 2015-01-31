@@ -9,7 +9,7 @@
 #import "BKMapViewController.h"
 #import <GoogleMaps/GoogleMaps.h>
 #import "BKBuildingMenuViewController.h"
-#import "MRProgress.h"
+#import <MRProgress.h>
 #import "Reachability.h"
 
 @interface BKMapViewController ()

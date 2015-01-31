@@ -7,12 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "ECSlidingViewController.h"
+#import <ECSlidingViewController.h>
 #import "BKMapViewController.h"
 #import "BKBuildingMenuViewController.h"
-#import "MEFoldAnimationController.h"
-#import "MEZoomAnimationController.h"
-#import "MEDynamicTransition.h"
 
 @interface BKAppDelegate : UIResponder <UIApplicationDelegate, ECSlidingViewControllerDelegate>
 
@@ -21,7 +18,6 @@
 @property (strong, nonatomic) BKMapViewController *mapViewController;
 @property (strong, nonatomic) BKBuildingMenuViewController *menuViewController;
 @property (strong, nonatomic) UINavigationController *navigationController;
-@property (strong, nonatomic) MEZoomAnimationController *zoomAnimationController;
 
 - (void)anchorNavigationController;
 

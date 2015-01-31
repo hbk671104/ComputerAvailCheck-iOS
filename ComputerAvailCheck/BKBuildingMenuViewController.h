@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "BKMapViewController.h"
-#import "ECSlidingViewController.h"
+#import <ECSlidingViewController.h>
 #import <GoogleMaps/GoogleMaps.h>
 
 @interface BKBuildingMenuViewController : UITableViewController
