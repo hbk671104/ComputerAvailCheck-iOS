@@ -88,6 +88,8 @@
 	// Set the root view controller as the navigation controller
 	self.window.rootViewController = self.slidingViewController;
 	
+	NSLog(@"HELLO");
+	
     // Override point for customization after application launch.
     [self.window makeKeyAndVisible];
 	 
