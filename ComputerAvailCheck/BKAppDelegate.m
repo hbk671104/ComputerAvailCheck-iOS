@@ -62,10 +62,13 @@
 	// Drawer controller
 	self.drawerController = [[MMDrawerController alloc] initWithCenterViewController:self.naviController
 															leftDrawerViewController:self.menuViewController];
-	self.drawerController.maximumLeftDrawerWidth = 180.0;
+	if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+		self.drawerController.maximumLeftDrawerWidth = 185.0;
+	else
+		self.drawerController.maximumLeftDrawerWidth = 180.0;
 	self.drawerController.openDrawerGestureModeMask = MMOpenDrawerGestureModeAll;
 	self.drawerController.closeDrawerGestureModeMask = MMCloseDrawerGestureModeAll;
-	[self.drawerController setDrawerVisualStateBlock:[MMDrawerVisualState slideAndScaleVisualStateBlock]];
+	[self.drawerController setDrawerVisualStateBlock:[MMDrawerVisualState parallaxVisualStateBlockWithParallaxFactor:3.0]];
 	
 	// Set the root view controller as the navigation controller
 	self.window.rootViewController = self.drawerController;

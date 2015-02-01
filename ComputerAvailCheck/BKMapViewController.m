@@ -70,9 +70,6 @@ static bool is_connected;
 		// Add map to the view
 		[self addGoogleMap];
 		
-		// Ask for location authorization
-		[self requestLocationAuthorization];
-		
 		// Instantiate all the markers
 		[self initializeMarkerPool];
 		[self initBuildingNamePool];
@@ -127,6 +124,9 @@ static bool is_connected;
 		 } failWithError:nil];
 	
 		NSLog(@"Map View Loaded Successfully!");
+		
+		// Ask for location authorization
+		[self requestLocationAuthorization];
 		
 	}
 	
