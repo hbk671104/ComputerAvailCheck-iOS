@@ -66,7 +66,7 @@
 	
 	JVFloatingDrawerSpringAnimator *animator = [[JVFloatingDrawerSpringAnimator alloc] init];
 	animator.initialSpringVelocity = 15.0;
-	animator.animationDuration = 0.5;
+	animator.animationDuration = 0.4;
 	
 	self.floatingDrawerController.animator = animator;
 	self.floatingDrawerController.backgroundImage = [UIImage imageNamed:@"black_matte"];
