@@ -9,6 +9,7 @@
 #import "BKBuildingMenuViewController.h"
 #import "BKMapViewController.h"
 #import "BKAppDelegate.h"
+#import <GoogleMaps/GoogleMaps.h>
 
 @interface BKBuildingMenuViewController ()
 
@@ -90,8 +91,9 @@ static GMSMapView *google_map = nil;
 	
 	[[BKAppDelegate globalDelegate].drawerController toggleDrawerSide:MMDrawerSideLeft animated:YES completion:^(BOOL finished) {
 		
-		[[BKAppDelegate globalDelegate].mapViewController.mapView animateToLocation:marker.position];
-		[[BKAppDelegate globalDelegate].mapViewController.mapView setSelectedMarker:marker];
+		GMSMapView *mapView = [BKAppDelegate globalDelegate].mapViewController.mapView;
+		[mapView animateToLocation:marker.position];
+		[mapView setSelectedMarker:marker];
 		
 	}];
 	

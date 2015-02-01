@@ -53,10 +53,11 @@
 	// Configure the navigation bar
     self.mapViewController.navigationItem.leftBarButtonItem = anchorRightButton;
     self.mapViewController.navigationItem.rightBarButtonItem = anchorLeftButton;
-	[self.mapViewController.navigationController.navigationBar setBarTintColor:[UIColor blackColor]];
+	self.mapViewController.navigationController.navigationBar.barTintColor = [UIColor darkTextColor];
+	self.mapViewController.navigationController.navigationBar.tintColor = [UIColor orangeColor];
 	
 	// Set the color of the status bar to light color
-	[[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+	[UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
 	
 	// Drawer controller
 	self.drawerController = [[MMDrawerController alloc] initWithCenterViewController:self.naviController

@@ -11,7 +11,7 @@
 #import <SOAPEngine64/SOAPEngine.h>
 #import "BKRoomViewController.h"
 
-@interface BKMapViewController : UIViewController <GMSMapViewDelegate> 
+@interface BKMapViewController : UIViewController <GMSMapViewDelegate, CLLocationManagerDelegate>
 
 @property (strong, nonatomic) GMSMapView *mapView;
 

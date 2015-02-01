@@ -15,6 +15,8 @@
 
 @interface BKMapViewController ()
 
+@property (strong, nonatomic) CLLocationManager *locationAuthorizationManager;
+
 @end
 
 @implementation BKMapViewController {
@@ -27,7 +29,7 @@
 	
 }
 
-@synthesize mapView;
+@synthesize mapView, locationAuthorizationManager;
 
 static bool is_connected;
 
@@ -67,6 +69,9 @@ static bool is_connected;
 		
 		// Add map to the view
 		[self addGoogleMap];
+		
+		// Ask for location authorization
+		[self requestLocationAuthorization];
 		
 		// Instantiate all the markers
 		[self initializeMarkerPool];
@@ -137,7 +142,7 @@ static bool is_connected;
 	roomAvailWin = nil;
 	roomAvailMac = nil;
 	roomAvailLinux = nil;
-	
+
 }
 
 # pragma mark - GMSMapView Delegate
@@ -204,6 +209,19 @@ static bool is_connected;
 	
 }
 
+# pragma mark - CLLocationManagerDelegate 
+
+- (void)locationManager:(CLLocationManager *)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status {
+	
+	if (status != kCLAuthorizationStatusNotDetermined) {
+		[self performSelectorOnMainThread:@selector(enableMyLocation) withObject:nil waitUntilDone:[NSThread isMainThread]];
+		
+		locationAuthorizationManager.delegate = nil;
+		locationAuthorizationManager = nil;
+	}
+	
+}
+
 # pragma mark - Google Map Related Method
 
 /*
@@ -218,11 +236,11 @@ static bool is_connected;
 	
 	// Get the height of the navi bar, the status bar and the screen
 	CGFloat navi_bar_height = self.navigationController.navigationBar.frame.size.height;
-	CGFloat status_bar_height = [UIApplication sharedApplication].statusBarFrame.size.height;
+	//CGFloat status_bar_height = [UIApplication sharedApplication].statusBarFrame.size.height;
 	CGFloat screen_height = [[UIScreen mainScreen] bounds].size.height;
 	
     // Initialize the frame
-	CGRect frame = CGRectMake(0.0, navi_bar_height + status_bar_height, self.view.frame.size.width, screen_height - (navi_bar_height + status_bar_height));
+	CGRect frame = CGRectMake(0.0, navi_bar_height, self.view.frame.size.width, screen_height - navi_bar_height);
 	
 	// Instantiate the map view with the frame
 	mapView = [GMSMapView mapWithFrame:frame camera:camera];
@@ -240,11 +258,11 @@ static bool is_connected;
 	self.navigationItem.titleView = segmented_control;
 	
 	// Enable users' location
-	//mapView.myLocationEnabled = YES;
-	//mapView.settings.myLocationButton = YES;
+	mapView.buildingsEnabled = YES;
+	mapView.settings.myLocationButton = YES;
 	
 	// Enable compass button
-	mapView.settings.compassButton = YES;
+	//mapView.settings.compassButton = YES;
 	
 	// Set the delegate to itself
 	mapView.delegate = self;
@@ -518,6 +536,28 @@ static bool is_connected;
 			break;
 			
     }
+	
+}
+
+- (void)requestLocationAuthorization {
+	
+	locationAuthorizationManager = [[CLLocationManager alloc] init];
+	locationAuthorizationManager.delegate = self;
+	
+	[locationAuthorizationManager requestAlwaysAuthorization];
+	
+}
+
+- (void)enableMyLocation {
+	
+	CLAuthorizationStatus status = [CLLocationManager authorizationStatus];
+	
+	if (status == kCLAuthorizationStatusNotDetermined)
+		[self requestLocationAuthorization];
+	else if (status == kCLAuthorizationStatusDenied || status == kCLAuthorizationStatusRestricted)
+		return; // we weren't allowed to show the user's location so don't enable
+	else
+		[self.mapView setMyLocationEnabled:YES];
 	
 }
 

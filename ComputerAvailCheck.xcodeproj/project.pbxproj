@@ -10,8 +10,8 @@
 		40039DFD18E7960C0070975C /* SOAPEngine64.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 40039DFC18E7960C0070975C /* SOAPEngine64.framework */; };
 		4013325918E764F700B36321 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4013325818E764F700B36321 /* Security.framework */; };
 		4013325B18E7651700B36321 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 4013325A18E7651700B36321 /* libxml2.dylib */; };
-		407D45AB194668BF002E7278 /* GoogleMaps.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 407D45AA194668BF002E7278 /* GoogleMaps.framework */; };
-		407D45AD1946696C002E7278 /* GoogleMaps.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 407D45AC1946696C002E7278 /* GoogleMaps.bundle */; };
+		40BD0D4F1A7EDA71005F2206 /* GoogleMaps.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 40BD0D4E1A7EDA71005F2206 /* GoogleMaps.framework */; };
+		40BD0D511A7EDA7A005F2206 /* GoogleMaps.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 40BD0D501A7EDA7A005F2206 /* GoogleMaps.bundle */; };
 		40CAF71B196D879700676DDC /* BKBuildingMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 40CAF719196D879700676DDC /* BKBuildingMenuViewController.m */; };
 		40CAF71C196D879700676DDC /* BKBuildingMenuViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 40CAF71A196D879700676DDC /* BKBuildingMenuViewController.xib */; };
 		40CE6938194B7AD1003FCEF0 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 40CE6937194B7AD1003FCEF0 /* Reachability.m */; };
@@ -61,8 +61,8 @@
 		40039DFC18E7960C0070975C /* SOAPEngine64.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SOAPEngine64.framework; sourceTree = "<group>"; };
 		4013325818E764F700B36321 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		4013325A18E7651700B36321 /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
-		407D45AA194668BF002E7278 /* GoogleMaps.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleMaps.framework; sourceTree = "<group>"; };
-		407D45AC1946696C002E7278 /* GoogleMaps.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = GoogleMaps.bundle; path = GoogleMaps.framework/Versions/A/Resources/GoogleMaps.bundle; sourceTree = "<group>"; };
+		40BD0D4E1A7EDA71005F2206 /* GoogleMaps.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleMaps.framework; sourceTree = "<group>"; };
+		40BD0D501A7EDA7A005F2206 /* GoogleMaps.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = GoogleMaps.bundle; path = GoogleMaps.framework/Versions/A/Resources/GoogleMaps.bundle; sourceTree = "<group>"; };
 		40CAF718196D879700676DDC /* BKBuildingMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BKBuildingMenuViewController.h; sourceTree = "<group>"; };
 		40CAF719196D879700676DDC /* BKBuildingMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BKBuildingMenuViewController.m; sourceTree = "<group>"; };
 		40CAF71A196D879700676DDC /* BKBuildingMenuViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BKBuildingMenuViewController.xib; sourceTree = "<group>"; };
@@ -114,7 +114,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				407D45AB194668BF002E7278 /* GoogleMaps.framework in Frameworks */,
 				4013325B18E7651700B36321 /* libxml2.dylib in Frameworks */,
 				4013325918E764F700B36321 /* Security.framework in Frameworks */,
 				40FB753818D7E551007AA208 /* SystemConfiguration.framework in Frameworks */,
@@ -133,6 +132,7 @@
 				40FB74EC18D7DF3B007AA208 /* CoreGraphics.framework in Frameworks */,
 				40FB74EE18D7DF3B007AA208 /* UIKit.framework in Frameworks */,
 				40FB74EA18D7DF3B007AA208 /* Foundation.framework in Frameworks */,
+				40BD0D4F1A7EDA71005F2206 /* GoogleMaps.framework in Frameworks */,
 				AD286BBA135E0224678D29F4 /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -183,8 +183,8 @@
 		40FB74E818D7DF3B007AA208 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				407D45AC1946696C002E7278 /* GoogleMaps.bundle */,
-				407D45AA194668BF002E7278 /* GoogleMaps.framework */,
+				40BD0D501A7EDA7A005F2206 /* GoogleMaps.bundle */,
+				40BD0D4E1A7EDA71005F2206 /* GoogleMaps.framework */,
 				40039DFC18E7960C0070975C /* SOAPEngine64.framework */,
 				4013325A18E7651700B36321 /* libxml2.dylib */,
 				4013325818E764F700B36321 /* Security.framework */,
@@ -353,9 +353,9 @@
 				40E74C3319A2574D00E796B4 /* iRate.bundle in Resources */,
 				40FB74F418D7DF3B007AA208 /* InfoPlist.strings in Resources */,
 				40CAF71C196D879700676DDC /* BKBuildingMenuViewController.xib in Resources */,
+				40BD0D511A7EDA7A005F2206 /* GoogleMaps.bundle in Resources */,
 				40E9A60418FE2D2B006FFA6A /* BKRoomViewController.xib in Resources */,
 				40FB74FC18D7DF3B007AA208 /* Images.xcassets in Resources */,
-				407D45AD1946696C002E7278 /* GoogleMaps.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
