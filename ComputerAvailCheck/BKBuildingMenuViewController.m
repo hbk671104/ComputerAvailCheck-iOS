@@ -72,8 +72,6 @@ static GMSMapView *google_map = nil;
 	cell.backgroundColor = [UIColor clearColor];
 	// Set the text color
 	cell.textLabel.textColor = [UIColor whiteColor];
-	// Selection style
-	cell.selectionStyle = UITableViewCellSelectionStyleNone;
 	
 	// Set the cell text
     cell.textLabel.text = [building_array objectAtIndex:indexPath.row];
@@ -90,16 +88,21 @@ static GMSMapView *google_map = nil;
 	// Instantiate a new marker object for each cell
 	GMSMarker *marker = [marker_array objectAtIndex:indexPath.row];
 	
-	[[BKAppDelegate globalDelegate].floatingDrawerController toggleDrawerWithSide:JVFloatingDrawerSideLeft
-																		  animated:YES
-																		completion:^(BOOL finished) {
-																			
-																			[[BKAppDelegate globalDelegate].mapViewController.mapView animateToLocation:marker.position];
-																			
-																			[[BKAppDelegate globalDelegate].mapViewController.mapView setSelectedMarker:marker];
-																			
+	[[BKAppDelegate globalDelegate].drawerController toggleDrawerSide:MMDrawerSideLeft animated:YES completion:^(BOOL finished) {
+		
+		[[BKAppDelegate globalDelegate].mapViewController.mapView animateToLocation:marker.position];
+		[[BKAppDelegate globalDelegate].mapViewController.mapView setSelectedMarker:marker];
+		
 	}];
 	
+}
+
+- (void) viewWillDisappear:(BOOL)animated {
+	[[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationFade];
+}
+
+- (void) viewWillAppear:(BOOL)animated {
+	[[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationFade];
 }
 
 @end

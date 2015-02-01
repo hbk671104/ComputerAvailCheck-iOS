@@ -7,10 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <JVFloatingDrawerViewController.h>
-#import <JVFloatingDrawerSpringAnimator.h>
 #import "BKMapViewController.h"
 #import "BKBuildingMenuViewController.h"
+#import <MMDrawerController.h>
 
 @interface BKAppDelegate : UIResponder <UIApplicationDelegate>
 
@@ -18,10 +17,8 @@
 @property (strong, nonatomic) BKMapViewController *mapViewController;
 @property (strong, nonatomic) BKBuildingMenuViewController *menuViewController;
 @property (strong, nonatomic) UINavigationController *naviController;
-@property (strong, nonatomic) JVFloatingDrawerViewController *floatingDrawerController;
+@property (strong, nonatomic) MMDrawerController *drawerController;
 
 + (BKAppDelegate *)globalDelegate;
-- (void)toggleLeftDrawer:(id)sender animated:(BOOL)animated;
-- (void)toggleRightDrawer:(id)sender animated:(BOOL)animated;
 
 @end

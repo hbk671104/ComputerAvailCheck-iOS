@@ -9,6 +9,7 @@
 #import "BKAppDelegate.h"
 #import <GoogleMaps/GoogleMaps.h>
 #import "iRate.h"
+#import <MMDrawerVisualState.h>
 
 @implementation BKAppDelegate
 
@@ -57,27 +58,16 @@
 	// Set the color of the status bar to light color
 	[[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
 	
-	// Floating drawer controller
-	self.floatingDrawerController = [[JVFloatingDrawerViewController alloc] init];
-	
-	// Assign to your own view controllers
-	self.floatingDrawerController.leftViewController = self.menuViewController;
-	self.floatingDrawerController.centerViewController = self.naviController;
-	
-	JVFloatingDrawerSpringAnimator *animator = [[JVFloatingDrawerSpringAnimator alloc] init];
-	animator.initialSpringVelocity = 15.0;
-	animator.animationDuration = 0.5;
-	
-	self.floatingDrawerController.animator = animator;
-	self.floatingDrawerController.backgroundImage = [UIImage imageNamed:@"black_matte"];
-	
-	if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad )
-		[self.floatingDrawerController setLeftDrawerWidth:185.0f];
-	else
-		[self.floatingDrawerController setLeftDrawerWidth:180.0f];
+	// Drawer controller
+	self.drawerController = [[MMDrawerController alloc] initWithCenterViewController:self.naviController
+															leftDrawerViewController:self.menuViewController];
+	self.drawerController.maximumLeftDrawerWidth = 180.0;
+	self.drawerController.openDrawerGestureModeMask = MMOpenDrawerGestureModeAll;
+	self.drawerController.closeDrawerGestureModeMask = MMCloseDrawerGestureModeAll;
+	[self.drawerController setDrawerVisualStateBlock:[MMDrawerVisualState slideAndScaleVisualStateBlock]];
 	
 	// Set the root view controller as the navigation controller
-	self.window.rootViewController = self.floatingDrawerController;
+	self.window.rootViewController = self.drawerController;
 	
     // Override point for customization after application launch.
     [self.window makeKeyAndVisible];
@@ -147,11 +137,7 @@
 }
 
 - (void)toggleLeftDrawer:(id)sender animated:(BOOL)animated {
-	[self.floatingDrawerController toggleDrawerWithSide:JVFloatingDrawerSideLeft animated:animated completion:nil];
-}
-
-- (void)toggleRightDrawer:(id)sender animated:(BOOL)animated {
-	[self.floatingDrawerController toggleDrawerWithSide:JVFloatingDrawerSideRight animated:animated completion:nil];
+	[self.drawerController toggleDrawerSide:MMDrawerSideLeft animated:YES completion:nil];
 }
 
 @end

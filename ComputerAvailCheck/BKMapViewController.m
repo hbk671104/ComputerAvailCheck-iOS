@@ -222,7 +222,7 @@ static bool is_connected;
 	CGFloat screen_height = [[UIScreen mainScreen] bounds].size.height;
 	
     // Initialize the frame
-	CGRect frame = CGRectMake(0, navi_bar_height + status_bar_height, self.view.frame.size.width, screen_height - (navi_bar_height + status_bar_height));
+	CGRect frame = CGRectMake(0.0, navi_bar_height + status_bar_height, self.view.frame.size.width, screen_height - (navi_bar_height + status_bar_height));
 	
 	// Instantiate the map view with the frame
 	mapView = [GMSMapView mapWithFrame:frame camera:camera];
@@ -240,8 +240,8 @@ static bool is_connected;
 	self.navigationItem.titleView = segmented_control;
 	
 	// Enable users' location
-	mapView.myLocationEnabled = YES;
-	mapView.settings.myLocationButton = YES;
+	//mapView.myLocationEnabled = YES;
+	//mapView.settings.myLocationButton = YES;
 	
 	// Enable compass button
 	mapView.settings.compassButton = YES;
