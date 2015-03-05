@@ -68,7 +68,7 @@
 		self.drawerController.maximumLeftDrawerWidth = 180.0;
 	self.drawerController.openDrawerGestureModeMask = MMOpenDrawerGestureModeAll;
 	self.drawerController.closeDrawerGestureModeMask = MMCloseDrawerGestureModeAll;
-	[self.drawerController setDrawerVisualStateBlock:[MMDrawerVisualState parallaxVisualStateBlockWithParallaxFactor:3.0]];
+	[self.drawerController setDrawerVisualStateBlock:[MMDrawerVisualState parallaxVisualStateBlockWithParallaxFactor:8.0]];
 	
 	// Set the root view controller as the navigation controller
 	self.window.rootViewController = self.drawerController;

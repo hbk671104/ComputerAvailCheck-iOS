@@ -279,6 +279,7 @@ static bool is_connected;
 	
 	buildingNamePool = [[NSMutableArray alloc] init];
 	[buildingNamePool addObject:@"AgSci"];
+	[buildingNamePool addObject:@"Beaver"];
 	[buildingNamePool addObject:@"Boucke"];
 	[buildingNamePool addObject:@"Brill Hall"];
 	[buildingNamePool addObject:@"Bryce Jordan Center"];
@@ -331,6 +332,7 @@ static bool is_connected;
 	// Initialized the marker array and populate it
 	markerPool = [[NSMutableArray alloc] init];
 	[markerPool addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.803636, -77.863764)]]; // Ag Science
+	[markerPool addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.800507, -77.857044)]]; // Beaver Hall
 	[markerPool addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.799342, -77.861819)]]; // Boucke
 	[markerPool addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.801270, -77.854822)]]; // Brill Hall
 	[markerPool addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.809053, -77.855428)]]; // BJC
