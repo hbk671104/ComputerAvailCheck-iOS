@@ -92,8 +92,6 @@ static bool is_connected;
 			 // After getting the response, parse building data in a separate thread
 			 dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
 				 
-				 NSLog(@"SOAP Building Response Received!");
-				 
 				 // Parse and put all the building data into their corresponding array
 				 [self queryBuildingData:dict];
 				 
@@ -305,6 +303,7 @@ static bool is_connected;
 	[buildingNamePool addObject:@"Keller"];
 	[buildingNamePool addObject:@"LifeSci"];
 	[buildingNamePool addObject:@"Mateer"];
+	[buildingNamePool addObject:@"Nursing Sciences"];
 	[buildingNamePool addObject:@"Osmond"];
 	[buildingNamePool addObject:@"Paterno"];
 	[buildingNamePool addObject:@"Patterson"];
@@ -321,7 +320,6 @@ static bool is_connected;
 	[buildingNamePool addObject:@"Warnock"];
 	[buildingNamePool addObject:@"West Pattee"];
 	[buildingNamePool addObject:@"Willard"];
-	
 }
 
 /*
@@ -358,6 +356,7 @@ static bool is_connected;
 	[markerPool addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.798144, -77.870666)]]; // Keller
 	[markerPool addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.800934, -77.861492)]]; // Life Science
 	[markerPool addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.798623, -77.870312)]]; // Mateer
+	[markerPool addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.796552, -77.859812)]]; // Nursing Sciences
 	[markerPool addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.798607, -77.862223)]]; // Osmond
 	[markerPool addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.798493, -77.865452)]]; // Paterno
 	[markerPool addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.800239, -77.864937)]]; // Patterson
@@ -374,7 +373,6 @@ static bool is_connected;
 	[markerPool addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.80294,  -77.866079)]]; // Warnock
 	[markerPool addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.797546, -77.866610)]]; // West Pattee
 	[markerPool addObject:[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(40.795967, -77.864255)]]; // Willard
-	
 }
 
 /*
@@ -383,22 +381,13 @@ static bool is_connected;
 - (void) initMarker {
 	
 	markerArray = [[NSMutableArray alloc] init];
-	for (int i = 0; i < [buildingNameArray count]; i++) {
-		
-		NSString *name = [buildingNameArray objectAtIndex:i];
-		
-		for (int j = 0; i < [buildingNamePool count]; j++) {
-			
-			if ([name isEqual:[buildingNamePool objectAtIndex:j]]) {
-				
-				// If name matches, add the marker
-				[markerArray addObject:[markerPool objectAtIndex:j]];
-				break;
-				
+	for (NSString *name in buildingNameArray) {
+		for (NSString *poolElement in buildingNamePool) {
+			if ([name isEqualToString:poolElement]) {
+				NSInteger index = [buildingNamePool indexOfObject:poolElement];
+				[markerArray addObject:markerPool[index]];
 			}
-			
 		}
-		
 	}
 	
 }
